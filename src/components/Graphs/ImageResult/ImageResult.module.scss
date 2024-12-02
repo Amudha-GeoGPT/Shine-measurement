@@ -1,0 +1,46 @@
+.imageResult {
+    padding: 40px 20px;
+    background-color: #f8f9fa; // Light background
+ 
+    .imageCard {
+      margin-bottom: 20px;
+      text-align: left; // Ensures content aligns to the left within the card
+ 
+      .imageContainer {
+        background-color: #ffffff; // White background for the image
+        border-radius: 8px;
+        padding: 10px; // Padding around the image
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Optional shadow for better appearance
+      }
+ 
+      .image {
+        border-radius: 8px;
+        width: 100%; // Ensure the image scales properly
+        height: auto;
+        object-fit: cover; // Maintain aspect ratio and crop if necessary
+      }
+ 
+      .title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-top: 15px;
+        color: #333;
+        text-align: left; // Ensures text aligns with the left edge of the container
+      }
+ 
+      .downloadLink {
+        font-size: 14px;
+        font-weight: 500;
+        color: #007bff;
+        text-decoration: none;
+        text-align: left; // Aligns link to the left
+        display: block; // Ensures proper spacing
+ 
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+ 
+ 

@@ -1,0 +1,32 @@
+@use  "../../../assets/scss/abstracts"as *;
+
+.layout {
+    border-right: 1px solid rgba(0, 0, 0, 0.10);
+    z-index: 1;
+    background: $light-grey;
+    background-color: $white2;
+    display: flex;
+
+    .menu {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+        text-transform: capitalize;
+
+        .menuSection {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+
+            .menuTitle {
+                margin-bottom: 0;
+                font-size: 18px;
+                font-weight: 600;
+                color: $blue2;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,58 @@
+@use "../../../assets/scss/abstracts" as *;
+
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem 0;
+
+  .headerTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .createButton {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        color: white;
+        background-color: #007bff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+
+        .createButton:hover {
+            background-color: #0056b3;
+        }
+    }
+  }
+
+  .searchContainer {
+    position: relative;
+    width: 100%;
+    max-width: calc(33.33% - 16px);
+
+    .searchIcon {
+      position: absolute;
+      left: 0.75rem; 
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 28px;
+    }
+  
+    .searchInput {
+      width: 100%;
+      padding: 12px 34px;
+      font-size: 14px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+  }
+}

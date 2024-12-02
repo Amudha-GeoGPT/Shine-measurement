@@ -1,0 +1,9 @@
+@use "../../../assets/scss/abstracts" as *;
+
+.mainLayout {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: 1fr;
+    height: auto;
+    overflow: auto;
+} 
