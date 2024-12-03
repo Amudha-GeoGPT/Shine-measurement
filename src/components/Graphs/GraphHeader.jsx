@@ -1,12 +1,17 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import s from "./GraphHeader.module.scss";
 
 const GraphHeader = () => {
+  const navigate = useNavigate();
+
+  const handleReturn = () => {
+    navigate(-1);
+  };
   return (
     <div className={s.layout}>
       <div className={s.backreturnTitle}>
-        <span className={s.backTitle}>&lt; Results</span>
+        <span className={s.backTitle} onClick={handleReturn}>&lt; Results</span>
       </div>
       <nav className={s.graphNav}>
         <ul className={s.graphNavList}>
