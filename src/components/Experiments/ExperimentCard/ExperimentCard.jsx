@@ -1,58 +1,55 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import UserAvatar from '../UserAvatar/UserAvatar';
 import { ReactSVG } from 'react-svg';
-import BackArrowIcon from "../../../assets/svg/arrow_back.svg";
-import s from './ExperimentCard.module.scss'; // Ensure Bootstrap is imported
+import BackArrowIcon from '../../../assets/svg/arrow_back.svg';
+import s from './ExperimentCard.module.scss'; // Import the SCSS module
 import { Col, Row } from 'react-bootstrap';
 
 const ExperimentCard = ({ experiment }) => {
-  const { id, title, type, users, status, extraUserCount } = experiment;
-  const navigate = useNavigate(); // Initialize navigate hook
+  const { id, title, type, users, extraUserCount } = experiment;
+  const navigate = useNavigate();
+
   const handleViewResults = () => {
-    navigate('/graph/graph-results'); // Navigate to the static Graph Results page
+    navigate('/graph/graph-results');
   };
 
   return (
-    <div className="card shadow-sm mb-4" style={{ border:'0px',backgroundColor: '#E0F3FE',boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'}}>
-      <div className="card-body">
+    <div className={`card ${s.card} shadow-sm mb-4`}>
+      <div className={s['card-body']}>
         {/* Header Section */}
-       
-            <p className="text-muted mb-1"style={{fontSize:'12px',fontWeight:500,lineHeight:'18px'}}>Study ID {id}</p>
-     
-            <p className="card-title mb-2" style={{fontSize:'16px',fontWeight:600,lineHeight:'24px'}}>{title}</p>
-            <p className="text-muted text-truncate">{type}</p>
-       
+        <p className="text-muted">{`Study ID ${id}`}</p>
+        <p className={`card-title ${s['card-title']}`}>{title}</p>
+        <p className={`text-truncate ${s['text-truncate']}`}>{type}</p>
 
         {/* Body Section */}
         <div className="d-flex flex-column gap-3">
-  {/* Avatars Section */}
-  <Row className="align-items-center mb-3">
-    {/* Users Section */}
-    <Col xs={6} md={6} className="d-flex flex-wrap align-items-center gap-2">
-      <div className="d-flex flex-nowrap overflow-auto">
-        {users.map((user, index) => (
-          <UserAvatar key={index} user={user} />
-        ))}
-        {extraUserCount > 0 && (
-          <span className="text-muted">+{extraUserCount}</span>
-        )}
-      </div>
-    </Col>
+          {/* Avatars and Button Section */}
+          <Row className="align-items-center">
+            {/* Avatars Section */}
+            <Col xs={6} md={6}>
+              <div className={`${s.avatars} d-flex flex-nowrap overflow-auto`}>
+                {users.map((user, index) => (
+                  <UserAvatar key={index} user={user} />
+                ))}
+                {extraUserCount > 0 && (
+                  <span className="text-muted">+{extraUserCount}</span>
+                )}
+              </div>
+            </Col>
 
-    {/* Button Section */}
-    <Col xs={6} md={6} className="d-flex justify-content-end">
-      <button style={{ backgroundColor: '#3F51B5',paddingX:'2%' }}
-        className="btn btn-primary d-flex align-items-center justify-content-center text-nowrap "
-        onClick={handleViewResults}
-      >
-        <span style={{ fontSize: '12px',fontWeight:500,lineHeight:'18px' }}>View Results</span>
-        <ReactSVG src={BackArrowIcon} style={{paddingBottom:'5px',paddingLeft:'5px'}} />
-      </button>
-    </Col>
-  </Row>
-</div>
-
+            {/* Button Section */}
+            <Col xs={6} md={6} className="d-flex justify-content-end">
+              <button 
+                className={`${s.viewBtn} btn btn-primary d-flex align-items-center justify-content-center text-nowrap`} 
+                onClick={handleViewResults}
+              >
+                <span className={`${s.viewBtnText}`}>View Results</span>
+                <ReactSVG src={BackArrowIcon} style={{ paddingBottom: '5px', }} />
+              </button>
+            </Col>
+          </Row>
+        </div>
       </div>
     </div>
   );
