@@ -8,6 +8,7 @@ import GraphResult from "../components/Graphs/GraphResult/GraphResult";
 import ImageResult from "../components/Graphs/ImageResult/ImageResult";
 import GraphHeader from "../components/Graphs/GraphHeader";
 import Experiements from "../components/Mainpage/Pages/Experiments";
+import Webcam from "../components/webcam";
 import { Navigate } from "react-router-dom";
 const routes = [
     {
