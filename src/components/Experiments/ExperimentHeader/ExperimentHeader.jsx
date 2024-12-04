@@ -14,7 +14,7 @@ const ExperimentHeader = ({ onSearchChange, onCreateNew }) => {
          className="btn btn-primary d-flex align-items-center justify-content-center text-nowrap "
          onClick={onCreateNew}>
             <ReactSVG src={plus} style={{paddingBottom:'5px',paddingRight:'10px'}} />
-            <span style={{ fontSize: '16px',fontWeight:600,lineHeight:'24px' }}>Create Newxxxxxxxxxxxxx</span> 
+            <span style={{ fontSize: '16px',fontWeight:600,lineHeight:'24px' }}>Create New</span> 
         </button>
       </div>
       <Row>
