@@ -36,12 +36,11 @@ const ImageCrop = () => {
           </div>
           <div className={s.cropperContainer}>
             <Cropper
-              //style={{ height: 400, width: "100%" }}
               initialAspectRatio={1}
               src={location.state.image}
               viewMode={1}
               guides={true}
-              minCropBoxHeight={10}
+              minCropBoxHeight={90}
               minCropBoxWidth={10}
               background={false}
               responsive={true}
@@ -50,28 +49,19 @@ const ImageCrop = () => {
               onInitialized={(instance) => {
                 setCropper(instance);
               }}
+              
             />
-            {/* <button className={s.applyButton} onClick={goToPreviewPage}>
-              <ReactSVG src={ArrowRightIcon} />
-              <span>Preview</span>
-            </button> */}
           </div>
           <div className={s.buttonContainer}>
-              <button className={s.applyButton} onClick={getCropData}>
-                <span>Apply</span>
-              </button>
               <button className={s.cancelButton} onClick={onCancel}>
                 <span>Cancel</span>
+              </button>
+              <button className={s.applyButton} onClick={getCropData}>
+                <span>Apply</span>
               </button>
             </div>
         </>
       )}
-      {/* {cropData && (
-        <div className={s.preview}>
-          <h2>Cropped Image</h2>
-          <img src={cropData} alt="cropped" />
-        </div>
-      )} */}
     </div>
   );
 };
