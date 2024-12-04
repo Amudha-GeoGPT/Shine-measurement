@@ -1,13 +1,14 @@
 @use  "../../../assets/scss/abstracts" as *;
 
 .card {
-  background-color: #E0F3FE;
+  background-color: rgba(225, 232, 248, 1);
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   gap: 20px;
   display: flex;
   flex-direction: column;
+  border: 1px;
 
   .header p {
     margin: 0;
@@ -29,6 +30,7 @@
       align-items: center;
       //gap: 0.3rem;
     }
+  
 
     .viewBtn {
       display: flex;

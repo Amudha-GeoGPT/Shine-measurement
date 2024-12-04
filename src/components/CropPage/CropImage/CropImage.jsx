@@ -13,7 +13,7 @@ const CropImage = () => {
  
   const handleCloseModal = () => {
     setShowModal(false);
-    navigate("/graph", { state : { imageData: cropData }});
+    navigate("/graph/graph-results", { state : { imageData: cropData }});
   }
  
   const handleShowModal = () => setShowModal(true);

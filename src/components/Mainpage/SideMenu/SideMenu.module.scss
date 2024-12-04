@@ -1,4 +1,4 @@
-@use  "../../../assets/scss/abstracts"as *;
+@use "../../../assets/scss/abstracts" as *;
 
 .layout {
     border-right: 1px solid rgba(0, 0, 0, 0.10);
@@ -14,11 +14,23 @@
         gap: 20px;
         text-transform: capitalize;
 
+        .fs_14 {
+            font-size: 14px;
+            color: rgba(136, 136, 136, 1);
+        }
+
         .menuSection {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
             gap: 10px;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: rgba(203, 216, 242, 1);
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+            border: 2px;
+            position: relative;
+            width: calc(100% + 20px);            padding-right: 40px;
+            border-right: 5px solid #3a5dcb;
 
             .menuTitle {
                 margin-bottom: 0;
