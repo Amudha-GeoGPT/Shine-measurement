@@ -22,6 +22,7 @@ const routes = [
           path: "/graph",
           element: <GraphHeader />, // GraphHeader as a fixed element
           children: [
+            { index: true, element: <GraphResult /> }, // Default route for /graph
             { path: "graph-results", element: <GraphResult /> },
             { path: "image-result", element: <ImageResult /> },
             { path: "calculation-results", element: <CalculationTable /> },
