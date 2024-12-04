@@ -10,7 +10,7 @@ const ExperimentCard = ({ experiment }) => {
   const { id, title, type, users, status, extraUserCount } = experiment;
   const navigate = useNavigate(); // Initialize navigate hook
   const handleViewResults = () => {
-    navigate('/graph-results'); // Navigate to the static Graph Results page
+    navigate('/graph/graph-results'); // Navigate to the static Graph Results page
   };
 
   return (
