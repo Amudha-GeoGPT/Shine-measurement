@@ -2,7 +2,9 @@
 
 .layout {
   width: 100%;
-  background-color: #F6F8F7;
+  background-color:rgba(246, 248, 247, 1);
+  padding: 20px;
+  
 }
 
 .backreturnTitle {
@@ -13,10 +15,12 @@
 .backTitle {
   padding-left: 24px;
   color: #344054;
-  font-size: 16px;
+  font-size: 24px;
   font-weight: 500;
   cursor: pointer;
   display: inline-block;
+  font-family: poppins;
+  line-height: 30px;
 }
 
 .graphNav {
@@ -49,15 +53,13 @@
         padding: 8px 24px;
         border-radius: 6px;
         text-decoration: none;
+        font-family: poppins;
         transition: all 0.2s ease;
 
-        &:hover {
-          background-color: #4f46e5;
-          color: white;
-        }
+        
 
         &.active {
-          background-color: #4f46e5; /* Same as hover color */
+          background-color: rgba(63, 81, 181, 1); /* Same as hover color */
           color: white; /* Same as hover color */
         }
       }

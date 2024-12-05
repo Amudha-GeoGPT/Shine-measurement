@@ -16,12 +16,12 @@ const GraphHeader = () => {
       <nav className={s.graphNav}>
         <ul className={s.graphNavList}>
           <li>
-                <NavLink
-        to="graph-results"
-        className={({ isActive }) => (isActive ? `${s.graphNavLink} ${s.active}` : s.graphNavLink)}
-      >
-        Graph Result
-      </NavLink>
+            <NavLink
+              to="graph-results"
+              className={({ isActive }) => (isActive ? `${s.graphNavLink} ${s.active}` : s.graphNavLink)}
+            >
+              Graph Result
+            </NavLink>
           </li>
           <li>
             <NavLink

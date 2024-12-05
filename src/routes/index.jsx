@@ -8,6 +8,7 @@ import GraphResult from "../components/Graphs/GraphResult/GraphResult";
 import ImageResult from "../components/Graphs/ImageResult/ImageResult";
 import GraphHeader from "../components/Graphs/GraphHeader";
 import Experiements from "../components/Mainpage/Pages/Experiments";
+import { Navigate } from "react-router-dom";
 const routes = [
     {
       path: "/",
@@ -22,6 +23,10 @@ const routes = [
           path: "/graph",
           element: <GraphHeader />, // GraphHeader as a fixed element
           children: [
+            {
+              index: true, 
+              element: <Navigate to="graph-results" replace />,
+            },
             { path: "graph-results", element: <GraphResult /> },
             { path: "image-result", element: <ImageResult /> },
             { path: "calculation-results", element: <CalculationTable /> },

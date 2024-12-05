@@ -7,3 +7,15 @@
     height: auto;
     overflow: auto;
 } 
+   ::-webkit-scrollbar-track{
+    background: transparent;
+   }
+   ::-webkit-scrollbar{
+    display: none;
+   }
+   #root{
+    overflow: hidden;
+   }
+   html{
+    scroll-behavior: smooth;
+   }

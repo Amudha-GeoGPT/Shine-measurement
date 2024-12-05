@@ -1,45 +1,64 @@
-@use  "../../../assets/scss/abstracts" as *;
-
 .card {
-  background-color: #E0F3FE;
+  background-color: #e0f3fe;
   padding: 1rem;
-  border-radius: 8px;
+  border: 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; // Equivalent to 20px
+}
+
+.card-body {
   display: flex;
   flex-direction: column;
 
-  .header p {
-    margin: 0;
-    color: #555;
-    margin-bottom: 10px;  
+  .text-muted {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    color: #6c757d; // Default muted color
   }
 
-  .header h3 {
-    margin: 0.5rem 0;
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    margin-bottom: 0.5rem;
+    color: #212529; // Default body color
   }
 
-  .body {
+  .text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #6c757d; // Default muted color
+  }
+
+  .avatars {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-wrap: nowrap;
+   
 
-    .avatars {
-      display: flex;
-      align-items: center;
-      //gap: 0.3rem;
+    span {
+      text-align: center;
+      font-size: 15px;
+      color: #6c757d; // Default muted color
     }
-  
+  }
 
-    .viewBtn {
-      display: flex;
-      flex-direction: row;
-      padding: 8px 12px;
-      background-color: $blue2;
-      gap: 10px;
-      border: none;
-      border-radius: 8px;
-      color: $white2;
+  .viewBtn {
+    background-color: #3f51b5; // Primary blue color
+    border: none;
+    padding: 0 0.75rem ; // Adjust button padding
+    color: #ffffff; // White text color
+    display: flex;
+    align-items: center;
+    border-radius: 4px; // Optional for rounded corners
+
+    .viewBtnText {
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 18px;
     }
   }
 }
