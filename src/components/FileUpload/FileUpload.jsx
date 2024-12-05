@@ -210,7 +210,7 @@ const FileUpload = ({ onBack }) => {
           />
           <ReactSVG src={UploadIcon} className={s.uploadIcon} />
           <p>Select File</p>
-          <span>Or</span>
+          <span style={{color:"rgba(36, 55, 68, 0.75)"}}>Or</span>
  
           <div className={s.captureBtn}>
             <ReactSVG src={AddPhotoIcon} />

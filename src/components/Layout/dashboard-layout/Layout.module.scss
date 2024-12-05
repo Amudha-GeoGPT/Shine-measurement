@@ -4,6 +4,18 @@
     display: grid;
     grid-template-columns: auto 1fr auto;
     grid-template-rows: 1fr;
-    height: 100vh;
+    height: auto;
     overflow: auto;
 } 
+   ::-webkit-scrollbar-track{
+    background: transparent;
+   }
+   ::-webkit-scrollbar{
+    display: none;
+   }
+   #root{
+    overflow: hidden;
+   }
+   html{
+    scroll-behavior: smooth;
+   }

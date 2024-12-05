@@ -20,10 +20,8 @@ const GraphHeader = () => {
         <ul className={s.graphNavList}>
           <li>
             <NavLink
-              to="graph-results" // Relative path
-              className={({ isActive }) =>
-                isActive ? `${s.graphNavLink} ${s.active}` : s.graphNavLink
-              }
+              to="graph-results"
+              className={({ isActive }) => (isActive ? `${s.graphNavLink} ${s.active}` : s.graphNavLink)}
             >
               Graph Result
             </NavLink>

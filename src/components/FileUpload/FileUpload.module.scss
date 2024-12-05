@@ -1,4 +1,7 @@
 @use "../../assets/scss/abstracts" as *;
+.layout{
+  padding: 40px;
+  background-color: rgba(246, 248, 247, 1);
 .upload {
   width: 100%;
   font-weight: 600;
@@ -58,7 +61,7 @@
  
   .captureBtn {
     border-radius: 50px;
-    background-color: lightblue;
+    background-color: rgba(215, 218, 238, 1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,7 +72,7 @@
       border: none;
       background: no-repeat;
       padding: 14px;
-      color: blue;
+      color:rgba(63, 81, 181, 1);
     }
   }
  
@@ -103,7 +106,7 @@
    
  
     .fileUpload {
-      background-color: #FFFFFF;
+      //background-color: #FFFFFF;
       padding: 20px;
       border-radius: 12px;
       width: calc(50% - 10px);
@@ -140,6 +143,7 @@
       .imageBox {
         border: 1px solid #ccc;
         padding: 10px;
+        background-color: #fff;
         margin: 10px;
         display: inline-block;
         width: 100%;
@@ -204,6 +208,7 @@
           width: 20px;
           height: 20px;
           margin-left: 10px;
+          margin-right: 20px;
           cursor: pointer;
           //fill: #ff0000;
         }
@@ -215,7 +220,7 @@
       justify-content: center;
       width: calc(50% - 10px);
       flex:1 0 auto;
-      width:50%;
+      //width:50%;
      
       .preview {
         img {
@@ -261,5 +266,5 @@
     }
   }
 }
- 
+}
  
