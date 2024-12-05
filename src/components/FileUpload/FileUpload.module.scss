@@ -2,6 +2,7 @@
 .layout{
   padding: 40px;
   background-color: rgba(246, 248, 247, 1);
+  height: 100vh;
 .upload {
   width: 100%;
   font-weight: 600;
@@ -214,21 +215,22 @@
         }
       }
     }
-    .previewContainer {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: calc(50% - 10px);
-      flex:1 0 auto;
-      //width:50%;
-     
-      .preview {
-        img {
-          width: 100%;
-          height: auto;
-          border-radius: 8px;
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+    
+  }
+  .previewContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(50% - 10px);
+    flex:1 0 auto;
+    //width:50%;
+   
+    .preview {
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
     }
   }
