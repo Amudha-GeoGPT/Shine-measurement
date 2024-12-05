@@ -54,20 +54,27 @@ const CalculationTable = () => {
       {
         label: "Specular Area",
         data: [item.SpecularArea],
-        backgroundColor: "rgba(75, 192, 192, 0.6)",
-        borderColor: "rgba(75, 192, 192, 1)",
+        // backgroundColor: "rgba(75, 192, 192, 0.6)",
+        // borderColor: "rgba(75, 192, 192, 1)",
         borderWidth: 1,
       },
       {
         label: "FWHM",
         data: [item.FWHM],
-        backgroundColor: "rgba(54, 162, 235, 0.6)",
-        borderColor: "rgba(54, 162, 235, 1)",
+        // backgroundColor: "rgba(54, 162, 235, 0.6)",
+        // borderColor: "rgba(54, 162, 235, 1)",
         borderWidth: 1,
       },
       {
         label: "Max Intensity",
         data: [item.MaxIntensity],
+        // backgroundColor: "rgba(255, 99, 132, 0.6)",
+        // borderColor: "rgba(255, 99, 132, 1)",
+        borderWidth: 1,
+      },
+      {
+        label: "CenterOffset",
+        data: [item.CenterOffset],
         backgroundColor: "rgba(255, 99, 132, 0.6)",
         borderColor: "rgba(255, 99, 132, 1)",
         borderWidth: 1,
@@ -75,10 +82,17 @@ const CalculationTable = () => {
       {
         label: "Baseline Offset",
         data: [item.BaselineOffset],
-        backgroundColor: "rgba(255, 206, 86, 0.6)",
-        borderColor: "rgba(255, 206, 86, 1)",
+        // backgroundColor: "rgba(255, 206, 86, 0.6)",
+        // borderColor: "rgba(255, 206, 86, 1)",
         borderWidth: 1,
       },
+      {
+        label: "SinCurveArea",
+        data: [item.SinCurveArea],
+        // backgroundColor: "rgba(255, 99, 132, 0.6)",
+        // borderColor: "rgba(255, 99, 132, 1)",
+        borderWidth: 1,
+      }
     ],
   });
 
@@ -86,7 +100,7 @@ const CalculationTable = () => {
     responsive: true,
     maintainAspectRatio: true, // Maintain the aspect ratio
     barThickness: "flex", // Flexible bar thickness
-    maxBarThickness: 50, // Max bar thickness
+    maxBarThickness: 30, // Max bar thickness
     minBarLength: 5, // Minimum bar length
     plugins: {
       legend: {
@@ -259,6 +273,7 @@ const CalculationTable = () => {
                     width: "100%",
                     maxWidth: "100%",
                     margin: "0 auto",
+                    borderRadius:'20px'
                   }}
                   data={generateChartData(item)}
                   options={chartOptions}
