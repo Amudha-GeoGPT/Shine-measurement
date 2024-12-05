@@ -1,11 +1,14 @@
-@use "../../assets/scss/abstracts" as *;
-
 .layout {
-  width: 100%;
-  background-color:rgba(246, 248, 247, 1);
-  padding: 20px;
-  
+  position: fixed;
+  top: 79px;
+  left: 232px;     
+  right: 10px;  
+  padding-bottom: 20px; 
+  width: calc(100vw - 230px); 
+  z-index: 1000;      
+  background-color: rgba(246, 248, 247, 1); 
 }
+
 
 .backreturnTitle {
   padding-top: 16px;
@@ -25,44 +28,43 @@
 
 .graphNav {
   background-color: #E4E7EC;
-  position: flex;
-  left: 0;
-  right: 0;
   margin: 0 24px;
   border-radius: 8px;
   padding: 4px;
+}
 
-  .graphNavList {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.graphNavList {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 
-    li {
-      flex: 1;
-      text-align: center;
-      margin: 0 4px;
+  li {
+    flex: 1;
+    text-align: center;
+    margin: 0 4px;
 
-      .graphNavLink {
-        display: block;
-        color: #344054;
-        font-weight: 500;
-        font-size: 14px;
-        padding: 8px 24px;
-        border-radius: 6px;
-        text-decoration: none;
-        font-family: poppins;
-        transition: all 0.2s ease;
+    .graphNavLink {
+      display: block;
+      color: #344054;
+      font-weight: 500;
+      font-size: 14px;
+      padding: 8px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-family: poppins;
+      transition: all 0.2s ease;
 
-        
-
-        &.active {
-          background-color: rgba(63, 81, 181, 1); /* Same as hover color */
-          color: white; /* Same as hover color */
-        }
+      &.active {
+        background-color: rgba(63, 81, 181, 1);
+        color: white;
       }
     }
   }
+}
+
+.outletContainer {
+  padding-top: 100px; 
 }

@@ -156,7 +156,7 @@ const CalculationTable = () => {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column" , margin: '0 !important',padding:'20px'}}>
+    <div style={{ display: "flex", flexDirection: "column" , margin: '0 !important',padding:'20px',backgroundColor:'rgba(246, 248, 247, 1)'}}>
       <div style={{justifyContent:'left',backgroundColor:'white',fontWeight:'600',fontFamily:'poppins'}}><h2 style={{fontSize:'18px',lineHeight:'28px',paragraph:'18px'}}>Calculations</h2></div>
 
       {/* Table Section */}
@@ -229,7 +229,7 @@ const CalculationTable = () => {
             <Pagination.Next
               disabled={currentPage === Math.ceil(Stockdata.length / itemsPerPage)}
               onClick={() => handlePageChange(currentPage + 1)}
-              linkClassName={s.anu}
+              linkClassName={s.name}
             >
               Next<span><img src={nextarrow}/> </span>
             </Pagination.Next>
