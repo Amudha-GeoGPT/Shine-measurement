@@ -67,6 +67,50 @@ const mockExperiments = [
     extraUserCount: 0,
     status: "Pre-Measurement",
   },
+  {
+    id: 10286321,
+    title: "Test product type 7",
+    users: [
+      { initials: "AD", color: "#FF5E5E" },
+      { initials: "AH", color: "#FFA500" },
+      { initials: "JD", color: "#6A0DAD" },
+    ],
+    extraUserCount: 0,
+    status: "Pre-Measurement",
+  },
+  {
+    id: 98765807,
+    title: "Test product type 8",
+    users: [
+      { initials: "AD", color: "#FF5E5E" },
+      { initials: "AH", color: "#FFA500" },
+      { initials: "JD", color: "#6A0DAD" },
+    ],
+    extraUserCount: 0,
+    status: "Pre-Measurement",
+  },
+  {
+    id: 97807572,
+    title: "Test product type 9",
+    users: [
+      { initials: "AD", color: "#FF5E5E" },
+      { initials: "AH", color: "#FFA500" },
+      { initials: "JD", color: "#6A0DAD" },
+    ],
+    extraUserCount: 0,
+    status: "Pre-Measurement",
+  },
+  {
+    id: 10293567,
+    title: "Test product type 10",
+    users: [
+      { initials: "AD", color: "#FF5E5E" },
+      { initials: "AH", color: "#FFA500" },
+      { initials: "JD", color: "#6A0DAD" },
+    ],
+    extraUserCount: 0,
+    status: "Pre-Measurement",
+  },
 ];
 
 export default mockExperiments;

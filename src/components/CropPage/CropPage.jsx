@@ -21,57 +21,56 @@ const ImageCrop = () => {
   };
 
   const onCancel = () => {
-    navigate("/CreateExperiment")
-  }
-  
+    navigate("/CreateExperiment");
+  };
+
   return (
-    <div className={s.crop}>
+    <div className={`container-fluid ${s.crop}`}>
       {location.state?.image && (
         <>
-          <div className={s.cropHead}>
-            <div className={s.leftIcon}>
-              <ReactSVG src={BackwardArrow} onClick={onCancel} />
+          <div className={`row align-items-center mb-4 ${s.cropHead}`}>
+            <div className="col-auto">
+              <ReactSVG src={BackwardArrow} onClick={onCancel} className={s.leftIcon} />
             </div>
-            <h3 className={s.cropTitle}>Crop Image</h3>
+            <div className="col">
+              <h3 className={s.cropTitle}>Crop Image</h3>
+            </div>
           </div>
-          <div className={s.cropperContainer}>
-            <Cropper
-              //style={{ height: 400, width: "100%" }}
-              initialAspectRatio={1}
-              src={location.state.image}
-              viewMode={1}
-              guides={true}
-              minCropBoxHeight={10}
-              minCropBoxWidth={10}
-              background={false}
-              responsive={true}
-              autoCropArea={1}
-              checkOrientation={false}
-              onInitialized={(instance) => {
-                setCropper(instance);
-              }}
-            />
-            {/* <button className={s.applyButton} onClick={goToPreviewPage}>
-              <ReactSVG src={ArrowRightIcon} />
-              <span>Preview</span>
-            </button> */}
+          <div className="row justify-content-center">
+            <div className="col-12 col-md-8 col-lg-6">
+              <div className={s.cropperContainer}>
+                <Cropper
+                  initialAspectRatio={1}
+                  src={location.state.image}
+                  viewMode={1}
+                  guides={true}
+                  minCropBoxHeight={90}
+                  minCropBoxWidth={10}
+                  background={false}
+                  responsive={true}
+                  autoCropArea={1}
+                  checkOrientation={false}
+                  onInitialized={(instance) => {
+                    setCropper(instance);
+                  }}
+                />
+              </div>
+            </div>
           </div>
-          <div className={s.buttonContainer}>
-              <button className={s.applyButton} onClick={getCropData}>
-                <span>Apply</span>
-              </button>
-              <button className={s.cancelButton} onClick={onCancel}>
+          <div className={`row justify-content-end ${s.buttonContainer}`}>
+            <div className="col-auto">
+              <button className={`btn ${s.cancelButton}`} onClick={onCancel}>
                 <span>Cancel</span>
               </button>
             </div>
+            <div className="col-auto">
+              <button className={`btn ${s.applyButton}`} onClick={getCropData}>
+                <span>Apply</span>
+              </button>
+            </div>
+          </div>
         </>
       )}
-      {/* {cropData && (
-        <div className={s.preview}>
-          <h2>Cropped Image</h2>
-          <img src={cropData} alt="cropped" />
-        </div>
-      )} */}
     </div>
   );
 };

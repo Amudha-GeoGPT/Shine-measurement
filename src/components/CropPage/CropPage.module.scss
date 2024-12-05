@@ -1,15 +1,12 @@
 @use "../../assets/scss/abstracts" as *;
 
-  .crop {
-    width: 100%;
-    height: 100%;
-
-    .cropHead {
-      display: flex;
-      align-items: center;
-      flex-direction: row;
-      padding: 20px 20px 50px 20px;
-      gap: 10px;
+.crop {
+  height: 100%;
+  background-color: #F6F8F7;
+  
+  .cropHead {
+    padding: 20px 15px 30px 15px;
+    background: #F6F8F7;
 
       .leftIcon {
         display: flex;
@@ -40,7 +37,7 @@
     }
 
     .buttonContainer {
-      margin-top: 30px;
+      margin-top: 10px;
       margin-bottom: 50px;
       display: flex;
       justify-content: flex-end;
@@ -49,7 +46,9 @@
     }
 
     .applyButton {
-      background-color: #007bff;
+      background-color: rgba(63, 81, 181, 1);
+      font-weight: 600;
+      color: white;
       padding: 14px 20px;
       border-radius: 10px;
       display: flex;
@@ -60,7 +59,8 @@
     }
 
     .cancelButton {
-      background-color: #6c757d;
+      background-color: rgba(243, 243, 243, 1);
+      font-weight:600;
       padding: 14px 20px;
       border-radius: 10px;
       display: flex;
