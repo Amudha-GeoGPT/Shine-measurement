@@ -1,105 +1,80 @@
 @use "../../assets/scss/abstracts" as *;
 
 .crop {
-  width: 100%;
   height: 100%;
-
+  background-color: #F6F8F7;
+  
   .cropHead {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    padding: 20px;
-    gap: 10px;
+    padding: 20px 15px 30px 15px;
+    background: #F6F8F7;
 
-    .leftIcon {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .cropTitle {
-      margin-bottom: 0;
-      font-weight: 500;
-      font-size: 20px;
-    }
-  }
-
-  .cropperContainer {
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-
-    .cropper-canvas {
-      width: 100% !important;
-      height: auto !important;
-    }
-
-    .cropper-view-box,
-    .cropper-face {
-      border-radius: 0;
-    }
-  }
-
-  .buttonContainer {
-    margin-top: 10px;
-    margin-bottom: 50px;
-    display: flex;
-    gap: 20px;
-    justify-content: flex-end; /* Ensures buttons are always on the right */
-    padding-right: 20px; /* Adds right padding for spacing */
-  }
-
-  .applyButton,
-  .cancelButton {
-    font-weight: 600;
-    padding: 12px 18px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border: none;
-  }
-
-  .applyButton {
-    background-color: rgba(63, 81, 181, 1);
-    color: white;
-  }
-
-  .cancelButton {
-    background-color: rgba(243, 243, 243, 1);
-  }
-
-  .applyButton:hover {
-    background-color: #0056b3;
-  }
-
-  .cancelButton:hover {
-    background-color: #5a6268;
-  }
-
-  /* Tablet-specific styles */
-  @media (min-width: 768px) and (max-width: 1024px) {
-    .cropHead {
-      flex-direction: row;
-      align-items: center;
+      .leftIcon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
       .cropTitle {
-        font-size: 24px;
+        margin-bottom: 0;
+        font-weight: 500;
+      }
+    }
+
+    .cropperContainer {
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+    
+      .cropper-canvas {
+        width: 100% !important;
+        height: auto !important;
+      }
+    
+      .cropper-view-box,
+      .cropper-face {
+        border-radius: 0; 
       }
     }
 
     .buttonContainer {
-      justify-content: flex-end; /* Ensure right alignment on tablets */
-      padding-right: 30px; /* Add extra padding for tablets */
+      margin-top: 10px;
+      margin-bottom: 50px;
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: row;
+      gap: 20px;
     }
 
-    .applyButton,
+    .applyButton {
+      background-color: rgba(63, 81, 181, 1);
+      font-weight: 600;
+      color: white;
+      padding: 14px 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      gap: 10px;
+      border: none;
+    }
+
     .cancelButton {
-      font-size: 16px;
-      padding: 14px 22px;
+      background-color: rgba(243, 243, 243, 1);
+      font-weight:600;
+      padding: 14px 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      gap: 10px;
+      border: none;
     }
-  }
+
+    .applyButton:hover {
+      background-color: #0056b3; 
+    }
+
+    .cancelButton:hover {
+      background-color: #5a6268; 
+    }
 }
-
-
-
