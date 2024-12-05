@@ -1,6 +1,7 @@
 .imageResult {
-  padding: 24px;
+  padding: 14px;
   background: #F6F8F7;
+  height: 100vh;
 }
 
 .gridContainer {
@@ -9,7 +10,6 @@
   gap: 24px;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 24px;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -75,7 +75,7 @@
 }
 
 .downloadLink {
-  color: #4F46E5;
+  color: #3F51B5;
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
