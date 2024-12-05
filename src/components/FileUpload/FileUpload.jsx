@@ -293,9 +293,9 @@ const FileUpload = ({ onBack }) => {
               
             </Row>
             {uploadComplete && selectedFile !== null && image.length>0 &&(
-            <div className={s.cropBtn}>
+            <div className={s.cropBtn} onClick={goToCropPage}>
             
-              <button className={s.cropImageBtn} onClick={goToCropPage}>
+              <button className={s.cropImageBtn} >
               <i class={`bi bi-crop ${s.bi}` }  ></i>
                 Crop Image
               </button>
