@@ -8,62 +8,73 @@
     padding: 20px 15px 30px 15px;
     background: #F6F8F7;
 
-    .leftIcon {
-      cursor: pointer;
+      .leftIcon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .cropTitle {
+        margin-bottom: 0;
+        font-weight: 500;
+      }
     }
 
-    .cropTitle {
-      font-weight: 500;
-      margin-bottom: 0;
-      font-size: 1.25rem;
-    }
-  }
-
-  .cropperContainer {
-    width: 100%;
-    overflow: hidden;
+    .cropperContainer {
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
     
-    .cropper-canvas {
-      width: 100% !important;
-      height: auto !important;
+      .cropper-canvas {
+        width: 100% !important;
+        height: auto !important;
+      }
+    
+      .cropper-view-box,
+      .cropper-face {
+        border-radius: 0; 
+      }
     }
 
-    .cropper-view-box,
-    .cropper-face {
-      border-radius: 0;
+    .buttonContainer {
+      margin-top: 10px;
+      margin-bottom: 50px;
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: row;
+      gap: 20px;
     }
-  }
-
-  .buttonContainer {
-    margin-top: 10px;
-    padding: 0 35px;
-    padding-top: 25px;
-    padding-bottom: 10px;
-    background: white;
 
     .applyButton {
       background-color: rgba(63, 81, 181, 1);
       font-weight: 600;
       color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
+      padding: 14px 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      gap: 10px;
       border: none;
-
-      &:hover {
-        background-color: #0056b3;
-      }
     }
 
     .cancelButton {
       background-color: rgba(243, 243, 243, 1);
-      font-weight: 600;
-      padding: 10px 20px;
-      border-radius: 5px;
+      font-weight:600;
+      padding: 14px 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      gap: 10px;
       border: none;
-
-      &:hover {
-        background-color: rgb(222, 219, 219);
-      }
     }
-  }
+
+    .applyButton:hover {
+      background-color: #0056b3; 
+    }
+
+    .cancelButton:hover {
+      background-color: #5a6268; 
+    }
 }
