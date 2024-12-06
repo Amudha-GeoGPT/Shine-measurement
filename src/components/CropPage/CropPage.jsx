@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import s from "./CropPage.module.scss";
 import { ReactSVG } from "react-svg";
 import BackwardArrow from "../../assets/svg/backward_arrow.svg";
+import s from "./CropPage.module.scss";
 
 const ImageCrop = () => {
   const location = useLocation();
@@ -25,47 +26,60 @@ const ImageCrop = () => {
   };
 
   return (
-    <div className={`container-fluid ${s.crop}`}>
+    <div className={s.cropContainer}>
       {location.state?.image && (
         <>
-          <div className={`row align-items-center mb-4 ${s.cropHead}`}>
-            <div className="col-auto">
-              <ReactSVG src={BackwardArrow} onClick={onCancel} className={s.leftIcon} />
-            </div>
-            <div className="col">
-              <h3 className={s.cropTitle}>Crop Image</h3>
-            </div>
-          </div>
-          <div className="row justify-content-center">
-            <div className="col-12 col-md-8 col-lg-6">
-              <div className={s.cropperContainer}>
-                <Cropper
-                  initialAspectRatio={1}
-                  src={location.state.image}
-                  viewMode={1}
-                  guides={true}
-                  minCropBoxHeight={90}
-                  minCropBoxWidth={10}
-                  background={false}
-                  responsive={true}
-                  autoCropArea={1}
-                  checkOrientation={false}
-                  onInitialized={(instance) => {
-                    setCropper(instance);
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-          <div className={`row justify-content-end ${s.buttonContainer}`}>
-            <div className="col-auto">
-              <button className={`btn ${s.cancelButton}`} onClick={onCancel}>
-                <span>Cancel</span>
+          <div className={s.header}>
+            <div className={s.headerContent}>
+              <button className={s.backButton} onClick={onCancel}>
+                <ReactSVG src={BackwardArrow} />
+                <span>Crop Image</span>
               </button>
             </div>
-            <div className="col-auto">
-              <button className={`btn ${s.applyButton}`} onClick={getCropData}>
-                <span>Apply</span>
+          </div>
+
+          <div className={s.content}>
+            <div className={s.cropperWrapper}>
+              <Cropper
+                initialAspectRatio={1}
+                src={location.state.image}
+                viewMode={2}
+                guides={true}
+                minCropBoxHeight={200}
+                minCropBoxWidth={200}
+                background={true}
+                responsive={true}
+                autoCropArea={0.8}
+                checkOrientation={false}
+                zoomable={true}
+                zoomOnTouch={true}
+                zoomOnWheel={true}
+                wheelZoomRatio={0.1}
+                cropBoxMovable={true}
+                cropBoxResizable={true}
+                dragMode="move"
+                toggleDragModeOnDblclick={true}
+                minCanvasWidth={400}
+                minCanvasHeight={400}
+                style={{ 
+                  height: 'calc(100vh - 200px)',
+                  minHeight: '400px',
+                  width: '100%'
+                }}
+                onInitialized={(instance) => {
+                  setCropper(instance);
+                }}
+              />
+            </div>
+          </div>
+
+          <div className={s.footer}>
+            <div className={s.buttonGroup}>
+              <button className={s.cancelButton} onClick={onCancel}>
+                Cancel
+              </button>
+              <button className={s.applyButton} onClick={getCropData}>
+                Apply
               </button>
             </div>
           </div>

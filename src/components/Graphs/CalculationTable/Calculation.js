@@ -5,7 +5,7 @@ export const Stockdata =
       "SpecularArea": 45.213330,
       "FWHM": 35.213330,
       "MaxIntensity": 30.213330,
-      "CenterOffset": 3535.213330,
+      "CenterOffset": 355.213330,
       "BaselineOffset": 38.213330,
       "SinCurveArea": 28.213330
     },
