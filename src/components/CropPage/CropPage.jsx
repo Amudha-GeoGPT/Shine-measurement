@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 import BackwardArrow from "../../assets/svg/backward_arrow.svg";
 import s from "./CropPage.module.scss";
-
+ 
 const ImageCrop = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -25,15 +25,11 @@ const ImageCrop = () => {
       navigate("/preview", { state: { cropData: croppedData, originalImage: imageName } });
     }
   };
-
-  const handlePreviewPage = () => {
-    navigate("/CreateExperiment");
-  }
-
+ 
   const onCancel = () => {
     navigate("/CreateExperiment");
   };
-
+ 
   return (
     <div className={s.cropContainer}>
       {location.state?.image && (
@@ -46,7 +42,7 @@ const ImageCrop = () => {
               </button>
             </div>
           </div>
-
+ 
           <div className={s.content}>
             <div className={s.cropperWrapper}>
               <Cropper
@@ -70,7 +66,7 @@ const ImageCrop = () => {
                 toggleDragModeOnDblclick={true}
                 minCanvasWidth={400}
                 minCanvasHeight={400}
-                style={{ 
+                style={{
                   height: 'calc(100vh - 200px)',
                   minHeight: '400px',
                   width: '100%'
@@ -81,7 +77,7 @@ const ImageCrop = () => {
               />
             </div>
           </div>
-
+ 
           <div className={s.footer}>
             <div className={s.buttonGroup}>
               <button className={s.cancelButton} onClick={onCancel}>
@@ -97,5 +93,5 @@ const ImageCrop = () => {
     </div>
   );
 };
-
+ 
 export default ImageCrop;

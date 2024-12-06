@@ -163,7 +163,7 @@ const FileUpload = ({ onBack }) => {
   };
 
   return (
-    <div className={s.layout}>
+    <div style={{paddingLeft:'30px'}}>
       <div className={s.upload}>
         {/* Header */}
         <div xs={12} className={s.uploadHeader}>
