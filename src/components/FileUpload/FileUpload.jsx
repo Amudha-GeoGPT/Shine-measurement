@@ -33,7 +33,6 @@ const FileUpload = ({ onBack }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [showCropPage, setShowCropPage] = useState(false);
   const location = useLocation();
- 
 
   useEffect(() => {
     const swatchId = location.state?.swatchName;
@@ -130,6 +129,9 @@ const FileUpload = ({ onBack }) => {
   };
  
 
+  const handleCameraClick = () => {
+    setShowWebcam(true);
+  };
 
   const handleAlert = () => {
     handleShowPopup();
@@ -157,18 +159,6 @@ const FileUpload = ({ onBack }) => {
 
   const handleSelectFile = (index) => {
     setSelectedFile(index);
-  };
-
-  const capture = () => {
-    if (webcamRef.current) {
-      const imageSrc = webcamRef.current.getScreenshot();
-      setImage((prev) => [...prev, imageSrc]);
-      setShowWebcam(false); // Close webcam after capture
-    }
-  };
-
-  const handleCameraClick = () => {
-    setShowWebcam(true);
   };
 
   return (
@@ -238,7 +228,7 @@ const FileUpload = ({ onBack }) => {
         </Row>
   
         {/* Webcam Preview */}
-        {/* {showWebcam && (
+        {showWebcam && (
           <Col xs={12} className={s.webcam}>
             <Webcam
               audio={false}
@@ -248,24 +238,7 @@ const FileUpload = ({ onBack }) => {
               screenshotFormat="image/jpeg"
             />
           </Col>
-        )} */}
-        {/* Webcam Preview Section */}
-        {showWebcam && (
-        <Webcam
-          audio={false}
-          ref={webcamRef}
-          screenshotFormat="image/jpeg"
-          width={300}
-          height={300}
-        />
-      )}
-      <button
-        className="cameraBtn"
-        onClick={showWebcam ? capture : handleCameraClick}
-      >
-        {showWebcam ? "Capture Photo" : "Open Camera & Take Photo"}
-      </button>
-
+        )}
   
         {/* File Upload & Preview */}
         <Row className={s.uploadPreview}>
