@@ -16,7 +16,7 @@ const routes = [
       element: <DashboardLayout />,
       errorElement: <ErrorPage />,
       children: [
-        { path: "/", element: <DSLRWebcamCapture /> },
+        { path: "/", element: <Experiements /> },
         { path: "/preview", element: <CropImage /> },
         { path: "/CropImage", element: <ImageCrop /> },
         { path: "/CreateExperiment", element: <FileUpload /> },
