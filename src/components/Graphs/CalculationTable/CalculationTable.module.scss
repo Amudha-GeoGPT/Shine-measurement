@@ -19,7 +19,7 @@
 
 .ellipsis {
   margin: 0 8px;
-  color: #243744;
-  cursor: default;
   pointer-events: none;
+  --bs-pagination-disabled-bg: none;
+  --bs-pagination-border-color: none;
 }
