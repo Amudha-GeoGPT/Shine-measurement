@@ -1,25 +1,31 @@
-.anu {
-  span {
-    color: #243744;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 20px;
-  }
-}
+      .name{
+        span{
+            color :#243744;
+            font-weight: 600;
+            font-size: '14px';
+            line-height: '20px';
 
-.page {
-  ul {
-    li {
-      span {
-        color: red !important;
+        }
+        .body{
+          background-color: #F6F8F7;
+        }
       }
+     .page{
+      ul{
+        color:red !important;
+        li{
+          span{
+            color:red !important;
+          }
+          color:red !important;
+          // cursor: pointer;
+        }
+      }
+     
+     }
+     .ellipsis {
+      margin: 0 8px;
+      pointer-events: none;
+      --bs-pagination-disabled-bg: none;
+      --bs-pagination-border-color: none;
     }
-  }
-}
-
-.ellipsis {
-  margin: 0 8px;
-  pointer-events: none;
-  --bs-pagination-disabled-bg: none;
-  --bs-pagination-border-color: none;
-}

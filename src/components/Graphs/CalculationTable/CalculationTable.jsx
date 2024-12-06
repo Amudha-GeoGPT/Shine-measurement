@@ -14,9 +14,9 @@ import {
 import s from "./CalculationTable.module.scss";
 import leftarrow from '../../../assets/svg/previous-arrow.svg';
 import nextarrow from '../../../assets/svg/next-arrow.svg';
- 
+
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
- 
+
 const styles = {
   title: {
     fontSize: "1rem",
@@ -35,26 +35,26 @@ const styles = {
     display: 'transparent',
   },
 };
- 
+
 const centerOffsetColors = ["#F68D2B", "#FFD200", "#9891FF", "#344BFD"];
- 
+
 const CalculationTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
   const totalPages = Math.ceil(Stockdata.length / itemsPerPage);
- 
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = Stockdata.slice(indexOfFirstItem, indexOfLastItem);
- 
+
   const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
- 
+
   const getPaginationItems = () => {
     const items = [];
- 
+
     for (let i = 1; i <= Math.min(3, totalPages); i++) {
       items.push(
-<Pagination.Item
+        <Pagination.Item
           key={i}
           active={i === currentPage}
           onClick={() => handlePageChange(i)}
@@ -66,29 +66,29 @@ const CalculationTable = () => {
             border: 'none',
             borderRadius: '8px',
           }}
->
+        >
           {i}
-</Pagination.Item>
+        </Pagination.Item>
       );
     }
- 
+
     if (currentPage > 3 && totalPages > 5) {
       items.push(
-<Pagination.Item
+        <Pagination.Item
           key="ellipsis-start"
           disabled
           className={s.ellipsis}
->
+        >
           ...
-</Pagination.Item>
+        </Pagination.Item>
       );
     }
- 
+
     const startPage = Math.max(4, currentPage - 1);
     const endPage = Math.min(totalPages - 2, currentPage + 2);
     for (let i = startPage; i <= endPage; i++) {
       items.push(
-<Pagination.Item
+        <Pagination.Item
           key={i}
           active={i === currentPage}
           onClick={() => handlePageChange(i)}
@@ -100,27 +100,27 @@ const CalculationTable = () => {
             border: 'none',
             borderRadius: '8px',
           }}
->
+        >
           {i}
-</Pagination.Item>
+        </Pagination.Item>
       );
     }
- 
+
     if (currentPage < totalPages - 2 && totalPages > 5) {
       items.push(
-<Pagination.Item
+        <Pagination.Item
           key="ellipsis-end"
           disabled
           className={s.ellipsis}
->
+        >
           ...
-</Pagination.Item>
+        </Pagination.Item>
       );
     }
- 
+
     for (let i = Math.max(totalPages - 2, endPage + 1); i <= totalPages; i++) {
       items.push(
-<Pagination.Item
+        <Pagination.Item
           key={i}
           active={i === currentPage}
           onClick={() => handlePageChange(i)}
@@ -132,15 +132,15 @@ const CalculationTable = () => {
             border: 'none',
             borderRadius: '8px',
           }}
->
+        >
           {i}
-</Pagination.Item>
+        </Pagination.Item>
       );
     }
- 
+
     return items;
   };
- 
+
   const generateChartData = (item, index) => ({
     labels: [""],
     datasets: [
@@ -188,7 +188,7 @@ const CalculationTable = () => {
       }
     ],
   });
- 
+
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: true,
@@ -242,88 +242,91 @@ const CalculationTable = () => {
       },
     },
   };
- 
+
   return (
-<div style={{ display: "flex", flexDirection: "column", margin: '0 !important', padding: '20px' }}>
-<div style={{ justifyContent: 'left', backgroundColor: 'white', fontWeight: '600', fontFamily: 'poppins' }}>
-<h2 style={{ fontSize: '18px', lineHeight: '28px', paragraph: '18px' }}>Calculations</h2>
-</div>
- 
-      <Table striped bordered hover>
-<thead>
-<tr>
-<th>S.No</th>
-<th>Specular Area</th>
-<th>FWHM</th>
-<th>Max Intensity</th>
-<th>Center Offset</th>
-<th>Baseline Offset</th>
-<th>Sin-Curve-Area</th>
-</tr>
-</thead>
-<tbody>
-          {currentItems.map((item, index) => (
-<tr key={index}>
-<td>{`ROI#${indexOfFirstItem + index + 1}`}</td>
-<td>{item.SpecularArea}</td>
-<td>{item.FWHM}</td>
-<td>{item.MaxIntensity}</td>
-<td>{item.CenterOffset}</td>
-<td>{item.BaselineOffset}</td>
-<td>{item.SinCurveArea}</td>
-</tr>
-          ))}
-</tbody>
-</Table>
- 
-      <Row style={{ justifyContent: "space-between", backgroundColor: '#ffffff', paddingTop: '10px' }}>
-<Col xs="auto">
-<Pagination style={{ color: 'red' }}>
-<Pagination.Prev
-              style={{ color: '#243744' }}
-              disabled={currentPage === 1}
-              onClick={() => handlePageChange(currentPage - 1)}
-              linkClassName={s.anu}
->
-<span><img src={leftarrow} alt="Previous" /> </span> Previous
-</Pagination.Prev>
-</Pagination>
-</Col>
- 
-        <Col xs="auto">
-<Pagination>
-            {getPaginationItems()}
-</Pagination>
-</Col>
- 
-        <Col xs="auto">
-<Pagination>
-<Pagination.Next
-              disabled={currentPage === totalPages}
-              onClick={() => handlePageChange(currentPage + 1)}
-              linkClassName={s.anu}
->
-              Next<span><img src={nextarrow} alt="Next" /></span>
-</Pagination.Next>
-</Pagination>
-</Col>
-</Row>
- 
-      <div className="mt-4">
-<Row style={{ height: "100%" }}>
-          {currentItems.map((item, index) => (
-<Col key={index} sm={6} className="mb-4" style={{ height: "100%" }}>
-<div
-                style={{
-                  height: "100%",
-                  border: "1px solid #ccc",
-                  padding: "10px",
-                  position: "relative",
+    <div style={{ display: "flex", flexDirection: "column", margin: '0 !important', padding: '20px', background: '#F6F8F7' }}>
+      <Table striped bordered hover style={{borderRadius:"12px",overflow:"hidden"}}>
+      <thead>
+        <tr>
+          <th  colSpan={7} style={{ fontSize: '18px', lineHeight: '28px' }}>Calculations</th>
+        </tr>
+        <tr>
+          <th>S.No</th>
+          <th>Specular Area</th>
+          <th>FWHM</th>
+          <th>Max Intensity</th>
+          <th>Center Offset</th>
+          <th>Baseline Offset</th>
+          <th>Sin-Curve-Area</th>
+        </tr>
+      </thead>
+      <tbody>
+        {currentItems.map((item, index) => (
+          <tr key={index}>
+            <td>{`ROI#${indexOfFirstItem + index + 1}`}</td>
+            <td>{item.SpecularArea}</td>
+            <td>{item.FWHM}</td>
+            <td>{item.MaxIntensity}</td>
+            <td>{item.CenterOffset}</td>
+            <td>{item.BaselineOffset}</td>
+            <td>{item.SinCurveArea}</td>
+          </tr>
+        ))}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colSpan={7}>
+            <Row style={{ justifyContent: 'space-between', alignItems: 'center' }}>
+              <Col xs="auto">
+                <Pagination>
+                  <Pagination.Prev
+                    disabled={currentPage === 1}
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    linkClassName={s.name}
+                  >
+                    <span><img src={leftarrow} alt="Previous" /></span> Previous
+                  </Pagination.Prev>
+                </Pagination>
+              </Col>
+
+              <Col xs="auto">
+                <Pagination>
+                  {getPaginationItems()}
+                </Pagination>
+              </Col>
+
+              <Col xs="auto">
+                <Pagination>
+                  <Pagination.Next
+                    disabled={currentPage === totalPages}
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    linkClassName={s.name}
+                  >
+                    Next <span><img src={nextarrow} alt="Next" /></span>
+                  </Pagination.Next>
+                </Pagination>
+              </Col>
+            </Row>
+          </td>
+        </tr>
+      </tfoot>
+    </Table>
+
+        <div className="mt-4">
+          <Row style={{ height: "100%" }}>
+            {currentItems.map((item, index) => (
+              <Col key={index} sm={6} className="mb-4" style={{ height: "100%" }}>
+                <div
+                  style={{
+                    height: "100%",
+                    border: "1px solid #ccc",
+                    padding: "10px",
+                    position: "relative",
                   backgroundColor: "white",
                   borderRadius: '8px'
                 }}
->
-<div
+              >
+                <div
                   style={{
                     position: "absolute",
                     top: "10px",
@@ -331,10 +334,10 @@ const CalculationTable = () => {
                     fontWeight: "bold",
                     backgroundColor: "white",
                   }}
->
+                >
                   {`ROI#${indexOfFirstItem + index + 1}`}
-</div>
- 
+                </div>
+
                 <Bar
                   className="mt-5"
                   style={{
@@ -348,17 +351,17 @@ const CalculationTable = () => {
                   data={generateChartData(item, index)}
                   options={chartOptions}
                 />
-</div>
-<div>
-<h3 style={styles.title}>Spectacular profile of ROI Design</h3>
-<button style={styles.button}>Download Graph</button>
-</div>
-</Col>
+              </div>
+              <div>
+                <h3 style={styles.title}>Spectacular profile of ROI Design</h3>
+                <button style={styles.button}>Download Graph</button>
+              </div>
+            </Col>
           ))}
-</Row>
-</div>
-</div>
+        </Row>
+      </div>
+    </div>
   );
 };
- 
+
 export default CalculationTable;
