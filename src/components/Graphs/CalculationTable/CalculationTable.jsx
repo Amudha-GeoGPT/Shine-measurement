@@ -14,9 +14,9 @@ import {
 import s from "./CalculationTable.module.scss";
 import leftarrow from '../../../assets/svg/previous-arrow.svg';
 import nextarrow from '../../../assets/svg/next-arrow.svg';
-
+ 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
-
+ 
 const styles = {
   title: {
     fontSize: "1rem",
@@ -35,23 +35,23 @@ const styles = {
     display: 'transparent',
   },
 };
-
+ 
 const centerOffsetColors = ["#F68D2B", "#FFD200", "#9891FF", "#344BFD"];
-
+ 
 const CalculationTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
   const totalPages = Math.ceil(Stockdata.length / itemsPerPage);
-
+ 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = Stockdata.slice(indexOfFirstItem, indexOfLastItem);
-
+ 
   const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
-
+ 
   const getPaginationItems = () => {
     const items = [];
-
+ 
     for (let i = 1; i <= Math.min(3, totalPages); i++) {
       items.push(
         <Pagination.Item
@@ -71,7 +71,7 @@ const CalculationTable = () => {
         </Pagination.Item>
       );
     }
-
+ 
     if (currentPage > 3 && totalPages > 5) {
       items.push(
         <Pagination.Item
@@ -83,7 +83,7 @@ const CalculationTable = () => {
         </Pagination.Item>
       );
     }
-
+ 
     const startPage = Math.max(4, currentPage - 1);
     const endPage = Math.min(totalPages - 2, currentPage + 2);
     for (let i = startPage; i <= endPage; i++) {
@@ -105,7 +105,7 @@ const CalculationTable = () => {
         </Pagination.Item>
       );
     }
-
+ 
     if (currentPage < totalPages - 2 && totalPages > 5) {
       items.push(
         <Pagination.Item
@@ -117,7 +117,7 @@ const CalculationTable = () => {
         </Pagination.Item>
       );
     }
-
+ 
     for (let i = Math.max(totalPages - 2, endPage + 1); i <= totalPages; i++) {
       items.push(
         <Pagination.Item
@@ -137,10 +137,10 @@ const CalculationTable = () => {
         </Pagination.Item>
       );
     }
-
+ 
     return items;
   };
-
+ 
   const generateChartData = (item, index) => ({
     labels: [""],
     datasets: [
@@ -188,7 +188,7 @@ const CalculationTable = () => {
       }
     ],
   });
-
+ 
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: true,
@@ -242,7 +242,7 @@ const CalculationTable = () => {
       },
     },
   };
-
+ 
   return (
     <div style={{ display: "flex", flexDirection: "column", margin: '0 !important', padding: '20px', background: '#F6F8F7' }}>
       <Table style={{borderRadius:"10px",overflow:"hidden",border:'5px 5px 5px 5px'}}>
@@ -288,13 +288,13 @@ const CalculationTable = () => {
                   </Pagination.Prev>
                 </Pagination>
               </Col>
-
+ 
               <Col xs="auto">
                 <Pagination>
                   {getPaginationItems()}
                 </Pagination>
               </Col>
-
+ 
               <Col xs="auto">
                 <Pagination>
                   <Pagination.Next
@@ -311,7 +311,7 @@ const CalculationTable = () => {
         </tr>
       </tfoot>
     </Table>
-
+ 
         <div className="mt-4">
           <Row style={{ height: "100%" }}>
             {currentItems.map((item, index) => (
@@ -337,7 +337,7 @@ const CalculationTable = () => {
                 >
                   {`ROI#${indexOfFirstItem + index + 1}`}
                 </div>
-
+ 
                 <Bar
                   className="mt-5"
                   style={{
@@ -363,5 +363,5 @@ const CalculationTable = () => {
     </div>
   );
 };
-
+ 
 export default CalculationTable;
