@@ -8,15 +8,15 @@ import GraphResult from "../components/Graphs/GraphResult/GraphResult";
 import ImageResult from "../components/Graphs/ImageResult/ImageResult";
 import GraphHeader from "../components/Graphs/GraphHeader";
 import Experiements from "../components/Mainpage/Pages/Experiments";
-import Webcam from "../components/webcam";
 import { Navigate } from "react-router-dom";
+import DSLRWebcamCapture from "../components/webcam";
 const routes = [
     {
       path: "/",
       element: <DashboardLayout />,
       errorElement: <ErrorPage />,
       children: [
-        { path: "/", element: <Experiements /> },
+        { path: "/", element: <DSLRWebcamCapture /> },
         { path: "/preview", element: <CropImage /> },
         { path: "/CropImage", element: <ImageCrop /> },
         { path: "/CreateExperiment", element: <FileUpload /> },
