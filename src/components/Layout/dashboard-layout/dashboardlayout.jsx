@@ -6,11 +6,15 @@ import s from "./Layout.module.scss";
 const DashboardLayout = ({children}) => (
   <>
   <Header/>
- <div className={s.mainLayout}>
+  
+ < div className={s.mainLayout}>
           
-            <SideMenu />
+          <SideMenu />
+
+          <div style={{overflow:'scroll',padding:'30px',backgroundColor:'#F6F8F7'}}>  
             <Outlet/>
             {children}
+            </div>
         </div>
   </>
 );
