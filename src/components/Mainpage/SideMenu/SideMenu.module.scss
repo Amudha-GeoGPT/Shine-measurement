@@ -1,50 +1,129 @@
-@use "../../../assets/scss/abstracts" as *;
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 
-.layout {
-    border-right: 1px solid rgba(0, 0, 0, 0.10);
-    z-index: 1;
-    background: $light-grey;
-    background-color: $white2;
+:root {
+  --nav-width: 200px;
+  --nav-collapsed-width: 80px;
+  --primary-color: #22cb2d;
+  --secondary-color: #6b5eff;
+  // --background-color: #1f1f1f;
+  --icon-color: #060505;
+  --hover-color: #312b53;
+  --font-family: "Nunito", sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: #f4f4f4;
+//   height: 100vh;
+//   overflow: hidden;
+}
+
+.lNavbar {
+//   position: fixed;
+  top: 0;
+  left: 0;
+//   height: 80vh;
+  width: var(--nav-width);
+  // background-color: var(--primary-color);
+  color: var(--icon-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: width 0.3s ease;
+
+  &.collapsed {
+    width: var(--nav-collapsed-width);
+
+    .menuTitle {
+      display: none;
+    }
+  }
+}
+
+.nav {
+  display: flex;
+//   position:sticky ;
+  flex-direction: column;
+  justify-content: space-between;
+//   height: 90vh;
+  overflow: hidden;
+  background-color:#FFFFFF;
+  
+}
+
+.navLogo {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+
+  .navLogoIcon {
+    font-size: 1.8rem;
+  }
+
+  .navLogoName {
+    margin-left: 1rem;
+  }
+}
+
+.menu {
+  // padding: 1rem;
+  padding-top: 2rem;
+  padding-left: 1rem;
+
+  .fs_14 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--icon-color);
+  }
+
+  .menuSection {
+  
+    transition: background-color 0.3s ease;
+    margin-top: 2.5rem;
     display: flex;
+    justify-content:space-around;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(203, 216, 242, 1);
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border: 2px;
     position: relative;
-    height: 100vh;
-    width: 232px;
-    background-color: white;
+    width: 100%;   
+    // min-height:'50px'; 
+    // padding-right: 40px;
+    border-right: 5px solid #3a5dcb;
 
+    .menuIcon {
+      // width: 24px;
+      // height: 24px;
 
-    .menu {
-        display: flex;
-        flex-direction: column;
-        padding: 20px;
-        gap: 20px;
-        text-transform: capitalize;
-        position: fixed;
-
-        .fs_14 {
-            font-size: 14px;
-            color: rgba(136, 136, 136, 1);
-        }
-
-        .menuSection {
-            gap: 10px;
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            background-color: rgba(203, 216, 242, 1);
-            border-top-left-radius: 8px;
-            border-bottom-left-radius: 8px;
-            border: 2px;
-            position: relative;
-            width: calc(100% + 20px);            padding-right: 40px;
-            border-right: 5px solid #3a5dcb;
-
-            .menuTitle {
-                margin-bottom: 0;
-                font-size: 18px;
-                font-weight: 600;
-                color: $blue2;
-            }
-        }
     }
 
+    .menuTitle {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0;
+      width: 150px;
+    }
+  }
+}
+
+.sidebarToggle {
+  border: none;
+  border-radius: 10px;
+  background-color: #3F51B5;
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  margin: 1rem .5rem ;
+
+  cursor: pointer;
+
+  &:hover {
+    color: var(--secondary-color);
+  }
 }

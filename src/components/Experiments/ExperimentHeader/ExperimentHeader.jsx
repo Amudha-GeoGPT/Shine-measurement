@@ -19,7 +19,7 @@ const ExperimentHeader = ({ onSearchChange, onCreateNew }) => {
           <span style={{ fontSize: '16px', fontWeight: 600, lineHeight: '24px' }}>Create New</span>
         </button>
       </div>
-      <Row>
+      <Row >
         <Col md={6} xs={12} lg={4}>
           <div className={s.searchContainer}>
             <ReactSVG className={s.searchIcon} src={SearchIcon} />

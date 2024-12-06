@@ -12,9 +12,10 @@ export default function Header() {
       }
     return (
         <div className={cx(s.header)}>
+            
             <div></div>
             <div className={s.title}>
-                <h2 onClick={handletomenu}>Shine Quantification</h2>
+                <p style={{marginBottom:0}} onClick={handletomenu}>Shine Quantification</p>
             </div>
             <div className={s.rightMenu}>
                 <ul>
