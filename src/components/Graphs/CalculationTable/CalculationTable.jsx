@@ -192,6 +192,7 @@ const CalculationTable = () => {
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: true,
+    display: "flex",
     barThickness: "flex",
     maxBarThickness: 30,
     minBarLength: 5,
@@ -245,7 +246,7 @@ const CalculationTable = () => {
  
   return (
     <div style={{ display: "flex", flexDirection: "column", margin: '0 !important', padding: '20px', background: '#F6F8F7' }}>
-      <Table style={{borderRadius:"10px",overflow:"hidden",border:'5px 5px 5px 5px'}}>
+      <Table style={{borderRadius:"10px",overflow:"hidden", borderColor:'none'}}>
       <thead>
         <tr>
           <th  colSpan={7} style={{ fontSize: '18px', lineHeight: '28px' }}>Calculations</th>
