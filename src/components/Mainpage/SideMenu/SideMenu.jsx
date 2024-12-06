@@ -12,7 +12,10 @@ const SideMenu = () => {
     // Function to check the window width
     const checkWindowWidth = () => {      
 
-       setIsCollapsed(window.innerWidth < 700);     };     
+      if(window.innerWidth < 769){
+        setIsCollapsed(window.innerWidth < 769);
+      }
+            };     
      
        checkWindowWidth();     
        window.addEventListener('resize', checkWindowWidth);     
