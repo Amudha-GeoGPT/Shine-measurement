@@ -82,7 +82,7 @@ const FileUpload = ({ onBack }) => {
       ...prev,
       ...newFiles.map((file) => ({
         name: file.name,
-        size: (file.size / 1024 / 1024).toFixed(2) + " MB",
+        size: (file.size / 1024 ).toFixed(2) + "kb",
       })),
     ]);
 
