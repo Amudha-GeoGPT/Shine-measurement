@@ -123,6 +123,7 @@ const FileUpload = ({ onBack }) => {
   const goToCropPage = () => {
     if (selectedFile !== null && image[selectedFile]) {
       navigate("/CropImage", { state: { image: image[selectedFile] } });
+      
     } else {
       handleShowPopup("Error", "No image available to crop.");
     }
