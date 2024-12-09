@@ -11,7 +11,7 @@ const DashboardLayout = ({children}) => (
           
           <SideMenu />
 
-          <div style={{overflow:'scroll',padding:'30px',backgroundColor:'#F6F8F7'}}>  
+          <div style={{overflow:'scroll',backgroundColor:'#F6F8F7'}}>  
             <Outlet/>
             {children}
             </div>
