@@ -6,7 +6,7 @@
     background: $light-grey;
     background-color: $white2;
     display: flex;
-
+    overflow: hidden;    
     .menu {
         display: flex;
         flex-direction: column;

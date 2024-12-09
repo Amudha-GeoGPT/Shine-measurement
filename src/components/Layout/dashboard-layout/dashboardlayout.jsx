@@ -7,7 +7,6 @@ const DashboardLayout = ({children}) => (
   <>
   <Header/>
  <div className={s.mainLayout}>
-          
             <SideMenu />
             <Outlet/>
             {children}

@@ -14,6 +14,7 @@ import {
 import s from "./CalculationTable.module.scss";
 import leftarrow from '../../../assets/svg/previous-arrow.svg';
 import nextarrow from '../../../assets/svg/next-arrow.svg';
+import { ResponsiveContainer } from "recharts";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
@@ -265,6 +266,7 @@ const CalculationTable = () => {
                 </div>
 
                 {/* Bar Chart */}
+                <ResponsiveContainer>
                 <Bar
                   className="mt-5"
                   style={{
@@ -278,6 +280,7 @@ const CalculationTable = () => {
                   data={generateChartData(item)}
                   options={chartOptions}
                 />
+                </ResponsiveContainer>
 
                 {/* Insights Title and Button */}
                 
