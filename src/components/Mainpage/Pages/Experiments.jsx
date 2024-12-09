@@ -48,7 +48,7 @@ const Experiements = () => {
           onSearchChange={handleSearchChange}
           onCreateNew={handleCreateNew}
         />
-        <div style={{height:'66vh',overflow:'scroll'}}>
+        <div style={{height:'100%',overflow:'scroll'}}>
         <ExperimentList experiments={filteredExperiments} /></div>
       </div>
     </div>
