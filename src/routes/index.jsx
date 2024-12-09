@@ -9,6 +9,7 @@ import ImageResult from "../components/Graphs/ImageResult/ImageResult";
 import GraphHeader from "../components/Graphs/GraphHeader";
 import Experiements from "../components/Mainpage/Pages/Experiments";
 import { Navigate } from "react-router-dom";
+import DSLRWebcamCapture from "../components/webcam";
 const routes = [
     {
       path: "/",

@@ -6,7 +6,7 @@ import { Col, Row } from 'react-bootstrap';
 const ExperimentList = ({ experiments }) => {
   return (
     <div className={styles.container}>
-      <Row className="g-4">
+      <Row className="g-4 px-3">
         {experiments.map((experiment) => (
           <Col lg={4} md={6} key={experiment.id}>
             <ExperimentCard experiment={experiment} />

@@ -27,7 +27,7 @@ const CropImage = () => {
   };
 
   const handlePreviewPage = () => {
-    navigate("/CropImage", { state: { imageData: originalImage } });
+    navigate("/CreateExperiment", { state: { imageData: originalImage } });
   }
 
   return (
