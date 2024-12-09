@@ -246,13 +246,13 @@ const CalculationTable = () => {
  
   return (
     <div style={{ display: "flex", flexDirection: "column", margin: '0 !important', padding: '20px', background: '#F6F8F7' }}>
-      <Table style={{borderRadius:"10px",overflow:"hidden", borderColor:'none'}}>
+      <Table style={{borderRadius:"10px",overflow:"hidden", borderColor:'none'}} striped bordered hover>
       <thead>
         <tr>
           <th  colSpan={7} style={{ fontSize: '18px', lineHeight: '28px' }}>Calculations</th>
         </tr>
         <tr>
-          <th>S.No</th>
+          <th >S.No</th>
           <th>Specular Area</th>
           <th>FWHM</th>
           <th>Max Intensity</th>

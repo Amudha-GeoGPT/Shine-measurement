@@ -16,7 +16,7 @@ import ImageCrop from "../CropPage/CropPage";
 import { Col, Row } from "react-bootstrap";
 import filewithclr from "../../assets/svg/file-icon_withcolor.svg"
 import deletewithclr from "../../assets/svg/delete_withcolor.svg"
-
+ 
 const FileUpload = ({ onBack }) => {
   const [input, setInput] = useState("");
   const [swatchTitle, setSwatchTitle] = useState("");
@@ -33,7 +33,7 @@ const FileUpload = ({ onBack }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [showCropPage, setShowCropPage] = useState(false);
   const location = useLocation();
-
+ 
   useEffect(() => {
     const swatchId = location.state?.swatchName;
     console.log(swatchId);
@@ -42,7 +42,7 @@ const FileUpload = ({ onBack }) => {
     }
   }, [location.state]);
   console.log(input);
-
+ 
   const handleShowPopup = (title, body) => {
     setModalBody(body);
     setShowPopup(true);
@@ -53,15 +53,15 @@ const FileUpload = ({ onBack }) => {
     setModalBody("");
     setModalTitle("");
   };
-
+ 
   const handleChange = (value) => {
     setInput(value);
   };
-
+ 
   const handleSwatchTitle = (value) => {
     setSwatchTitle(value);
   };
-
+ 
   const onChange = async (e) => {
     e.preventDefault();
     let files;
@@ -70,14 +70,14 @@ const FileUpload = ({ onBack }) => {
     } else if (e.target) {
       files = e.target.files;
     }
-
+ 
     const newFiles = Array.from(files);
     const formData = new FormData();
     newFiles.forEach((file) => {
       formData.append("files", file);
       formData.append("swatch_name", input);
     });
-
+ 
     setFileInfo((prev) => [
       ...prev,
       ...newFiles.map((file) => ({
@@ -85,7 +85,7 @@ const FileUpload = ({ onBack }) => {
         size: (file.size / 1024 ).toFixed(2) + "kb",
       })),
     ]);
-
+ 
     try {
       const response = await client("/uploadImage", {
         method: "POST",
@@ -104,7 +104,7 @@ const FileUpload = ({ onBack }) => {
           }
         },
       });
-
+ 
       if (response?.data?.message === "sucess") {
         const imageUrl = newFiles.map((file) => URL.createObjectURL(file));
         setImage((prev) => [...prev, ...imageUrl]);
@@ -115,31 +115,30 @@ const FileUpload = ({ onBack }) => {
       handleShowPopup("Error", "An error occurred while uploading the image.");
     }
   };
-
+ 
   const handleFile = () => {
     document.getElementById("fileInput").click();
   };
-
+ 
   const goToCropPage = () => {
     if (selectedFile !== null && image[selectedFile]) {
       navigate("/CropImage", { state: { image: image[selectedFile] } });
-      
     } else {
       handleShowPopup("Error", "No image available to crop.");
     }
   };
  
-
+ 
   const handleCameraClick = () => {
     setShowWebcam(true);
   };
-
+ 
   const handleAlert = () => {
     handleShowPopup();
     setModalBody("Please Enter a Swatch Name!");
     setModalTitle("Error");
   };
-
+ 
   const handleDelete = (index) => {
     const updatedImages = [...image];
     const updatedFileInfo = [...fileInfo];
@@ -153,15 +152,15 @@ const FileUpload = ({ onBack }) => {
       setSelectedFile(null); // Reset selected file if it was deleted
     }
   };
-
+ 
   const handleCancelCrop = () => {
     setShowCropPage(false);
   };
-
+ 
   const handleSelectFile = (index) => {
     setSelectedFile(index);
   };
-
+ 
   return (
     <div style={{paddingLeft:'30px'}}>
       <div className={s.upload}>
@@ -174,7 +173,7 @@ const FileUpload = ({ onBack }) => {
           />
           <span className={s.uploadTitle}>Create New Experiments</span>
         </div>
-  
+ 
         {/* Input Section */}
         <Row className={s.inputSection}>
           <Col xs={12} md={6} lg={3} className={s.searchSection}>
@@ -196,14 +195,14 @@ const FileUpload = ({ onBack }) => {
             />
           </Col>
         </Row>
-  
+ 
         {/* Upload Area */}
         <Row>
           <Col xs={12} lg={6}>
             <div
               className={s.uploadArea}
               onClick={swatchTitle ? handleFile : handleAlert}
-            
+           
             >
               <input
                 id="fileInput"
@@ -227,7 +226,7 @@ const FileUpload = ({ onBack }) => {
             </div>
           </Col>
         </Row>
-  
+ 
         {/* Webcam Preview */}
         {showWebcam && (
           <Col xs={12} className={s.webcam}>
@@ -240,7 +239,7 @@ const FileUpload = ({ onBack }) => {
             />
           </Col>
         )}
-  
+ 
         {/* File Upload & Preview */}
         <Row className={s.uploadPreview}>
           {/* First Column: File Upload Section */}
@@ -251,7 +250,7 @@ const FileUpload = ({ onBack }) => {
               {image.map((img, index) => (
                 <Col
                   key={index}
-                
+               
                   style={{backgroundColor:selectedFile===index?'#344BFD':'#FFFFFF'}}
                   onClick={() => handleSelectFile(index)}
                   className={s.imageBox}
@@ -272,7 +271,7 @@ const FileUpload = ({ onBack }) => {
                       </div>
                     </div>
                   )}
-  
+ 
                   {/* Uploaded file details */}
                   {uploadComplete && (
                     <div className={s.progressBarContainer}>
@@ -289,27 +288,27 @@ const FileUpload = ({ onBack }) => {
                     </div>
                   )}
                 </Col>
-                
+               
               ))}
-              
+             
             </Row>
             {uploadComplete && selectedFile !== null && image.length>0 &&(
             <div className={s.cropBtn} onClick={goToCropPage}>
-            
+           
               <button className={s.cropImageBtn} >
               <i class={`bi bi-crop ${s.bi}` }  ></i>
                 Crop Image
               </button>
               </div>
             )}
-            
+           
           </Col>
-  
+ 
           {/* Second Column: Preview Section */}
           <Col xs={12} lg={6} className="d-flex justify-content-center align-items-end">
-          
+         
             {selectedFile !== null  && image.length>0 && (
-              
+             
               <Row className={s.previewContainer}>
                 <p className="text-center">Image Preview</p>
                 <Col  className={s.preview}>
@@ -335,3 +334,5 @@ const FileUpload = ({ onBack }) => {
   );
 }  
 export default FileUpload;
+ 
+ 

@@ -12,17 +12,11 @@ const ImageCrop = () => {
   const navigate = useNavigate();
   const [cropData, setCropData] = useState(null);
   const [cropper, setCropper] = useState(null);
-  console.log("location"+JSON.stringify(location));
-  console.log("locationcrop"+JSON.stringify(location.pathname));
-
-  sessionStorage.setItem("imageName", location.state?.image);
-  const imageName = sessionStorage.getItem("imageName");
-  console.log("Crop Image Name:", imageName);
   const getCropData = () => {
     if (typeof cropper !== "undefined") {
       const croppedData = cropper.getCroppedCanvas().toDataURL();
       setCropData(croppedData);
-      navigate("/preview", { state: { cropData: croppedData, originalImage: imageName } });
+      navigate("/preview", { state: { cropData: croppedData, originalImage: location.state.image } });
     }
   };
  
@@ -36,8 +30,8 @@ const ImageCrop = () => {
         <>
           <div className={s.header}>
             <div className={s.headerContent}>
-              <button className={s.backButton}>
-                <ReactSVG src={BackwardArrow} onClick={handlePreviewPage}/>
+              <button className={s.backButton} onClick={onCancel}>
+                <ReactSVG src={BackwardArrow} />
                 <span>Crop Image</span>
               </button>
             </div>
@@ -47,7 +41,7 @@ const ImageCrop = () => {
             <div className={s.cropperWrapper}>
               <Cropper
                 initialAspectRatio={1}
-                src={location.state?.image}
+                src={location.state.image}
                 viewMode={2}
                 guides={true}
                 minCropBoxHeight={200}
@@ -95,3 +89,4 @@ const ImageCrop = () => {
 };
  
 export default ImageCrop;
+ 
