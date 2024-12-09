@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
-
+ 
 :root {
   --nav-width: 200px;
   --nav-collapsed-width: 80px;
@@ -10,7 +10,7 @@
   --hover-color: #312b53;
   --font-family: "Nunito", sans-serif;
 }
-
+ 
 body {
   margin: 0;
   font-family: var(--font-family);
@@ -18,7 +18,7 @@ body {
 //   height: 100vh;
 //   overflow: hidden;
 }
-
+ 
 .lNavbar {
 //   position: fixed;
   top: 0;
@@ -30,17 +30,17 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  // transition: width 0.3s ease;
-
-  // &.collapsed {
-  //   width: var(--nav-collapsed-width);
-
-  //   .menuTitle {
-  //     display: none;
-  //   }
-  // }
+  transition: width 0.3s ease;
+ 
+  &.collapsed {
+    width: var(--nav-collapsed-width);
+ 
+    .menuTitle {
+      display: none;
+    }
+  }
 }
-
+ 
 .nav {
   display: flex;
 //   position:sticky ;
@@ -49,51 +49,42 @@ body {
 //   height: 90vh;
   overflow: hidden;
   background-color:#FFFFFF;
-  
+ 
 }
-
+ 
 .navLogo {
   display: flex;
   align-items: center;
   padding: 1rem;
   font-size: 1.2rem;
   font-weight: 600;
-
+ 
   .navLogoIcon {
     font-size: 1.8rem;
   }
-
+ 
   .navLogoName {
     margin-left: 1rem;
   }
 }
-
+ 
 .menu {
   // padding: 1rem;
   padding-top: 2rem;
   padding-left: 1rem;
-
+ 
   .fs_14 {
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 1rem;
     color: var(--icon-color);
   }
-
+ 
   .menuSection {
-  
-    // transition: background-color 0.9s ease;
+ 
+    transition: background-color 0.9s ease;
     margin-top: 2.5rem;
     display: flex;
-<<<<<<< HEAD
-    overflow: hidden;    
-    .menu {
-        display: flex;
-        flex-direction: column;
-        padding: 20px;
-        gap: 20px;
-        text-transform: capitalize;
-=======
     justify-content:space-around;
     align-items: center;
     padding: 10px;
@@ -102,18 +93,17 @@ body {
     border-bottom-left-radius: 8px;
     border: 2px;
     position: relative;
-    width: 100%;   
-    // min-height:'50px'; 
+    width: 100%;  
+    // min-height:'50px';
     // padding-right: 40px;
     border-right: 5px solid #3a5dcb;
-
+ 
     .menuIcon {
       // width: 24px;
       // height: 24px;
->>>>>>> 8016d8a2e674f515c59c39c5da7f829554a19d85
-
+ 
     }
-
+ 
     .menuTitle {
       font-size: 1rem;
       font-weight: 600;
@@ -122,18 +112,18 @@ body {
     }
   }
 }
-
-// .sidebarToggle {
-//   border: none;
-//   border-radius: 10px;
-//   background-color: #3F51B5;
-//   color: #FFFFFF;
-//   font-size: 1.5rem;
-//   margin: 1rem .5rem ;
-
-//   cursor: pointer;
-
-  // &:hover {
-  //   color: var(--secondary-color);
-  // }
-// }
+ 
+.sidebarToggle {
+  border: none;
+  border-radius: 10px;
+  background-color: #3F51B5;
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  margin: 1rem .5rem ;
+ 
+  cursor: pointer;
+ 
+  &:hover {
+    color: var(--secondary-color);
+  }
+}
