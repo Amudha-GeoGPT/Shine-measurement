@@ -41,7 +41,7 @@ const CropImage = () => {
           <h3 className={s.previewTitle}>Preview Cropped Image</h3>
         </div>
         {cropData && (
-          <div className={s.imagePreview}>
+          <div className={s.imagePreview} >
             <img src={cropData} alt="cropped" />
           </div>
         )}

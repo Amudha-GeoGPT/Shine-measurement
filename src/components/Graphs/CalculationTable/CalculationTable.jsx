@@ -247,13 +247,13 @@ const CalculationTable = () => {
   return (
     <div style={{ display: "flex", flexDirection: "column", margin: '0 !important', padding: '20px', background: '#F6F8F7' }}>
       <div style={{width:'100%',overflowX:'scroll'}}>
-      <Table style={{borderRadius:"10px",overflow:"hidden", borderColor:'none',}}>
-      <thead>
+      <Table style={{borderRadius:"10px",overflow:"hidden", borderColor:'none', }}>
+      <thead >
         <tr style={{width:'100%',overflowX:'hidden'}}>
           <th  colSpan={7} style={{ fontSize: '18px', lineHeight: '28px' }}>Calculations</th>
         </tr>
-        <tr>
-          <th >S.No</th>
+        <tr className={s.header} style={{textWrap:'nowrap', }}>
+          <th>S.No</th>
           <th>Specular Area</th>
           <th>FWHM</th>
           <th>Max Intensity</th>
@@ -264,7 +264,10 @@ const CalculationTable = () => {
       </thead>
       <tbody>
         {currentItems.map((item, index) => (
-          <tr key={index}>
+          <tr className={s.tabledata}      style={{
+            "--bs-table-bg": index % 2 != 0 ? '#F9FAFB' : "#E4E7EC",
+            backgroundColor: "var(--bs-table-bg)",
+          }} >
             <td>{`ROI#${indexOfFirstItem + index + 1}`}</td>
             <td>{item.SpecularArea}</td>
             <td>{item.FWHM}</td>
@@ -348,7 +351,6 @@ const CalculationTable = () => {
                     maxHeight: "100%",
                     width: "100%",
                     maxWidth: "100%",
-                    margin: "0 auto",
                     borderRadius: '20px'
                   }}
                   data={generateChartData(item, index)}

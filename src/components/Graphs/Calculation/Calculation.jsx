@@ -33,7 +33,7 @@ const Calculation = () => {
         <h2 className={s.graphResultTitle}>Spectacular Design of ROI Design</h2>
         <button className={s.GraphDownloadBtn}>Download graph</button>
         <div className={s.graphMetrics}>
-          <ResponsiveContainer width="100%" aspect={480 / 400}>
+          <ResponsiveContainer  width="100%" aspect={480 / 400}>
             <BarChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
