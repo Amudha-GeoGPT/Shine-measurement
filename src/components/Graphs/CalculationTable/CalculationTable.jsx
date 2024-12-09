@@ -247,12 +247,12 @@ const CalculationTable = () => {
   return (
     <div style={{ display: "flex", flexDirection: "column", margin: '0 !important', padding: '20px', background: '#F6F8F7' }}>
       <div style={{width:'100%',overflowX:'scroll'}}>
-      <Table style={{borderRadius:"10px",overflow:"hidden", borderColor:'none',}}>
+      <Table style={{borderRadius:"10px",overflow:"hidden", borderColor:'none'}}>
       <thead>
         <tr style={{width:'100%',overflowX:'hidden'}}>
           <th  colSpan={7} style={{ fontSize: '18px', lineHeight: '28px' }}>Calculations</th>
         </tr>
-        <tr>
+        <tr className={s.tabledata}>
           <th >S.No</th>
           <th>Specular Area</th>
           <th>FWHM</th>
@@ -264,7 +264,7 @@ const CalculationTable = () => {
       </thead>
       <tbody>
         {currentItems.map((item, index) => (
-          <tr key={index}>
+          <tr className={s.tabledata}key={index}>
             <td>{`ROI#${indexOfFirstItem + index + 1}`}</td>
             <td>{item.SpecularArea}</td>
             <td>{item.FWHM}</td>

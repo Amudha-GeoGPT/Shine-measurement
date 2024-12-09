@@ -7,29 +7,56 @@ import Modal from "../../common/Modal/Modal";
 
 const CropImage = () => {
   const [showModal, setShowModal] = useState(false);
+  const [uploading, setUploading] = useState(false); // For upload progress
   const location = useLocation();
   const navigate = useNavigate();
   const { cropData, originalImage } = location.state || {};
   const imageName = sessionStorage.getItem("imageName");
+
   console.log("preview Image Name:", imageName);
+
   const handleCloseModal = () => {
     setShowModal(false);
     navigate("/graph/graph-results", { state: { imageData: cropData } });
-  }
-
-  const handleShowModal = () => setShowModal(true);
+  };
 
   const handleRetake = () => {
     navigate("/CreateExperiment", { state: { openWebcam: true } });
   };
 
-  const handleUpload = () => {
-    handleShowModal();
+  const handleUpload = async () => {
+    if (!cropData) return;
+  
+    try {
+      setUploading(true);
+  
+      console.log("Mock API call started...");
+      // Simulate a network call with setTimeout
+      setTimeout(() => {
+        const mockResponse = {
+          success: true,
+          imageUrl: cropData, // Mock the same cropped image as the uploaded URL
+        };
+        console.log("Mock API response:", mockResponse);
+  
+        // Save the uploaded image to sessionStorage
+        sessionStorage.setItem("uploadedImageUrl", mockResponse.imageUrl);
+  
+        // Navigate to home page after upload
+        navigate("/", { state: { uploaded: true } });
+        setUploading(false);
+      }, 2000); // Simulated 2-second delay
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      alert("Image upload failed. Please try again.");
+      setUploading(false);
+    }
   };
+  
 
   const handlePreviewPage = () => {
     navigate("/CropImage", { state: { imageData: originalImage } });
-  }
+  };
 
   return (
     <div className={s.pageMove}>
@@ -52,13 +79,19 @@ const CropImage = () => {
             </button>
           </div>
           <div className={s.uploadBtnGroup}>
-            <button className={s.uploadBtn} onClick={handleUpload}>Upload Photo</button>
+            <button
+              className={s.uploadBtn}
+              onClick={handleUpload}
+              disabled={uploading} // Disable button during upload
+            >
+              {uploading ? "Uploading..." : "Upload Photo"}
+            </button>
           </div>
         </div>
         <Modal
           show={showModal}
           handleClose={handleCloseModal}
-          body="photo uploaded sucessfully!"
+          body="Photo uploaded successfully!"
           primaryButtonLabel="Ok"
           modalStyle={{ width: "80%" }}
         />

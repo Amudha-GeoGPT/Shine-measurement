@@ -11,7 +11,16 @@ const ExperimentCard = ({ experiment }) => {
   const navigate = useNavigate();
 
   const handleViewResults = () => {
-    navigate('/graph/graph-results');
+    // Get the uploaded image URL from sessionStorage
+    const uploadedImageUrl = sessionStorage.getItem("uploadedImageUrl");
+
+    // If an uploaded image exists, navigate to /graph/image-result
+    if (uploadedImageUrl) {
+      navigate('/graph/graph-results', { state: { uploadedImageUrl } });
+    } else {
+      // Otherwise, navigate to /graph/graph-results as a fallback
+      navigate('/graph/graph-results');
+    }
   };
 
   return (
@@ -45,7 +54,7 @@ const ExperimentCard = ({ experiment }) => {
                 onClick={handleViewResults}
               >
                 <span className={`${s.viewBtnText}`}>View Results</span>
-                <ReactSVG src={BackArrowIcon} style={{ paddingBottom: '5px', }} />
+                <ReactSVG src={BackArrowIcon} style={{ paddingBottom: '5px' }} />
               </button>
             </Col>
           </Row>
