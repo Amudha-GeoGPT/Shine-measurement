@@ -246,13 +246,14 @@ const CalculationTable = () => {
  
   return (
     <div style={{ display: "flex", flexDirection: "column", margin: '0 !important', padding: '20px', background: '#F6F8F7' }}>
-      <Table style={{borderRadius:"10px",overflow:"hidden", borderColor:'none'}}>
+      <div style={{width:'100%',overflowX:'scroll'}}>
+      <Table style={{borderRadius:"10px",overflow:"hidden", borderColor:'none',}}>
       <thead>
-        <tr>
+        <tr style={{width:'100%',overflowX:'hidden'}}>
           <th  colSpan={7} style={{ fontSize: '18px', lineHeight: '28px' }}>Calculations</th>
         </tr>
         <tr>
-          <th>S.No</th>
+          <th >S.No</th>
           <th>Specular Area</th>
           <th>FWHM</th>
           <th>Max Intensity</th>
@@ -291,7 +292,7 @@ const CalculationTable = () => {
               </Col>
  
               <Col xs="auto">
-                <Pagination>
+                <Pagination style={{zIndex:0,position:'relative'}}>
                   {getPaginationItems()}
                 </Pagination>
               </Col>
@@ -312,6 +313,7 @@ const CalculationTable = () => {
         </tr>
       </tfoot>
     </Table>
+    </div>
  
         <div className="mt-4">
           <Row style={{ height: "100%" }}>

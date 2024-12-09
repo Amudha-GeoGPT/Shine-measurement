@@ -1,7 +1,7 @@
 @use "../../assets/scss/abstracts" as *;
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
-
-
+ 
+ 
 .upload {
   width: 100%;
   font-weight: 600;
@@ -10,17 +10,17 @@
   padding: 10px;
   // padding-left: 30px;
   background-color: #F6F8F7;
-
+ 
   .webcamContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  
+ 
   .webcamPreview {
     margin-bottom: 20px;
   }
-  
+ 
   .captureBtn,
   .closeWebcamBtn {
     padding: 10px 20px;
@@ -31,43 +31,43 @@
     color: #fff;
     cursor: pointer;
   }
-  
+ 
   .closeWebcamBtn {
     background-color: #ff4d4d;
   }
-  
-
+ 
+ 
   .uploadHeader {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 20px;
     margin-bottom: 20px;
-
+ 
     .headerBackIcon {
       width: 20px;
       height: 24px;
       cursor: pointer;
     }
-
+ 
     .uploadTitle {
       font-size: 24px;
       font-weight: 600;
     }
   }
-
+ 
   .inputSection {
     display: flex;
     flex-direction: row;
     // max-width: calc(50% - 10px);
     // justify-content: space-between;
-
+ 
     input {
       //width: 340px;
       padding: 10px 14px;
     }
   }
-
+ 
   .uploadArea {
     margin-top: 10px;
     border: 2px dashed $blue2;
@@ -80,13 +80,13 @@
     border-radius: 10px;
     gap: 10px;
     // max-width: calc(50% - 10px);
-
+ 
     .uploadIcon {
       margin-top: 10px;
       cursor: pointer;
     }
   }
-
+ 
   .captureBtn {
     border-radius: 50px;
     background-color: #D7DAEE;
@@ -95,7 +95,7 @@
     justify-content: center;
     width: 350px;
     margin: 10px 0 30px;
-
+ 
     .cameraBtn {
       border: none;
       background: no-repeat;
@@ -103,24 +103,24 @@
       color:#3F51B5;
     }
   }
-
+ 
   .webcam {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
   }
-
+ 
   .uploadPreview {
     display: flex;
-    
+   
     align-items:flex-start;
     flex-direction: row;
     justify-content: center;
    
     margin-top: 20px;
-    
-
+   
+ 
     .fileUpload {
       //background-color: #FFFFFF;
       padding: 20px;
@@ -138,7 +138,7 @@
         background:#E4E7EC;
         border-radius: 50px;
       }
-
+ 
       .imageBox {
         border: 1px solid #ccc;
         padding: 10px;
@@ -148,20 +148,20 @@
         width: 100%;
         cursor: pointer;
         border-radius: 12px;
-      
+     
       }
-      
+     
       .imageBox:hover {
         // transform: scale(1.05);
         background-color: #344BFD;
-
+ 
       }
-      
+     
       .imageBox img {
         max-width: 100%;
         height: auto;
       }
-  
+ 
       .progressBarContainer {
         display: flex;
         align-items: center;
@@ -177,12 +177,12 @@
           margin-right: 10px;
           gap: 10px;
           flex-grow: 4;
-  
+ 
           p {
             margin: 0;
             font-size: 14px;
           }
-  
+ 
           .barPercentage {
             display: flex;
             flex-direction: row;
@@ -190,22 +190,22 @@
             gap: 10px;
           }
         }
-    
+   
         .progressBar {
           height: 15px;
-          background-color: $blue3; 
+          background-color: $blue3;
           border-radius: 5px;
           transition: width 0.4s ease;
           flex-grow: 1;
         }
-      
+     
         .deleteIcon {
           width: 20px;
           height: 20px;
           margin-left: 10px;
           margin-right: 20px;
           cursor: pointer;
-          //fill: #ff0000; 
+          //fill: #ff0000;
         }
       }
     }
@@ -214,13 +214,13 @@
       align-items: center;
       justify-content: center;
       // width: calc(50% - 10px);
-
+ 
       .preview {
         display: flex;
         justify-content: center;
         // align-items: end;
         img {
-          
+         
        
           width: 95%;
           height: auto;
@@ -230,7 +230,7 @@
       }
     }
   }
-
+ 
   .cropBtn {
     border-radius: 20px;
     margin-top: 20px;
@@ -239,7 +239,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-
+ 
     .cropImageBtn {
       border: none;
       background: no-repeat;
@@ -254,7 +254,7 @@
       padding-right: 10px;
     }
   }
-
+ 
   .backToHomeBtn {
     border-radius: 20px;
     margin-top: 30px;
@@ -263,7 +263,7 @@
     align-items: center;
     justify-content: center;
     max-width: calc(50% - 10px);
-
+ 
     .backButton {
       border: none;
       background: no-repeat;
@@ -272,3 +272,5 @@
     }
   }
 }
+ 
+ 

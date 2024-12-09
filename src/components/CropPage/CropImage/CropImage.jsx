@@ -10,7 +10,8 @@ const CropImage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { cropData, originalImage } = location.state || {};
-
+  const imageName = sessionStorage.getItem("imageName");
+  console.log("preview Image Name:", imageName);
   const handleCloseModal = () => {
     setShowModal(false);
     navigate("/graph/graph-results", { state: { imageData: cropData } });
