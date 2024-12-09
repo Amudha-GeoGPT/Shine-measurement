@@ -253,7 +253,7 @@ const CalculationTable = () => {
           <th  colSpan={7} style={{ fontSize: '18px', lineHeight: '28px' }}>Calculations</th>
         </tr>
         <tr>
-          <th>S.No</th>
+          <th >S.No</th>
           <th>Specular Area</th>
           <th>FWHM</th>
           <th>Max Intensity</th>
