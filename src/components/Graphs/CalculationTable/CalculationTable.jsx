@@ -318,7 +318,7 @@ const CalculationTable = () => {
         <div className="mt-4">
           <Row style={{ height: "100%" }}>
             {currentItems.map((item, index) => (
-              <Col key={index} sm={6} className="mb-4" style={{ height: "100%" }}>
+              <Col key={index} lg={6} className="mb-4" style={{ height: "100%" }}>
                 <div
                   style={{
                     height: "100%",
