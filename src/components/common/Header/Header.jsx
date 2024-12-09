@@ -20,7 +20,8 @@ export default function Header() {
             <div className={s.rightMenu}>
                 <ul>
                     <li>
-                        <ReactSVG src={notifyIcon} />
+                        <ReactSVG src={   
+                            notifyIcon} />
                     </li>
                     <li>
                         <ReactSVG src={userIcon} />
