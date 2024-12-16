@@ -59,7 +59,6 @@ const CropImage = () => {
             <button className={s.uploadBtn} onClick={handleUpload}>Upload Photo</button>
           </div>
         </div>
-        {error && <div className={s.error}>{error}</div>}
         <Modal
           show={showModal}
           handleClose={handleCloseModal}
@@ -73,4 +72,5 @@ const CropImage = () => {
 };
  
 export default CropImage;
+ 
  
