@@ -75,7 +75,27 @@ const CalculationTable = () => {
  
   const getPaginationItems = () => {
     const items = [];
- 
+    if (totalPages <= 1) {
+      // If there is only one page, display it and stop
+      items.push(
+        <Pagination.Item
+          key={1}
+          active={true}
+          linkClassName={s.page}
+          linkStyle={{
+            color: 'black',
+            backgroundColor: '#F6F8F7',
+            overflow: 'hidden',
+            border: 'none',
+            borderRadius: '8px',
+          }}
+        >
+          1
+        </Pagination.Item>
+      );
+      return items;
+    }
+  
     for (let i = 1; i <= Math.min(3, totalPages); i++) {
       items.push(
         <Pagination.Item
@@ -314,7 +334,7 @@ const CalculationTable = () => {
               </Col>
  
               <Col xs="auto">
-                <Pagination>
+                <Pagination style={{zIndex:0,position:'relative'}}>
                   {getPaginationItems()}
                 </Pagination>
               </Col>

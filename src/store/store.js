@@ -10,7 +10,10 @@ const store = configureStore({
     calculation: calculationReducer,
     Swatchlistview:SwatchlistviewReducer,
     fileUpload: fileUploadReducer,
+    
   },
+
+  
 });
 
 export default store;
