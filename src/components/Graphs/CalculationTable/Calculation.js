@@ -357,5 +357,5 @@ export const Stockdata =
       "BaselineOffset": 38.213330,
       "SinCurveArea": 28.213330
     },
-    
   ]
+ 

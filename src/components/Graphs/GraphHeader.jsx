@@ -1,9 +1,12 @@
 import React from "react";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useNavigate, useLocation } from "react-router-dom";
 import s from "./GraphHeader.module.scss";
 
 const GraphHeader = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { id } = location.state || {};
+  console.log(id);
 
   const handleReturn = () => {
     // navigate(-1);
@@ -23,6 +26,7 @@ const GraphHeader = () => {
             <li>
               <NavLink
                 to="graph-results"
+                state={{ id }}
                 className={({ isActive }) =>
                   isActive ? `${s.graphNavLink} ${s.active}` : s.graphNavLink
                 }
@@ -33,6 +37,7 @@ const GraphHeader = () => {
             <li>
               <NavLink
                 to="image-result"
+                state={{ id }}
                 className={({ isActive }) =>
                   isActive ? `${s.graphNavLink} ${s.active}` : s.graphNavLink
                 }
@@ -43,6 +48,7 @@ const GraphHeader = () => {
             <li>
               <NavLink
                 to="calculation-results"
+                state={{ id }}
                 className={({ isActive }) =>
                   isActive ? `${s.graphNavLink} ${s.active}` : s.graphNavLink
                 }
@@ -61,3 +67,4 @@ const GraphHeader = () => {
 };
 
 export default GraphHeader;
+

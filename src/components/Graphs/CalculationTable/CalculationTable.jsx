@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getbycalculatelist } from "../../../store/calculationslice/calculationthunk";
+import * as thunk from '../../../store/calculationslice/calculationthunk'
+import { useDispatch, useSelector } from "react-redux";
 import { Table, Pagination, Container, Row, Col } from "react-bootstrap";
 import { Bar } from "react-chartjs-2";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Stockdata } from "./Calculation";
+import { useLocation } from "react-router-dom";
+// import { Stockdata } from "./Calculation";
 import {
   Chart as ChartJS,
   BarElement,
@@ -14,9 +18,9 @@ import {
 import s from "./CalculationTable.module.scss";
 import leftarrow from '../../../assets/svg/previous-arrow.svg';
 import nextarrow from '../../../assets/svg/next-arrow.svg';
-
+ 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
-
+ 
 const styles = {
   title: {
     fontSize: "1rem",
@@ -35,23 +39,43 @@ const styles = {
     display: 'transparent',
   },
 };
-
+ 
 const centerOffsetColors = ["#F68D2B", "#FFD200", "#9891FF", "#344BFD"];
-
+ 
 const CalculationTable = () => {
+  const dispatch = useDispatch();
+    const { data, loading, error } = useSelector((state) => state.calculation);
+
+    const location = useLocation();
+    const {id} = location.state||{};
+  
+    console.log(id);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
-  const totalPages = Math.ceil(Stockdata.length / itemsPerPage);
+  const totalPages = Math.ceil(data?.data?.results?.length / itemsPerPage);
+
+  
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = Stockdata.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = data?.data?.results.slice(indexOfFirstItem, indexOfLastItem);
 
+ 
+  
+    useEffect(() => {
+      dispatch(thunk.getbycalculatelist(id))
+    }, [dispatch]);
+    
+  
+  
+    console.log("result"+JSON.stringify(data));
+    console.log("result"+JSON.stringify(data?.data?.results));
+ 
   const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
-
+ 
   const getPaginationItems = () => {
     const items = [];
-
+ 
     for (let i = 1; i <= Math.min(3, totalPages); i++) {
       items.push(
         <Pagination.Item
@@ -71,7 +95,7 @@ const CalculationTable = () => {
         </Pagination.Item>
       );
     }
-
+ 
     if (currentPage > 3 && totalPages > 5) {
       items.push(
         <Pagination.Item
@@ -83,7 +107,7 @@ const CalculationTable = () => {
         </Pagination.Item>
       );
     }
-
+ 
     const startPage = Math.max(4, currentPage - 1);
     const endPage = Math.min(totalPages - 2, currentPage + 2);
     for (let i = startPage; i <= endPage; i++) {
@@ -105,7 +129,7 @@ const CalculationTable = () => {
         </Pagination.Item>
       );
     }
-
+ 
     if (currentPage < totalPages - 2 && totalPages > 5) {
       items.push(
         <Pagination.Item
@@ -117,7 +141,7 @@ const CalculationTable = () => {
         </Pagination.Item>
       );
     }
-
+ 
     for (let i = Math.max(totalPages - 2, endPage + 1); i <= totalPages; i++) {
       items.push(
         <Pagination.Item
@@ -137,58 +161,58 @@ const CalculationTable = () => {
         </Pagination.Item>
       );
     }
-
+ 
     return items;
   };
-
+ 
   const generateChartData = (item, index) => ({
     labels: [""],
     datasets: [
       {
         label: "Specular Area",
-        data: [item.SpecularArea],
+        data: [item.specular_area],
         backgroundColor: "#E9ECF1",
         borderWidth: 1,
         borderRadius: 5,
       },
       {
         label: "FWHM",
-        data: [item.FWHM],
+        data: [item.fwhm],
         backgroundColor: "#E9ECF1",
         borderWidth: 1,
         borderRadius: 5,
       },
       {
         label: "Max Intensity",
-        data: [item.MaxIntensity],
+        data: [item.max_intensity],
         backgroundColor: "#E9ECF1",
         borderWidth: 1,
         borderRadius: 5,
       },
       {
         label: "CenterOffset",
-        data: [item.CenterOffset],
+        data: [item.center_offset],
         backgroundColor: centerOffsetColors[index % 4],
         borderWidth: 1,
         borderRadius: 5,
       },
       {
         label: "Baseline Offset",
-        data: [item.BaselineOffset],
+        data: [item.baseline_offset],
         backgroundColor: "#E9ECF1",
         borderWidth: 1,
         borderRadius: 5,
       },
       {
         label: "SinCurveArea",
-        data: [item.SinCurveArea],
+        data: [item.sin_curve_area],
         backgroundColor: "#E9ECF1",
         borderWidth: 1,
         borderRadius: 5,
       }
     ],
   });
-
+ 
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: true,
@@ -242,7 +266,7 @@ const CalculationTable = () => {
       },
     },
   };
-
+ 
   return (
     <div style={{ display: "flex", flexDirection: "column", margin: '0 !important', padding: '20px', background: '#F6F8F7' }}>
       <Table striped bordered hover style={{borderRadius:"12px",overflow:"hidden"}}>
@@ -261,17 +285,17 @@ const CalculationTable = () => {
         </tr>
       </thead>
       <tbody>
-        {currentItems.map((item, index) => (
-          <tr key={index}>
-            <td>{`ROI#${indexOfFirstItem + index + 1}`}</td>
-            <td>{item.SpecularArea}</td>
-            <td>{item.FWHM}</td>
-            <td>{item.MaxIntensity}</td>
-            <td>{item.CenterOffset}</td>
-            <td>{item.BaselineOffset}</td>
-            <td>{item.SinCurveArea}</td>
-          </tr>
-        ))}
+        {currentItems?.map((item, index) => (
+            <tr key={index}>
+              <td>{`ROI#${indexOfFirstItem + index + 1}`}</td>
+              <td>{item.specular_area}</td>
+              <td>{item.fwhm}</td>
+              <td>{item.max_intensity}</td>
+              <td>{item.center_offset}</td>
+              <td>{item.baseline_offset}</td>
+              <td>{item.sin_curve_area}</td>
+            </tr>
+          ))}
       </tbody>
       <tfoot>
         <tr>
@@ -288,13 +312,13 @@ const CalculationTable = () => {
                   </Pagination.Prev>
                 </Pagination>
               </Col>
-
+ 
               <Col xs="auto">
                 <Pagination>
                   {getPaginationItems()}
                 </Pagination>
               </Col>
-
+ 
               <Col xs="auto">
                 <Pagination>
                   <Pagination.Next
@@ -311,10 +335,10 @@ const CalculationTable = () => {
         </tr>
       </tfoot>
     </Table>
-
+ 
         <div className="mt-4">
           <Row style={{ height: "100%" }}>
-            {currentItems.map((item, index) => (
+            {currentItems?.map((item, index) => (
               <Col key={index} sm={6} className="mb-4" style={{ height: "100%" }}>
                 <div
                   style={{
@@ -337,7 +361,7 @@ const CalculationTable = () => {
                 >
                   {`ROI#${indexOfFirstItem + index + 1}`}
                 </div>
-
+ 
                 <Bar
                   className="mt-5"
                   style={{
@@ -363,5 +387,5 @@ const CalculationTable = () => {
     </div>
   );
 };
-
+ 
 export default CalculationTable;
