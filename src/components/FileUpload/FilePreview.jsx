@@ -73,6 +73,7 @@ const FilePreview = ({
               )}
 
               {/* Uploaded file details */}
+              
               {1>0 && (
                 <div className={s.progressBarContainer}>
                   <ReactSVG
