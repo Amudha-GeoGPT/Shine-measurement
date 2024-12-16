@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import mockExperiments from "../../components/Experiments/data/mockExperiments"
-import { fetchSwatchName } from "../Swatchslice/swatchthunk";
+import {fetchSwatchName}  from "../Swatchslice/swatchthunk";
 
 const experimentsSlice = createSlice({
   name: "experiments",

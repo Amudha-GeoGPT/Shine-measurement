@@ -73,7 +73,7 @@ const FilePreview = ({
               )}
 
               {/* Uploaded file details */}
-              {uploadComplete && (
+              {1>0 && (
                 <div className={s.progressBarContainer}>
                   <ReactSVG
                     src={selectedFile === index ? filewithclr : FileIcon}
@@ -97,7 +97,7 @@ const FilePreview = ({
             </Col>
           ))}
         </Row>
-        {uploadComplete && selectedFile !== null && image.length > 0 && (
+        {selectedFile !== null && image.length > 0 && (
           <div className={s.cropBtn} onClick={goToCropPage}>
             <button className={s.cropImageBtn}>
               <i className={`bi bi-crop ${s.bi}`}></i>

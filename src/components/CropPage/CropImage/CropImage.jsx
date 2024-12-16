@@ -4,60 +4,37 @@ import s from "./CropImage.module.scss";
 import { ReactSVG } from "react-svg";
 import BackwardArrow from "../../../assets/svg/backward_arrow.svg";
 import Modal from "../../common/Modal/Modal";
-
+import {uploadFilesThunk} from '../../../store/fileuploadSlice/fileuploadthunk'
+import { useDispatch } from "react-redux";
+ 
 const CropImage = () => {
   const [showModal, setShowModal] = useState(false);
-  const [uploading, setUploading] = useState(false); // For upload progress
+  const dispatch=useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
   const { cropData, originalImage } = location.state || {};
   const imageName = sessionStorage.getItem("imageName");
-
   console.log("preview Image Name:", imageName);
-
   const handleCloseModal = () => {
     setShowModal(false);
+    dispatch(uploadFilesThunk( cropData ))
     navigate("/graph/graph-results", { state: { imageData: cropData } });
-  };
-
+  }
+ 
+  const handleShowModal = () => setShowModal(true);
+ 
   const handleRetake = () => {
     navigate("/CreateExperiment", { state: { openWebcam: true } });
   };
-
-  const handleUpload = async () => {
-    if (!cropData) return;
-  
-    try {
-      setUploading(true);
-  
-      console.log("Mock API call started...");
-      // Simulate a network call with setTimeout
-      setTimeout(() => {
-        const mockResponse = {
-          success: true,
-          imageUrl: cropData, // Mock the same cropped image as the uploaded URL
-        };
-        console.log("Mock API response:", mockResponse);
-  
-        // Save the uploaded image to sessionStorage
-        sessionStorage.setItem("uploadedImageUrl", mockResponse.imageUrl);
-  
-        // Navigate to home page after upload
-        navigate("/", { state: { uploaded: true } });
-        setUploading(false);
-      }, 2000); // Simulated 2-second delay
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      alert("Image upload failed. Please try again.");
-      setUploading(false);
-    }
+ 
+  const handleUpload = () => {
+    handleShowModal();
   };
-  
-
+ 
   const handlePreviewPage = () => {
-    navigate("/CropImage", { state: { imageData: originalImage } });
-  };
-
+    navigate("/CreateExperiment", { state: { imageData: originalImage } });
+  }
+ 
   return (
     <div className={s.pageMove}>
       <div className={s.cropImage}>
@@ -68,7 +45,7 @@ const CropImage = () => {
           <h3 className={s.previewTitle}>Preview Cropped Image</h3>
         </div>
         {cropData && (
-          <div className={s.imagePreview} >
+          <div className={s.imagePreview}>
             <img src={cropData} alt="cropped" />
           </div>
         )}
@@ -79,19 +56,13 @@ const CropImage = () => {
             </button>
           </div>
           <div className={s.uploadBtnGroup}>
-            <button
-              className={s.uploadBtn}
-              onClick={handleUpload}
-              disabled={uploading} // Disable button during upload
-            >
-              {uploading ? "Uploading..." : "Upload Photo"}
-            </button>
+            <button className={s.uploadBtn} onClick={handleUpload}>Upload Photo</button>
           </div>
         </div>
         <Modal
           show={showModal}
           handleClose={handleCloseModal}
-          body="Photo uploaded successfully!"
+          body="photo uploaded sucessfully!"
           primaryButtonLabel="Ok"
           modalStyle={{ width: "80%" }}
         />
@@ -99,5 +70,6 @@ const CropImage = () => {
     </div>
   );
 };
-
+ 
 export default CropImage;
+ 
