@@ -4,21 +4,22 @@ import s from "./CropImage.module.scss";
 import { ReactSVG } from "react-svg";
 import BackwardArrow from "../../../assets/svg/backward_arrow.svg";
 import Modal from "../../common/Modal/Modal";
-import {uploadFilesThunk} from '../../../store/fileuploadSlice/fileuploadthunk'
-import { useDispatch } from "react-redux";
+import {uploadFilesThunk} from '../../../store/Fileuploadslice/fileuploadthunk'
+import { useDispatch,useSelector } from "react-redux";
 
 const CropImage = () => {
   const [showModal, setShowModal] = useState(false);
   const dispatch=useDispatch();
-  const location = useLocation();
+  // const location = useLocation();
   const navigate = useNavigate();
-  const { cropData, originalImage } = location.state || {};
+    const { croppedImage } = useSelector((state) => state.fileUpload);
+  // const { cropData, originalImage } = location.state || {};
   const imageName = sessionStorage.getItem("imageName");
   console.log("preview Image Name:", imageName);
   const handleCloseModal = () => {
     setShowModal(false);
-    dispatch(uploadFilesThunk( cropData ))
-    navigate("/graph/graph-results", { state: { imageData: cropData } });
+    dispatch(uploadFilesThunk( croppedImage ))
+    navigate("/graph/graph-results");
   }
 
   const handleShowModal = () => setShowModal(true);
@@ -32,7 +33,7 @@ const CropImage = () => {
   };
 
   const handlePreviewPage = () => {
-    navigate("/CreateExperiment", { state: { imageData: originalImage } });
+    navigate("/CreateExperiment");
   }
 
   return (
@@ -44,9 +45,9 @@ const CropImage = () => {
           </div>
           <h3 className={s.previewTitle}>Preview Cropped Image</h3>
         </div>
-        {cropData && (
+        {croppedImage && (
           <div className={s.imagePreview}>
-            <img src={cropData} alt="cropped" />
+            <img src={croppedImage} alt="cropped" />
           </div>
         )}
         <div className={s.imagePreviewBtn}>

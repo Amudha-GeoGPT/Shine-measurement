@@ -339,7 +339,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFileInfo, setUploadProgress, setUploadComplete, setImage, setSelectedFile } from '../../store/fileuploadSlice/fileuploadSlice';
+import { setFileInfo, setUploadProgress, setUploadComplete, setImage, setSelectedFile ,setSwatchName} from '../../store/Fileuploadslice/fileuploadSlice';
 import Webcam from 'react-webcam';
 import s from './FileUpload.module.scss';
 import { ReactSVG } from 'react-svg';
@@ -385,7 +385,7 @@ const FileUpload = ({ onBack }) => {
   const handleSwatchTitle = (value) => {
     setSwatchTitle(value);
   };
-console.log(swatchTitle)
+
   const onChange = async (e) => {
     e.preventDefault();
     let files;
@@ -395,23 +395,19 @@ console.log(swatchTitle)
       files = e.target.files;
     }
 
-    console.log(files,'files')
+   
     const newFiles = Array.from(files);
-    const formData = new FormData();
-    newFiles.forEach((file) => {
-      formData.append('files', file);
-      formData.append('swatch_name', input);
-    });
-
-    dispatch(setFileInfo([
-      ...fileInfo,
-      ...newFiles.map((file) => ({
+    console.log(newFiles,'files')
+     
+    dispatch(setFileInfo([...fileInfo, ...newFiles.map((file) => ({
         name: file.name,
         size: (file.size / 1024).toFixed(2) + 'kb',
       })),
     ]));
     const imageUrl = newFiles.map((file) => URL.createObjectURL(file));
     dispatch(setImage([...image, ...imageUrl]));
+    dispatch(setSwatchName(swatchTitle))
+    
   };
 
   const handleFile = () => {

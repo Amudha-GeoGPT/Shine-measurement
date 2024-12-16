@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { newSwatchName } from '../../components/services/SwatchService';
-import { uploadFilesThunk } from './fileuploadthunk';
+
 
 const initialState = {
   fileInfo: [],
@@ -8,7 +7,8 @@ const initialState = {
   uploadComplete: false,
   image: [],
   selectedFile: null,
-  SwatchName:''
+  swatchName:'',
+  croppedImage:null,
 };
 
 const fileUploadSlice = createSlice({
@@ -28,16 +28,22 @@ const fileUploadSlice = createSlice({
     setImage(state, action) {
       state.image = action.payload;
     },
+    setCroppedImage(state, action) {
+      state.croppedImage = action.payload;
+      console.log('dhfghbfghfghjh',state.croppedImage)
+    },
     setSelectedFile(state, action) {
       state.selectedFile = action.payload;
+      console.log('dhfghbfghf',state.selectedFile)
     },
     setSwatchName(state, action) {
-      state.SwatchName = action.payload;
+      state.swatchName = action.payload;
+      console.log('fcfecfdcdc',state.swatchName)
     },
   },
  
   
 });
 
-export const { setFileInfo, setUploadProgress, setUploadComplete, setImage, setSelectedFile,setSwatchName } = fileUploadSlice.actions;
+export const { setFileInfo, setUploadProgress, setUploadComplete, setImage, setSelectedFile,setSwatchName,setCroppedImage } = fileUploadSlice.actions;
 export default fileUploadSlice.reducer;

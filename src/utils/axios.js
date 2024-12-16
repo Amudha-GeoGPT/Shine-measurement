@@ -37,9 +37,9 @@ export const apiGet = async (url) =>
     export const apiPostwithImage = async (url, data, config = {}) => {
       try {
         console.log('Request Details:', {
-          url: instance.defaults.baseURL + url,
+
           data :data,
-          config,
+       
         });
     
         const response = await instance.post(url, data, config);

@@ -21,8 +21,8 @@ const FilePreview = ({
   const navigate = useNavigate();
 
   const goToCropPage = () => {
-    if (selectedFile !== null && image[selectedFile]) {
-      navigate("/CropImage", { state: { image: image[selectedFile] } });
+    if (selectedFile !== null ) {
+      navigate("/CropImage");
     } else {
       alert("Error: No image available to crop."); // Simple error handling
     }
@@ -50,9 +50,9 @@ const FilePreview = ({
             <Col
               key={index}
               style={{
-                backgroundColor: selectedFile === index ? "#344BFD" : "#FFFFFF"
+                backgroundColor: selectedFile === img ? "#344BFD" : "#FFFFFF"
               }}
-              onClick={() => setSelectedFile(index)}
+              onClick={() => setSelectedFile(img)}
               className={s.imageBox}
             >
               {/* Upload progress */}
@@ -76,19 +76,19 @@ const FilePreview = ({
               {1>0 && (
                 <div className={s.progressBarContainer}>
                   <ReactSVG
-                    src={selectedFile === index ? filewithclr : FileIcon}
+                    src={selectedFile === img ? filewithclr : FileIcon}
                     className={s.fileIcon}
                   />
                   <div className={s.fileInfo}>
-                    <p style={{ color: selectedFile === index ? "#FFFFFF" : "black" }}>
+                    <p style={{ color: selectedFile === img ? "#FFFFFF" : "black" }}>
                       {fileInfo[index]?.name}
                     </p>
-                    <p style={{ color: selectedFile === index ? "#FFFFFF" : "black" }}>
+                    <p style={{ color: selectedFile === img ? "#FFFFFF" : "black" }}>
                       {fileInfo[index]?.size}
                     </p>
                   </div>
                   <ReactSVG
-                    src={selectedFile === index ? deletewithclr : DeleteIcon}
+                    src={selectedFile === img ? deletewithclr : DeleteIcon}
                     className={s.deleteIcon}
                     onClick={() => handleDelete(index)}
                   />
