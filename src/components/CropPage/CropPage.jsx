@@ -30,8 +30,8 @@ const ImageCrop = () => {
         <>
           <div className={s.header}>
             <div className={s.headerContent}>
-              <button className={s.backButton} >
-                <ReactSVG src={BackwardArrow} onClick={handlePreviewPage} />
+              <button className={s.backButton} onClick={onCancel}>
+                <ReactSVG src={BackwardArrow} />
                 <span>Crop Image</span>
               </button>
             </div>
@@ -89,4 +89,5 @@ const ImageCrop = () => {
 };
  
 export default ImageCrop;
+ 
  

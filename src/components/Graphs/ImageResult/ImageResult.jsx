@@ -1,21 +1,20 @@
 import React, { useEffect } from "react";
 import s from "./ImageResult.module.scss";
-import { useDispatch,useSelector } from "react-redux";
-import * as thunk from '../../../store/calculationslice/calculationthunk'
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 const ImageResult = () => {
-  const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.calculation);
+  const { data, loading, error } = useSelector((state) => state.calculation);
+  if (loading) {
+    return <div className='p-3'>Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="error">{error}</div>;
+  }
   const location = useLocation();
   const {id} = location.state||{};
 
-  console.log(id);
-  // console.log("result"+JSON.stringify(data?.data?.results));
-
-  useEffect(() => {
-    dispatch(thunk.getbycalculatelist(id))
-  }, [dispatch]);
   return (
     <div className={s.imageResult}>
       <div className="container-fluid">
@@ -23,19 +22,19 @@ const ImageResult = () => {
           {data?.data?.results.map((item,index) => (
             <div
               key={index}
-              className={`${s.gridItem} ${index === 1 ? s.gridItemLarge : s.gridItemSmall}`}
+              className={`${s.gridItem}`}
             >
               <div className={s.imageWrapper}>
                 <div className={s.imageContainer}>
                   <img
-                    src={item.outputImage_name}
+                    src={item.inputImage_name}
                     alt={item.title}
                     className={s.image}
                   />
                 </div>
               </div>
               <div className={s.contentWrapper}>
-                <h3 className={s.title}>{item.title}</h3>
+                <h3 className={s.title}>{ item.roi}</h3>
                 <a href={item.downloadLink} className={s.downloadLink}>
                   Download Graph
                 </a>

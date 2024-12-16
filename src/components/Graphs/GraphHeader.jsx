@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink, Outlet, useNavigate, useLocation } from "react-router-dom";
 import s from "./GraphHeader.module.scss";
+import * as thunk from '../../store/calculationslice/calculationthunk'
+import { useDispatch } from "react-redux";
 
 const GraphHeader = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const location = useLocation();
   const { id } = location.state || {};
   console.log(id);
 
+  useEffect(() => {
+    dispatch(thunk.getbycalculatelist(id))
+  }, [dispatch]);
+
   const handleReturn = () => {
-    // navigate(-1);
-    navigate("/preview");
+    navigate(-1);
+    
   };
 
   return (

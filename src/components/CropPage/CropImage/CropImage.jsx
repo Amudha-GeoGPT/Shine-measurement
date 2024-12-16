@@ -6,7 +6,7 @@ import BackwardArrow from "../../../assets/svg/backward_arrow.svg";
 import Modal from "../../common/Modal/Modal";
 import {uploadFilesThunk} from '../../../store/fileuploadSlice/fileuploadthunk'
 import { useDispatch } from "react-redux";
- 
+
 const CropImage = () => {
   const [showModal, setShowModal] = useState(false);
   const dispatch=useDispatch();
@@ -20,21 +20,21 @@ const CropImage = () => {
     dispatch(uploadFilesThunk( cropData ))
     navigate("/graph/graph-results", { state: { imageData: cropData } });
   }
- 
+
   const handleShowModal = () => setShowModal(true);
- 
+
   const handleRetake = () => {
     navigate("/CreateExperiment", { state: { openWebcam: true } });
   };
- 
+
   const handleUpload = () => {
     handleShowModal();
   };
- 
+
   const handlePreviewPage = () => {
     navigate("/CreateExperiment", { state: { imageData: originalImage } });
   }
- 
+
   return (
     <div className={s.pageMove}>
       <div className={s.cropImage}>
@@ -70,6 +70,5 @@ const CropImage = () => {
     </div>
   );
 };
- 
+
 export default CropImage;
- 

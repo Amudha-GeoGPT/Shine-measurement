@@ -43,7 +43,6 @@ const styles = {
 const centerOffsetColors = ["#F68D2B", "#FFD200", "#9891FF", "#344BFD"];
  
 const CalculationTable = () => {
-  const dispatch = useDispatch();
     const { data, loading, error } = useSelector((state) => state.calculation);
 
     const location = useLocation();
@@ -62,10 +61,6 @@ const CalculationTable = () => {
 
  
   
-    useEffect(() => {
-      dispatch(thunk.getbycalculatelist(id))
-    }, [dispatch]);
-    
   
   
     console.log("result"+JSON.stringify(data));
@@ -75,7 +70,27 @@ const CalculationTable = () => {
  
   const getPaginationItems = () => {
     const items = [];
- 
+    if (totalPages <= 1) {
+      // If there is only one page, display it and stop
+      items.push(
+        <Pagination.Item
+          key={1}
+          active={true}
+          linkClassName={s.page}
+          linkStyle={{
+            color: 'black',
+            backgroundColor: '#F6F8F7',
+            overflow: 'hidden',
+            border: 'none',
+            borderRadius: '8px',
+          }}
+        >
+          1
+        </Pagination.Item>
+      );
+      return items;
+    }
+  
     for (let i = 1; i <= Math.min(3, totalPages); i++) {
       items.push(
         <Pagination.Item
@@ -314,7 +329,7 @@ const CalculationTable = () => {
               </Col>
  
               <Col xs="auto">
-                <Pagination>
+                <Pagination style={{zIndex:0,position:'relative'}}>
                   {getPaginationItems()}
                 </Pagination>
               </Col>

@@ -1,8 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import imageReducer from "./Imageslice/imageSlice";
 import experimentsReducer from "./Swatchslice/swatchslice";
 import calculationReducer from './calculationslice/calculationSlice';
-import SwatchlistviewReducer from './Swatchlistview/swatchlistviewslice'
+import SwatchlistviewReducer from './Swatchlistview/swatchlistviewslice';
 import fileUploadReducer from "./fileuploadSlice/fileuploadSlice";
 
 const store = configureStore({
@@ -11,8 +10,10 @@ const store = configureStore({
     calculation: calculationReducer,
     Swatchlistview:SwatchlistviewReducer,
     fileUpload: fileUploadReducer,
+    
   },
+
+  
 });
 
 export default store;
-

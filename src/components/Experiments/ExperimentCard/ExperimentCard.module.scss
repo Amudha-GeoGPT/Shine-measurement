@@ -1,11 +1,12 @@
 .card {
-  background-color: #E1E8F8;
+  background-color:#E1E8F8;
   padding: 1rem;
-  border: 0;
+  border: 1px solid #E1E8F8;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   gap: 1.25rem; // Equivalent to 20px
+  border-radius: 10px;
 }
 
 .card-body {
@@ -13,11 +14,14 @@
   flex-direction: column;
   
   .text-muted {
-    font-size: 10px;
-    font-family: poppins;
+    // font-size: 12px;
+    // font-weight: 500;
+    // line-height: 18px;
+    // color: #6c757d; // Default muted color
+    font-family: Poppins;
+    font-size: 16px;
     font-weight: 600;
-    line-height: 18px;
-    color: #6c757d; // Default muted color
+    color:#243744;
   }
 
   .card-title {
@@ -53,11 +57,12 @@
     padding: 0 0.75rem ; // Adjust button padding
     color: #ffffff; // White text color
     display: flex;
+    border-radius: 8px;
     align-items: center;
     border-radius: 4px; // Optional for rounded corners
 
     .viewBtnText {
-      font-size: 12px;
+      font-size: 10px;
       font-weight: 500;
       line-height: 18px;
     }

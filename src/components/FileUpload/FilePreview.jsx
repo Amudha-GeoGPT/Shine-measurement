@@ -83,7 +83,7 @@ const FilePreview = ({
                     <p style={{ color: selectedFile === index ? "#FFFFFF" : "black" }}>
                       {fileInfo[index]?.name}
                     </p>
-                    <p style={{ color: selectedFile === index ? "#FFFFFF" : "black" }}>
+                    <p style={{ color: selectedFile === index ? "#D9D9D9" : "#D9D9D9" }}>
                       {fileInfo[index]?.size}
                     </p>
                   </div>
