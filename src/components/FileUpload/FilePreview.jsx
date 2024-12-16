@@ -16,17 +16,20 @@ const FilePreview = ({
   uploadComplete,
   selectedFile,
   setSelectedFile,
-  setImage
+  setImage,
+  input, 
+  swatchTitle
 }) => {
   const navigate = useNavigate();
 
   const goToCropPage = () => {
-    if (selectedFile !== null ) {
-      navigate("/CropImage");
+    if (selectedFile !== null && image[selectedFile]) {
+      navigate("/CropImage", { state: { image: image[selectedFile],input,swatchTitle} });
     } else {
       alert("Error: No image available to crop."); // Simple error handling
     }
   };
+  console.log(swatchTitle);
 
   const handleDelete = (index) => {
     const updatedImages = [...image];
@@ -83,7 +86,7 @@ const FilePreview = ({
                     <p style={{ color: selectedFile === img ? "#FFFFFF" : "black" }}>
                       {fileInfo[index]?.name}
                     </p>
-                    <p style={{ color: selectedFile === img ? "#FFFFFF" : "black" }}>
+                    <p style={{ color: selectedFile === index ? "#D9D9D9" : "#D9D9D9" }}>
                       {fileInfo[index]?.size}
                     </p>
                   </div>

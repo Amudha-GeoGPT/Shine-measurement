@@ -19,12 +19,12 @@ const ImageCrop = () => {
   const getCropData = () => {
     if (typeof cropper !== "undefined") {
       const croppedData = cropper.getCroppedCanvas().toDataURL();
-      console.log('efrgr,',croppedData)
-      dispatch(setCroppedImage(croppedData))
-      navigate("/preview");
+      setCropData(croppedData);
+     
+      navigate("/preview", { state: { cropData: croppedData, originalImage: location.state.image,Swatchid:location.state.input,swatchTitle:location.state.swatchTitle } });
     }
   };
- 
+  console.log("-->"+JSON.stringify(location.state.swatchTitle))
   const onCancel = () => {
     navigate("/CreateExperiment");
   };
@@ -94,4 +94,5 @@ const ImageCrop = () => {
 };
  
 export default ImageCrop;
+ 
  
