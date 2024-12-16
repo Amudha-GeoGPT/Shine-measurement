@@ -427,6 +427,10 @@ console.log(swatchTitle)
     setModalBody('Please Enter a Swatch Name!');
     setModalTitle('Error');
   };
+  
+  const handleback =()=>{
+    navigate("/");
+  }
 
   const capture = () => {
     const imageSrc = webcamRef.current.getScreenshot();
@@ -439,14 +443,14 @@ console.log(swatchTitle)
     <div className={s.upload}>
       {/* Header */}
       <div xs={12} className={s.uploadHeader}>
-        <ReactSVG className={s.headerBackIcon} src={BackwardArrow} onClick={onBack} />
+        <ReactSVG className={s.headerBackIcon} src={BackwardArrow} onClick={handleback} />
         <span className={s.uploadTitle}>Create New Experiments</span>
       </div>
 
       {/* Input Section */}
       <Row className={s.inputSection}>
         <Col xs={12} md={6} lg={3} className={s.searchSection}>
-          <Input label="Swatch ID" value={input} placeholder="XDEDEER333" required />
+          <Input label="Swatch ID" value={input} placeholder="XDEDEER333"/>
         </Col>
         <Col xs={12} md={6} lg={3} className={s.swatchTitle}>
           <Input
@@ -455,7 +459,6 @@ console.log(swatchTitle)
             value={swatchTitle}
             onChange={(e) => handleSwatchTitle(e)}
             placeholder="Hair shine analysis"
-            required
           />
         </Col>
       </Row>

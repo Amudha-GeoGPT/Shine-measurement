@@ -13,6 +13,8 @@
     .headerContent {
       display: flex;
       align-items: center;
+      font-family: poppins;
+      font-weight: 600;
     }
  
     .backButton {
@@ -25,7 +27,7 @@
       cursor: pointer;
       font-size: 16px;
       color: #333;
-      font-weight: 500;
+      font-weight: 600;
  
       svg {
         width: 20px;
