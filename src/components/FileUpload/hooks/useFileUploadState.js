@@ -7,6 +7,7 @@ export const useFileUploadState = () => {
     swatchTitle: '',
     image: [],
     showWebcam: false,
+    capturedImage: null,
     showPopup: false,
     modalTitle: '',
     modalBody: '',
@@ -15,7 +16,7 @@ export const useFileUploadState = () => {
     uploadComplete: false,
     selectedFile: null,
     showCropPage: false,
-    showAlert: false
+    showAlert: false, 
   });
 
   const webcamRef = useRef(null);

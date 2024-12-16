@@ -40,9 +40,11 @@ const FileUpload = ({ onBack }) => {
         </Row>
 
         <WebcamSection 
-          show={formState.showWebcam}
-          webcamRef={webcamRef}
-        />
+  show={formState.showWebcam}
+  webcamRef={webcamRef}
+  formState={formState}
+  updateFormState={updateFormState}
+/>
 
         <Row className={s.uploadPreview}>
           <FilePreviewSection 
