@@ -4,88 +4,37 @@ import s from "./CropImage.module.scss";
 import { ReactSVG } from "react-svg";
 import BackwardArrow from "../../../assets/svg/backward_arrow.svg";
 import Modal from "../../common/Modal/Modal";
-
+import {uploadFilesThunk} from '../../../store/fileuploadSlice/fileuploadthunk'
+import { useDispatch } from "react-redux";
+ 
 const CropImage = () => {
   const [showModal, setShowModal] = useState(false);
-  const [uploading, setUploading] = useState(false); // For upload progress
-  const [error, setError] = useState(null); // For error handling
+  const dispatch=useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
   const { cropData, originalImage } = location.state || {};
-  const imageName = sessionStorage.getItem("imageName") || "uploaded-image.png";
-
+  const imageName = sessionStorage.getItem("imageName");
+  console.log("preview Image Name:", imageName);
   const handleCloseModal = () => {
     setShowModal(false);
+    dispatch(uploadFilesThunk( cropData ))
     navigate("/graph/graph-results", { state: { imageData: cropData } });
-  };
-
+  }
+ 
+  const handleShowModal = () => setShowModal(true);
+ 
   const handleRetake = () => {
     navigate("/CreateExperiment", { state: { openWebcam: true } });
   };
-
-  const handleUpload = async () => {
-    if (!cropData) {
-      setError("No image data available for upload.");
-      return;
-    }
-
-    try {
-      setUploading(true);
-      setError(null);
-
-      // Convert Base64 cropData to Blob
-      const base64Response = await fetch(cropData);
-      const blob = await base64Response.blob();
-
-      // Create a File object from the Blob
-      const file = new File([blob], imageName, { type: "image/png" });
-
-      // Prepare FormData
-      const formData = new FormData();
-      formData.append("file", file); // Key `file` as required by the API
-      formData.append("swatch_name", "A_0124"); // Add `swatch_name` parameter
-
-      console.log("Uploading FormData to API...");
-
-      // API Call
-      const response = await fetch(
-        "https://shinemeasurementdev.ckdigital.in/api/uploadImage",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status} - ${response.statusText}`);
-      }
-
-      const data = await response.json();
-
-      if (data.results && data.results[0]) {
-        console.log("API Response:", data);
-        const uploadedImageUrl = data.results[0].url;
-
-        // Save the uploaded image URL to sessionStorage
-        sessionStorage.setItem("uploadedImageUrl", uploadedImageUrl);
-
-        // Show success modal and navigate after confirmation
-        setShowModal(true);
-      } else {
-        throw new Error(data.message || "Failed to upload image.");
-      }
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      setError(error.message || "Something went wrong. Please try again.");
-    } finally {
-      setUploading(false);
-    }
+ 
+  const handleUpload = () => {
+    handleShowModal();
   };
-
+ 
   const handlePreviewPage = () => {
-    navigate("/CropImage", { state: { imageData: originalImage } });
-  };
-
+    navigate("/CreateExperiment", { state: { imageData: originalImage } });
+  }
+ 
   return (
     <div className={s.pageMove}>
       <div className={s.cropImage}>
@@ -97,7 +46,7 @@ const CropImage = () => {
         </div>
         {cropData && (
           <div className={s.imagePreview}>
-            <img src={cropData} alt="Cropped Preview" />
+            <img src={cropData} alt="cropped" />
           </div>
         )}
         <div className={s.imagePreviewBtn}>
@@ -107,20 +56,14 @@ const CropImage = () => {
             </button>
           </div>
           <div className={s.uploadBtnGroup}>
-            <button
-              className={s.uploadBtn}
-              onClick={handleUpload}
-              disabled={uploading} // Disable button during upload
-            >
-              {uploading ? "Uploading..." : "Upload Photo"}
-            </button>
+            <button className={s.uploadBtn} onClick={handleUpload}>Upload Photo</button>
           </div>
         </div>
         {error && <div className={s.error}>{error}</div>}
         <Modal
           show={showModal}
           handleClose={handleCloseModal}
-          body="Photo uploaded successfully!"
+          body="photo uploaded sucessfully!"
           primaryButtonLabel="Ok"
           modalStyle={{ width: "80%" }}
         />
@@ -128,5 +71,6 @@ const CropImage = () => {
     </div>
   );
 };
-
+ 
 export default CropImage;
+ 
