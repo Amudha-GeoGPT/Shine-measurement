@@ -16,6 +16,7 @@ const ImageCrop = () => {
     if (typeof cropper !== "undefined") {
       const croppedData = cropper.getCroppedCanvas().toDataURL();
       setCropData(croppedData);
+      console.log()
       navigate("/preview", { state: { cropData: croppedData, originalImage: location.state.image } });
     }
   };

@@ -15,8 +15,12 @@ import {
   Line,
 } from "recharts";
 import { Row, Col } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
  
 const GraphResult = () => {
+//   const location = useLocation();
+//   const {id} = location.state||{};
+// console.log(id);
   const data = [
     { name: "Jan", uv: 4000, pv: 9000 },
     { name: "Feb", uv: 6000, pv: 7398 },

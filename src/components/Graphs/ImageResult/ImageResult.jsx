@@ -1,35 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import s from "./ImageResult.module.scss";
+import { useDispatch,useSelector } from "react-redux";
+import * as thunk from '../../../store/calculationslice/calculationthunk'
+import { useLocation } from "react-router-dom";
 
 const ImageResult = () => {
-  const data = [
-    {
-      id: 1,
-      imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=400&fit=crop",
-      title: "Spectacular Profile Of ROI Design",
-      downloadLink: "#",
-    },
-    {
-      id: 2,
-      imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop",
-      title: "Insights Of Desired Overview",
-      downloadLink: "#",
-    },
-  ];
+  const dispatch = useDispatch();
+  const { data } = useSelector((state) => state.calculation);
+  const location = useLocation();
+  const {id} = location.state||{};
 
+  console.log(id);
+  // console.log("result"+JSON.stringify(data?.data?.results));
+  useEffect(() => {
+    dispatch(thunk.getbycalculatelist(id))
+  }, [dispatch]);
   return (
     <div className={s.imageResult}>
       <div className="container-fluid">
         <div className={s.gridContainer}>
-          {data.map((item) => (
+          {data?.data?.results.map((item,index) => (
             <div
-              key={item.id}
-              className={`${s.gridItem} ${item.id === 1 ? s.gridItemLarge : s.gridItemSmall}`}
+              key={index}
+              className={`${s.gridItem} ${index === 1 ? s.gridItemLarge : s.gridItemSmall}`}
             >
               <div className={s.imageWrapper}>
                 <div className={s.imageContainer}>
                   <img
-                    src={item.imageUrl}
+                    src={item.outputImage_name}
                     alt={item.title}
                     className={s.image}
                   />
@@ -50,3 +48,4 @@ const ImageResult = () => {
 };
 
 export default ImageResult;
+
