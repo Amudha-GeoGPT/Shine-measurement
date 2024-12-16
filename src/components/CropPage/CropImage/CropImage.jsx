@@ -78,7 +78,7 @@ import s from "./CropImage.module.scss";
 import { ReactSVG } from "react-svg";
 import BackwardArrow from "../../../assets/svg/backward_arrow.svg";
 import Modal from "../../common/Modal/Modal";
-import {uploadFilesThunk} from '../../../store/imagecropupload/imagecropthunk'
+import {uploadFilesThunk} from '../../../store/fileuploadSlice/fileuploadthunk'
 import { useDispatch } from "react-redux";
  
 const CropImage = () => {
@@ -146,3 +146,4 @@ const CropImage = () => {
 };
  
 export default CropImage;
+ 

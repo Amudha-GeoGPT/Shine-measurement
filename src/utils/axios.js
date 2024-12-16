@@ -1,7 +1,12 @@
 import axios from 'axios';
 
 const baseURL = `${import.meta.env.VITE_API_BASE_URL}`;
-const instance = axios.create();
+const instance = axios.create({
+  baseURL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 
 export const apiGet = async (url) => 
     instance({
@@ -17,17 +22,7 @@ export const apiGet = async (url) =>
       url: baseURL + url,
       data,
     });
-    export  const apiPost = async (url,data) => 
-    instance({
-      method: 'post',
-      url: baseURL + url,
-      data: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    export const apiPostwithimage = async (url, data, config = {}) => {
+    export const apiPost = async (url, data, config = {}) => {
       try {
         console.log('Request Details:', {
           url: instance.defaults.baseURL + url,
@@ -49,7 +44,8 @@ export const apiGet = async (url) =>
         throw error.response || error;
       }
     };
-   
+ 
+
     
     export const apiPut = async (url, data) => 
     instance({

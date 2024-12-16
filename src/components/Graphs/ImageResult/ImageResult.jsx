@@ -12,6 +12,7 @@ const ImageResult = () => {
 
   console.log(id);
   // console.log("result"+JSON.stringify(data?.data?.results));
+
   useEffect(() => {
     dispatch(thunk.getbycalculatelist(id))
   }, [dispatch]);
