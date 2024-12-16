@@ -339,7 +339,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFileInfo, setUploadProgress, setUploadComplete, setImage, setSelectedFile } from '../../store/fileuploadSlice/fileuploadSlice';
+import { setFileInfo, setUploadProgress, setUploadComplete, setImage, setSelectedFile } from '../../store/fileuploadSlice/uploadslice';
 import Webcam from 'react-webcam';
 import s from './FileUpload.module.scss';
 import { ReactSVG } from 'react-svg';
@@ -347,7 +347,6 @@ import Modal from '../common/Modal/Modal';
 import Input from '../common/Input/Input';
 import UploadIcon from '../../assets/svg/upload.svg';
 import AddPhotoIcon from '../../assets/svg/add_a_photo.svg';
-import { client } from '../../utils/client';
 import BackwardArrow from '../../assets/svg/backward_arrow.svg';
 import { Row, Col } from 'react-bootstrap';
 import FilePreview from './FilePreview'; // Importing the new FilePreview component
@@ -371,6 +370,7 @@ const FileUpload = ({ onBack }) => {
       setInput(swatchId);
     }
   }, [location.state]);
+  // navigate('/cropage', { state: { input, swatchTitle } });
 
   const handleShowPopup = (title, body) => {
     setModalBody(body);
@@ -427,6 +427,10 @@ console.log(swatchTitle)
     setModalBody('Please Enter a Swatch Name!');
     setModalTitle('Error');
   };
+  
+  const handleback =()=>{
+    navigate("/");
+  }
 
   const capture = () => {
     const imageSrc = webcamRef.current.getScreenshot();
@@ -439,14 +443,14 @@ console.log(swatchTitle)
     <div className={s.upload}>
       {/* Header */}
       <div xs={12} className={s.uploadHeader}>
-        <ReactSVG className={s.headerBackIcon} src={BackwardArrow} onClick={onBack} />
+        <ReactSVG className={s.headerBackIcon} src={BackwardArrow} onClick={handleback} />
         <span className={s.uploadTitle}>Create New Experiments</span>
       </div>
 
       {/* Input Section */}
       <Row className={s.inputSection}>
         <Col xs={12} md={6} lg={3} className={s.searchSection}>
-          <Input label="Swatch ID" value={input} placeholder="XDEDEER333" required />
+          <Input label="Swatch ID" value={input} placeholder="XDEDEER333"/>
         </Col>
         <Col xs={12} md={6} lg={3} className={s.swatchTitle}>
           <Input
@@ -455,7 +459,6 @@ console.log(swatchTitle)
             value={swatchTitle}
             onChange={(e) => handleSwatchTitle(e)}
             placeholder="Hair shine analysis"
-            required
           />
         </Col>
       </Row>
@@ -510,6 +513,8 @@ console.log(swatchTitle)
         uploadProgress={uploadProgress}
         uploadComplete={uploadComplete}
         selectedFile={selectedFile}
+        input={input}
+         swatchTitle={swatchTitle}
         setSelectedFile={(file) => dispatch(setSelectedFile(file))}
         setImage={(imageUrls) => dispatch(setImage(imageUrls))}
       />
