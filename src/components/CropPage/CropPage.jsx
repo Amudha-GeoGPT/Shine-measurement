@@ -12,7 +12,6 @@ const ImageCrop = () => {
   const navigate = useNavigate();
   const [cropData, setCropData] = useState(null);
   const [cropper, setCropper] = useState(null);
-
   const getCropData = () => {
     if (typeof cropper !== "undefined") {
       const croppedData = cropper.getCroppedCanvas().toDataURL();
@@ -25,14 +24,18 @@ const ImageCrop = () => {
     navigate("/CreateExperiment");
   };
 
+  const handlePreviewPage = () => {
+    navigate("/CropImage", { state: { imageData: location.state?.image } });
+  }
+
   return (
     <div className={s.cropContainer}>
       {location.state?.image && (
         <>
           <div className={s.header}>
             <div className={s.headerContent}>
-              <button className={s.backButton} onClick={onCancel}>
-                <ReactSVG src={BackwardArrow} />
+              <button className={s.backButton} >
+                <ReactSVG src={BackwardArrow} onClick={handlePreviewPage} />
                 <span>Crop Image</span>
               </button>
             </div>
@@ -72,7 +75,6 @@ const ImageCrop = () => {
               />
             </div>
           </div>
-
           <div className={s.footer}>
             <div className={s.buttonGroup}>
               <button className={s.cancelButton} onClick={onCancel}>

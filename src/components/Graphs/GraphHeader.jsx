@@ -6,7 +6,8 @@ const GraphHeader = () => {
   const navigate = useNavigate();
 
   const handleReturn = () => {
-    navigate(-1);
+    // navigate(-1);
+    navigate("/preview");
   };
 
   return (

@@ -16,7 +16,6 @@ import ImageCrop from "../CropPage/CropPage";
 import { Col, Row } from "react-bootstrap";
 import filewithclr from "../../assets/svg/file-icon_withcolor.svg"
 import deletewithclr from "../../assets/svg/delete_withcolor.svg"
-
 const FileUpload = ({ onBack }) => {
   const [input, setInput] = useState("");
   const [swatchTitle, setSwatchTitle] = useState("");
@@ -33,16 +32,13 @@ const FileUpload = ({ onBack }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [showCropPage, setShowCropPage] = useState(false);
   const location = useLocation();
-
   useEffect(() => {
     const swatchId = location.state?.swatchName;
-    console.log(swatchId);
     if (swatchId) {
       setInput(swatchId);
     }
   }, [location.state]);
-  console.log(input);
-
+  
   const handleShowPopup = (title, body) => {
     setModalBody(body);
     setShowPopup(true);
@@ -82,7 +78,7 @@ const FileUpload = ({ onBack }) => {
       ...prev,
       ...newFiles.map((file) => ({
         name: file.name,
-        size: (file.size / 1024 / 1024).toFixed(2) + " MB",
+        size: (file.size / 1024).toFixed(2) + " kb"
       })),
     ]);
 
@@ -104,7 +100,7 @@ const FileUpload = ({ onBack }) => {
           }
         },
       });
-
+      console.log("response"+JSON.stringify(response));
       if (response?.data?.message === "sucess") {
         const imageUrl = newFiles.map((file) => URL.createObjectURL(file));
         setImage((prev) => [...prev, ...imageUrl]);
@@ -114,6 +110,7 @@ const FileUpload = ({ onBack }) => {
     } catch (error) {
       handleShowPopup("Error", "An error occurred while uploading the image.");
     }
+    
   };
 
   const handleFile = () => {
@@ -334,3 +331,4 @@ const FileUpload = ({ onBack }) => {
   );
 }  
 export default FileUpload;
+

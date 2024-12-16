@@ -10,6 +10,7 @@ export const newSwatchName = async () => {
   try {
     const response = await client.post('/swatchname');
     console.log('newSwatchName-->'+JSON.stringify(response));
+    
     return response;
   } catch (error) {
     console.error("Error fetching swatch name:", error);
