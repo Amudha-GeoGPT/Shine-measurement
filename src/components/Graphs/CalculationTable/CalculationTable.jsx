@@ -43,7 +43,6 @@ const styles = {
 const centerOffsetColors = ["#F68D2B", "#FFD200", "#9891FF", "#344BFD"];
  
 const CalculationTable = () => {
-  const dispatch = useDispatch();
     const { data, loading, error } = useSelector((state) => state.calculation);
 
     const location = useLocation();
@@ -62,10 +61,6 @@ const CalculationTable = () => {
 
  
   
-    useEffect(() => {
-      dispatch(thunk.getbycalculatelist(id))
-    }, [dispatch]);
-    
   
   
     console.log("result"+JSON.stringify(data));
