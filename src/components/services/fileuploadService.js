@@ -1,12 +1,31 @@
-// import { UPLOADIMAGE } from "../constants/api-constants";
-// import { apiPost, apiPostWithImage } from "../../utils/axios";
 
-// export const uploadedData = (TransferData) => {
-//     // const payload = {
-//     //   swatch_name: TransferData.swatch_name,
-//     //   file: TransferData.file, 
-//     // };
-//    console.log("servicedata"+JSON.stringify(TransferData));
-//     return apiPostWithImage(`${UPLOADIMAGE}`,TransferData);
-//   };
-  
+import { FORMDATA } from "../constants/api-constants";
+import { apiPost } from "../../utils/axios";
+import { useDispatch } from "react-redux";
+import { addresult } from "../../store/fileuploadSlice/finaldataSlice";
+import { dispatch } from "../../store/store";
+
+
+
+
+
+export const processImage = async (userName, swatchName, inputImageName, outputImageName, expName) => {
+  try {
+    const response = await apiPost(`${FORMDATA}`, {
+      user_name: userName,
+      swatch_name: swatchName,
+      inputImage_name: inputImageName,
+      outputImage_name: outputImageName,
+      exp_name: expName,
+    });
+    console.log("Process Image Response:", response);
+    dispatch(addresult(response.data));
+
+    
+
+    return response;
+  } catch (error) {
+    console.error("Error processing image:", error);
+    throw error;
+  }
+};
