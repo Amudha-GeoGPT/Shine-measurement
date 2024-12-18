@@ -16,7 +16,6 @@ const store = configureStore({
     
   },
 
-  
 });
 export const { dispatch } = store;
 export const useDispatch = () => useAppDispatch();
