@@ -40,7 +40,7 @@ const CropImage = () => {
         // dispatch(processImage( Swatchid, getimage, getimage, swatchTitle));
        const user='useer2'
         dispatch(processImage( user,Swatchid,cropData, originalImage, swatchTitle));
-        // dispatch(resetFileSlice())
+       
       } else {
         console.log("inside else");
       }
@@ -59,6 +59,7 @@ const CropImage = () => {
   };
 
   const handleUpload = () => {
+    dispatch(resetFileSlice())
     handleShowModal();
   };
 
