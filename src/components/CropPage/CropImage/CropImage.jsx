@@ -1,4 +1,3 @@
- 
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import s from "./CropImage.module.scss";
@@ -8,6 +7,7 @@ import Modal from "../../common/Modal/Modal";
 import {uploadFilesThunk} from '../../../store/fileuploadSlice/uploadthunk'
 import { useDispatch,useSelector } from "react-redux";
 import { processImage } from "../../services/fileuploadService";
+import { resetFileSlice } from "../../../store/fileuploadSlice/uploadslice";
  
 const CropImage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -19,7 +19,7 @@ const CropImage = () => {
   // //////console.log("preview Image Name:", imageName);
   const uploadResponse = useSelector((state) => state.finaldata);
   const listingresult = useSelector((state) => state.finaldata);
- console.log("asdfg",listingresult?.result?.message);
+ console.log("asdfg",listingresult?.uploadResponse?.results[0].url);
  console.log("uploadResponse",uploadResponse);
  
 //  console.log(uploadResponse?.uploadResponse?.results[0].url,'jghg');
@@ -55,6 +55,7 @@ const CropImage = () => {
   } catch (error) {
     console.error("Error uploading file:", error);
   }
+  dispatch(resetFileSlice())
   navigate("/graph/graph-results", { state: { id: Swatchid } });
 };
 
