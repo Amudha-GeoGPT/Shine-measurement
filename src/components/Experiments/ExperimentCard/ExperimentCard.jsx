@@ -24,7 +24,7 @@ const ExperimentCard = ({ experiment }) => {
     <div className={`card ${s.card} shadow-sm mb-4`}>
       <div className={s['card-body']}>
         {/* Header Section */}
-        <p className="text-muted">{`Experiment ID ${swatch_name}`}</p>
+        <p className="text-muted">{`Experiment ID ${id_1}`}</p>
         <p className={`card-title ${s['card-title']}`}>Test Product Type 1</p>
         <p className={`text-truncate ${s['text-truncate']}`}>{type}</p>
 

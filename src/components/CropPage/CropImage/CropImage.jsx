@@ -29,12 +29,12 @@ const CropImage = () => {
     dispatch(uploadFilesThunk( cropData ))
     // dispatch(processImage(Swatchid,swatchTitle,getimage))
     var user_name='user2';
-    dispatch(processImage(user_name,Swatchid, getimage,getimage,swatchTitle));
+    dispatch(processImage(user_name,Swatchid,cropData,originalImage,swatchTitle));
     if (getimage) {
       console.log("hi");
       var user_name='user2';
       // Dispatch processImage with the required values
-      dispatch(processImage(user_name,Swatchid, getimage,getimage,swatchTitle));
+      dispatch(processImage(cropData,Swatchid,originalImage,swatchTitle));
     } 
     else{
       console.log("inside else")
