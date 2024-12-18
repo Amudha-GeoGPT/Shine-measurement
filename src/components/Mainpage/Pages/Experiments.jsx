@@ -16,36 +16,58 @@ const Experiments = () => {
   const { searchTerm } = useSelector((state) => state.experiments);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [experiments, setExperiments] = useState([]);
+  const [filteredExperiments, setFilteredExperiments] = useState([]);
   const loaderRef = useRef(null);
 
   const PAGE_SIZE = 10;
 
+  // Fetch the initial data
   useEffect(() => {
     dispatch(thunk.fetchSwatchList());
   }, [dispatch]);
 
-  // Load initial data
-  useEffect(() => {
-    if (data?.data?.results) {
-      const initialLoad = data.data.results.slice(0, PAGE_SIZE);
-      setExperiments(initialLoad);
+  // Filter and deduplicate experiments
+  const filterAndDeduplicate = useCallback(() => {
+    if (!data?.data?.results) return;
+
+    const filtered = data.data.results.filter((experiment) => {
+      if (!searchTerm) return true;
+      return experiment.id_1
+        ?.toString()
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+    });
+
+    const unique = [];
+    const seenIds = new Set();
+    for (const experiment of filtered) {
+      if (!seenIds.has(experiment.id_1)) {
+        unique.push(experiment);
+        seenIds.add(experiment.id_1);
+      }
     }
-  }, [data]);
+
+    setFilteredExperiments(unique);
+  }, [data, searchTerm]);
+
+  // Reapply filters whenever data or searchTerm changes
+  useEffect(() => {
+    filterAndDeduplicate();
+    setCurrentPage(1); // Reset to first page on filter change
+  }, [filterAndDeduplicate]);
+
+  // Paginate experiments
+  const paginatedExperiments = filteredExperiments.slice(
+    0,
+    currentPage * PAGE_SIZE
+  );
 
   // Load more experiments on scroll
   const loadMoreExperiments = useCallback(() => {
-    const nextPageStart = currentPage * PAGE_SIZE;
-    const nextPageEnd = nextPageStart + PAGE_SIZE;
-
-    if (data?.data?.results) {
-      const nextBatch = data.data.results.slice(nextPageStart, nextPageEnd);
-      if (nextBatch.length > 0) {
-        setExperiments((prev) => [...prev, ...nextBatch]);
-        setCurrentPage((prev) => prev + 1);
-      }
+    if (currentPage * PAGE_SIZE < filteredExperiments.length) {
+      setCurrentPage((prev) => prev + 1);
     }
-  }, [data, currentPage]);
+  }, [currentPage, filteredExperiments]);
 
   // IntersectionObserver to detect when loaderRef is in view
   useEffect(() => {
@@ -69,15 +91,12 @@ const Experiments = () => {
     };
   }, [loadMoreExperiments, loading]);
 
+  // Handle search input change
   const handleSearchChange = (term) => {
     dispatch(setSearchTerm(term));
-    setCurrentPage(1); // Reset pagination on search
-    const filtered = data?.data?.results.filter((experiment) =>
-      experiment.id_1?.toString().toLowerCase().includes(term.toLowerCase())
-    );
-    setExperiments(filtered.slice(0, PAGE_SIZE));
   };
 
+  // Handle creation of a new experiment
   const handleCreateNew = async () => {
     try {
       const resultAction = await dispatch(fetchSwatchName());
@@ -99,8 +118,8 @@ const Experiments = () => {
           onSearchChange={handleSearchChange}
           onCreateNew={handleCreateNew}
         />
-        <div style={{ height: "100%", overflow: "scroll" }}>
-          <ExperimentList experiments={experiments} />
+        <div style={{ height: "100%", overflowY: "scroll" ,overflowX:'hidden'}}>
+          <ExperimentList experiments={paginatedExperiments} />
           {loading && <p>Loading...</p>}
           <div ref={loaderRef} style={{ height: "20px" }} />
         </div>
