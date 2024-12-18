@@ -33,10 +33,14 @@ const fileUploadSlice = createSlice({
     setSwatchName(state, action) {
       state.SwatchName = action.payload;
     },
+    resetFileSlice() {
+      console.log('umarasdfghjk')
+      return initialState; // Correct reset logic
+    },
   },
  
   
 });
 
-export const { setFileInfo, setUploadProgress, setUploadComplete, setImage, setSelectedFile,setSwatchName } = fileUploadSlice.actions;
+export const { setFileInfo, setUploadProgress, setUploadComplete, setImage, setSelectedFile,setSwatchName,resetFileSlice } = fileUploadSlice.actions;
 export default fileUploadSlice.reducer;

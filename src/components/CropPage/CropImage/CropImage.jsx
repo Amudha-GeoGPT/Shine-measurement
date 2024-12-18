@@ -67,6 +67,7 @@ const CropImage = () => {
   };
  
   const handleUpload = () => {
+    dispatch(resetFileSlice())
     handleShowModal();
   };
  
