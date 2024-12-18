@@ -1,4 +1,4 @@
-
+ 
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import s from "./CropImage.module.scss";
@@ -8,8 +8,7 @@ import Modal from "../../common/Modal/Modal";
 import {uploadFilesThunk} from '../../../store/fileuploadSlice/uploadthunk'
 import { useDispatch,useSelector } from "react-redux";
 import { processImage } from "../../services/fileuploadService";
-import { resetFileSlice } from '../../../store/fileuploadSlice/uploadslice';
-
+ 
 const CropImage = () => {
   const [showModal, setShowModal] = useState(false);
   const dispatch=useDispatch();
@@ -17,56 +16,65 @@ const CropImage = () => {
   const navigate = useNavigate();
   const { cropData, originalImage,Swatchid,swatchTitle} = location.state || {};
   const imageName = sessionStorage.getItem("imageName");
-  console.log("preview Image Name:", imageName);
+  // //////console.log("preview Image Name:", imageName);
   const uploadResponse = useSelector((state) => state.finaldata);
   const listingresult = useSelector((state) => state.finaldata);
- console.log("asdfg",listingresult?.result?.message)
-  const getimage=uploadResponse?.uploadResponse?.results[0]?.url;
-  console.log('Upload Response:', uploadResponse?.uploadResponse?.results[0]?.url);
+ console.log("asdfg",listingresult?.result?.message);
+ console.log("uploadResponse",uploadResponse);
  
+//  console.log(uploadResponse?.uploadResponse?.results[0].url,'jghg');
+ 
+ uploadResponse?.uploadResponse?.results.forEach(e => {
+    console.log(e.url,'url of api')
+ });
+ 
+ console.log(uploadResponse?.uploadResponse?.message,'message');
+ 
+ 
+ const handleCloseModal =async () => {
+  setShowModal(false);
 
+  try {
+    const uploadResult = await dispatch(
+      uploadFilesThunk({ base64Image: cropData, Swatchid: Swatchid })
+    );
 
-  const handleCloseModal = async () => {
-    setShowModal(false);
-      // Wait for uploadFilesThunk to complete
-      const completed = dispatch(uploadFilesThunk(cropData));
-  
-      console.log('kkkkk', getimage);
-  
-      if (completed) {
-        console.log("hi");
-        var user_name = 'user2';
-        // Dispatch processImage after successful completion
-        // dispatch(processImage( Swatchid, getimage, getimage, swatchTitle));
-       const user='useer2'
-        dispatch(processImage( user,Swatchid,cropData, originalImage, swatchTitle));
-       
-      } else {
-        console.log("inside else");
-      }
-    
-  
-    // Navigate to another page after the operations
-    // navigate("/");
-  };
-  
+    let getimage = [];
+    uploadResult.payload.results.forEach(e => {
+      console.log(e.url, 'url of api');
+      getimage.push(e.url);
+    });
+    console.log(getimage, 'url of api');
+    if (getimage.length > 0) {
+      const user_name = "user2";
+      dispatch(processImage(user_name, Swatchid, getimage, getimage, swatchTitle));
+      console.log("processImage dispatched");
+    } else {
+      console.error("Image URL not found in the upload response.");
+    }
+  } catch (error) {
+    console.error("Error uploading file:", error);
+  }
+  navigate("/graph/graph-results", { state: { id: Swatchid } });
+};
+
 
   const handleShowModal = () => setShowModal(true);
- console.log(Swatchid);
- console.log(swatchTitle);
+ //////console.log(Swatchid);
+ //////console.log(swatchTitle);
   const handleRetake = () => {
     navigate("/CreateExperiment", { state: { openWebcam: true } });
   };
-
+ 
   const handleUpload = () => {
     dispatch(resetFileSlice())
     handleShowModal();
   };
-
+ 
   const handlePreviewPage = () => {
     navigate("/CreateExperiment", { state: { imageData: originalImage } });
   }
-
+ 
   return (
     <div className={s.pageMove}>
       <div className={s.cropImage}>
@@ -102,5 +110,6 @@ const CropImage = () => {
     </div>
   );
 };
-
+ 
 export default CropImage;
+ 

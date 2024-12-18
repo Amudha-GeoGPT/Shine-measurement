@@ -5,6 +5,7 @@ import SwatchlistviewReducer from './Swatchlistview/swatchlistviewslice'
 import fileUploadReducer from "./fileuploadSlice/uploadslice";
 import finaldataReducer from './fileuploadSlice/finaldataSlice';
 import { useDispatch as useAppDispatch, useSelector as useAppSelector } from 'react-redux'
+import thunk from 'redux-thunk';
 
 const store = configureStore({
   reducer: {
@@ -15,6 +16,8 @@ const store = configureStore({
     finaldata:finaldataReducer,
     
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(thunk),
 
 });
 export const { dispatch } = store;

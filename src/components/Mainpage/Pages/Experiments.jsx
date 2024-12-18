@@ -8,18 +8,20 @@ import { setSearchTerm } from "../../../store/Swatchslice/swatchslice";
 import { fetchSwatchName } from "../../../store/Swatchslice/swatchthunk";
 import * as thunk from "../../../store/Swatchlistview/swatchlistviewthunk";
 import s from "./Experiments.module.scss";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const Experiments = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+ 
   const { data, loading, error } = useSelector((state) => state.Swatchlistview);
   const { searchTerm } = useSelector((state) => state.experiments);
-
+ 
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredExperiments, setFilteredExperiments] = useState([]);
   const loaderRef = useRef(null);
-
+ 
   const PAGE_SIZE = 10;
 
   useEffect(() => {
@@ -28,7 +30,7 @@ const Experiments = () => {
 
   const filterAndDeduplicate = useCallback(() => {
     if (!data?.data?.results) return;
-
+ 
     const filtered = data.data.results.filter((experiment) => {
       if (!searchTerm) return true;
       return experiment.swatch_name
@@ -36,7 +38,7 @@ const Experiments = () => {
         .toLowerCase()
         .includes(searchTerm.toLowerCase());
     });
-
+ 
     const unique = [];
     const seenIds = new Set();
     for (const experiment of filtered) {
@@ -45,7 +47,7 @@ const Experiments = () => {
         seenIds.add(experiment.swatch_name);
       }
     }
-
+ 
     setFilteredExperiments(unique);
   }, [data, searchTerm]);
 
@@ -74,11 +76,11 @@ const Experiments = () => {
       },
       { root: null, rootMargin: "100px", threshold: 1.0 }
     );
-
+ 
     if (loaderRef.current) {
       observer.observe(loaderRef.current);
     }
-
+ 
     return () => {
       if (loaderRef.current) {
         observer.unobserve(loaderRef.current);
@@ -103,7 +105,7 @@ const Experiments = () => {
       const resultAction = await dispatch(fetchSwatchName());
       const swatchName =
         resultAction?.payload.data.results.swatchname.swatch_name || "DefaultSwatch";
-
+ 
       navigate("/CreateExperiment", {
         state: { swatchName },
       });
@@ -111,8 +113,9 @@ const Experiments = () => {
       console.error("Error generating swatch name", error);
     }
   };
-
+ 
   return (
+    
     <div className={s.layout}>
       <div className={s.mapParentCont}>
         <ExperimentHeader
@@ -137,5 +140,7 @@ const Experiments = () => {
     </div>
   );
 };
-
+ 
 export default Experiments;
+ 
+ 
