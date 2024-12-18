@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
- 
- 
+
+
 const initialState = {
   fileInfo: [],
   uploadProgress: 0,
@@ -9,7 +9,7 @@ const initialState = {
   selectedFile: null,
   SwatchName:''
 };
- 
+
 const fileUploadSlice = createSlice({
   name: 'fileUpload',
   initialState,
@@ -33,12 +33,14 @@ const fileUploadSlice = createSlice({
     setSwatchName(state, action) {
       state.SwatchName = action.payload;
     },
+    resetFileSlice() {
+      console.log('umarasdfghjk')
+      return initialState; // Correct reset logic
+    },
   },
  
- 
+  
 });
- 
-export const { setFileInfo, setUploadProgress, setUploadComplete, setImage, setSelectedFile,setSwatchName } = fileUploadSlice.actions;
+
+export const { setFileInfo, setUploadProgress, setUploadComplete, setImage, setSelectedFile,setSwatchName,resetFileSlice } = fileUploadSlice.actions;
 export default fileUploadSlice.reducer;
- 
- 

@@ -53,9 +53,9 @@ const FilePreview = ({
             <Col
               key={index}
               style={{
-                backgroundColor: selectedFile === img ? "#344BFD" : "#FFFFFF"
+                backgroundColor: selectedFile === index ? "#344BFD" : "#FFFFFF"
               }}
-              onClick={() => setSelectedFile(img)}
+              onClick={() => setSelectedFile(index)}
               className={s.imageBox}
             >
               {/* Upload progress */}
@@ -79,11 +79,11 @@ const FilePreview = ({
               {1>0 && (
                 <div className={s.progressBarContainer}>
                   <ReactSVG
-                    src={selectedFile === img ? filewithclr : FileIcon}
+                    src={selectedFile === index ? filewithclr : FileIcon}
                     className={s.fileIcon}
                   />
                   <div className={s.fileInfo}>
-                    <p style={{ color: selectedFile === img ? "#FFFFFF" : "black" }}>
+                    <p style={{ color: selectedFile === index ? "#FFFFFF" : "black" }}>
                       {fileInfo[index]?.name}
                     </p>
                     <p style={{ color: selectedFile === index ? "#D9D9D9" : "#D9D9D9" }}>
@@ -91,7 +91,7 @@ const FilePreview = ({
                     </p>
                   </div>
                   <ReactSVG
-                    src={selectedFile === img ? deletewithclr : DeleteIcon}
+                    src={selectedFile === index ? deletewithclr : DeleteIcon}
                     className={s.deleteIcon}
                     onClick={() => handleDelete(index)}
                   />

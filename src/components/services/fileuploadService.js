@@ -11,6 +11,7 @@ import { dispatch } from "../../store/store";
 
 export const processImage = async (userName, swatchName, inputImageName, outputImageName, expName) => {
   try {
+    console.log('cfgvhjk',userName)
     const response = await apiPost(`${FORMDATA}`, {
       user_name: userName,
       swatch_name: swatchName,

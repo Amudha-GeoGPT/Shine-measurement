@@ -42,7 +42,7 @@ export const uploadFilesThunk = createAsyncThunk(
           'Content-Type': 'multipart/form-data', // Set the correct content type for file uploads
         },
       });
-     console.log("response",JSON.stringify(response));
+     console.log("responsetalllde",JSON.stringify(response.result[0]));
       // Return the response from the server (e.g., uploaded image URL)
       return response;
     } catch (error) {

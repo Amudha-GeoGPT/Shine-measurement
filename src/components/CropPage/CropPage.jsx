@@ -6,15 +6,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 import BackwardArrow from "../../assets/svg/backward_arrow.svg";
 import s from "./CropPage.module.scss";
-import { useDispatch, useSelector } from 'react-redux';
-import { setCroppedImage} from '../../store/Fileuploadslice/fileuploadSlice';
  
 const ImageCrop = () => {
   const location = useLocation();
-  const dispatch = useDispatch();
-  const { selectedFile } = useSelector((state) => state.fileUpload);
-  console.log(selectedFile)
   const navigate = useNavigate();
+  const [cropData, setCropData] = useState(null);
   const [cropper, setCropper] = useState(null);
   const getCropData = () => {
     if (typeof cropper !== "undefined") {
@@ -31,7 +27,7 @@ const ImageCrop = () => {
  
   return (
     <div className={s.cropContainer}>
-      {selectedFile && (
+      {location.state?.image && (
         <>
           <div className={s.header}>
             <div className={s.headerContent}>
@@ -46,7 +42,7 @@ const ImageCrop = () => {
             <div className={s.cropperWrapper}>
               <Cropper
                 initialAspectRatio={1}
-                src={selectedFile}
+                src={location.state.image}
                 viewMode={2}
                 guides={true}
                 minCropBoxHeight={200}
