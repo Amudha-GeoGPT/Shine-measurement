@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import ExperimentList from "../../Experiments/ExperimentList/ExperimentList";
 import ExperimentHeader from "../../Experiments/ExperimentHeader/ExperimentHeader";
 import { setSearchTerm } from "../../../store/Swatchslice/swatchslice";
-import { fetchSwatchName } from "../../../store/Swatchslice/swatchthunk";
-import * as thunk from "../../../store/Swatchlistview/swatchlistviewthunk";
+import { fetchSwatchList } from "../../../store/Swatchlistview/swatchlistviewthunk";
 import s from "./Experiments.module.scss";
+import { fetchSwatchName } from "../../../store/Swatchslice/swatchthunk";
 
 const Experiments = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const Experiments = () => {
       const resultAction = await dispatch(fetchSwatchName());
       const swatchName =
         resultAction?.payload.data.results.swatchname.swatch_name || "DefaultSwatch";
-
+ 
       navigate("/CreateExperiment", {
         state: { swatchName },
       });
@@ -32,9 +32,8 @@ const Experiments = () => {
       console.error("Error generating swatch name", error);
     }
   };
-
   useEffect(() => {
-    dispatch(thunk.fetchSwatchList());
+    dispatch(fetchSwatchList());
   }, [dispatch]);
 
   // Helper function to remove duplicates based on id_1
@@ -62,10 +61,10 @@ const Experiments = () => {
       <div className={s.mapParentCont}>
         <ExperimentHeader
           onSearchChange={handleSearchChange}
-          onCreateNew={handleCreateNew}
+            onCreateNew={handleCreateNew}
         />
         <div style={{ height: "100%", overflow: "scroll" }}>
-          <ExperimentList experiments={filteredExperiments} />
+          <ExperimentList experiments={filteredExperiments} loading={loading} />
         </div>
       </div>
     </div>
