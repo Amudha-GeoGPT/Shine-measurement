@@ -7,6 +7,8 @@ import { setView, setSearchTerm } from "../../../store/Swatchslice/swatchslice";
 import { fetchSwatchName } from "../../../store/Swatchslice/swatchthunk";
 import  * as thunk from "../../../store/Swatchlistview/swatchlistviewthunk";
 import s from "./Experiments.module.scss";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const Experiements = () => {
   const dispatch = useDispatch();
@@ -58,6 +60,7 @@ const Experiements = () => {
 console.log("data"+JSON.stringify(data?.data?.results))
   
   return (
+    
     <div className={s.layout}>
       <div className={s.mapParentCont}>
         <ExperimentHeader
