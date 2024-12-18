@@ -8,8 +8,8 @@ import { setSearchTerm } from "../../../store/Swatchslice/swatchslice";
 import { fetchSwatchName } from "../../../store/Swatchslice/swatchthunk";
 import * as thunk from "../../../store/Swatchlistview/swatchlistviewthunk";
 import s from "./Experiments.module.scss";
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+// import Skeleton from 'react-loading-skeleton'
+// import 'react-loading-skeleton/dist/skeleton.css'
 
 const Experiments = () => {
   const dispatch = useDispatch();
