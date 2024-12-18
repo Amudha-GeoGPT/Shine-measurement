@@ -36,7 +36,7 @@ export const uploadFilesThunk = createAsyncThunk(
       const formData = new FormData();
       formData.append('file', file); // Append the image file
       formData.append('swatch_name', Swatchid || 'default_swatch'); // Pass swatch ID dynamically
-  
+ 
       console.log('FormData:', formData); // Debugging FormData
  
       // Call the API
@@ -55,5 +55,4 @@ export const uploadFilesThunk = createAsyncThunk(
     }
   }
 );
- 
  
