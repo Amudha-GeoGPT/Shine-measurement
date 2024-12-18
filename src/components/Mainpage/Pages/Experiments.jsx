@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { debounce } from "lodash"; // Import debounce
 import ExperimentList from "../../Experiments/ExperimentList/ExperimentList";
 import ExperimentHeader from "../../Experiments/ExperimentHeader/ExperimentHeader";
 import { setSearchTerm } from "../../../store/Swatchslice/swatchslice";
@@ -21,18 +22,16 @@ const Experiments = () => {
 
   const PAGE_SIZE = 10;
 
-  // Fetch the initial data
   useEffect(() => {
     dispatch(thunk.fetchSwatchList());
   }, [dispatch]);
 
-  // Filter and deduplicate experiments
   const filterAndDeduplicate = useCallback(() => {
     if (!data?.data?.results) return;
 
     const filtered = data.data.results.filter((experiment) => {
       if (!searchTerm) return true;
-      return experiment.id_1
+      return experiment.swatch_name
         ?.toString()
         .toLowerCase()
         .includes(searchTerm.toLowerCase());
@@ -41,35 +40,31 @@ const Experiments = () => {
     const unique = [];
     const seenIds = new Set();
     for (const experiment of filtered) {
-      if (!seenIds.has(experiment.id_1)) {
+      if (!seenIds.has(experiment.swatch_name)) {
         unique.push(experiment);
-        seenIds.add(experiment.id_1);
+        seenIds.add(experiment.swatch_name);
       }
     }
 
     setFilteredExperiments(unique);
   }, [data, searchTerm]);
 
-  // Reapply filters whenever data or searchTerm changes
   useEffect(() => {
     filterAndDeduplicate();
-    setCurrentPage(1); // Reset to first page on filter change
+    setCurrentPage(1);
   }, [filterAndDeduplicate]);
 
-  // Paginate experiments
   const paginatedExperiments = filteredExperiments.slice(
     0,
     currentPage * PAGE_SIZE
   );
 
-  // Load more experiments on scroll
   const loadMoreExperiments = useCallback(() => {
     if (currentPage * PAGE_SIZE < filteredExperiments.length) {
       setCurrentPage((prev) => prev + 1);
     }
   }, [currentPage, filteredExperiments]);
 
-  // IntersectionObserver to detect when loaderRef is in view
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -91,12 +86,18 @@ const Experiments = () => {
     };
   }, [loadMoreExperiments, loading]);
 
-  // Handle search input change
+  // Debounced search handler
+  const debouncedSearchChange = useCallback(
+    debounce((term) => {
+      dispatch(setSearchTerm(term));
+    }, 300),
+    [dispatch]
+  );
+
   const handleSearchChange = (term) => {
-    dispatch(setSearchTerm(term));
+    debouncedSearchChange(term);
   };
 
-  // Handle creation of a new experiment
   const handleCreateNew = async () => {
     try {
       const resultAction = await dispatch(fetchSwatchName());
@@ -118,9 +119,18 @@ const Experiments = () => {
           onSearchChange={handleSearchChange}
           onCreateNew={handleCreateNew}
         />
-        <div style={{ height: "100%", overflowY: "scroll" ,overflowX:'hidden'}}>
+        <div style={{ height: "100%", overflowY: "scroll", overflowX: "hidden" }}>
           <ExperimentList experiments={paginatedExperiments} />
-          {loading && <p>Loading...</p>}
+          {loading && (
+            <>
+              <div
+                className="placeholder-glow card-img-top"
+                style={{ height: "150px" }}
+              >
+                <span className="placeholder"></span>
+              </div>
+            </>
+          )}
           <div ref={loaderRef} style={{ height: "20px" }} />
         </div>
       </div>
