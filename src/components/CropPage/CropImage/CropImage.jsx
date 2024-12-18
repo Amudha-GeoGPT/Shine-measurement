@@ -8,6 +8,7 @@ import Modal from "../../common/Modal/Modal";
 import {uploadFilesThunk} from '../../../store/fileuploadSlice/uploadthunk'
 import { useDispatch,useSelector } from "react-redux";
 import { processImage } from "../../services/fileuploadService";
+import { resetFileSlice } from '../../../store/fileuploadSlice/uploadslice';
 
 const CropImage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -22,25 +23,33 @@ const CropImage = () => {
  console.log("asdfg",listingresult?.result?.message)
   const getimage=uploadResponse?.uploadResponse?.results[0]?.url;
   console.log('Upload Response:', uploadResponse?.uploadResponse?.results[0]?.url);
+ 
 
 
-  const handleCloseModal = () => {
+  const handleCloseModal = async () => {
     setShowModal(false);
-    dispatch(uploadFilesThunk( cropData ))
-    // dispatch(processImage(Swatchid,swatchTitle,getimage))
-    var user_name='user2';
-    dispatch(processImage(user_name,Swatchid,cropData,originalImage,swatchTitle));
-    if (getimage) {
-      console.log("hi");
-      var user_name='user2';
-      // Dispatch processImage with the required values
-      dispatch(processImage(cropData,Swatchid,originalImage,swatchTitle));
-    } 
-    else{
-      console.log("inside else")
-    }
-     navigate("/");
-  }
+      // Wait for uploadFilesThunk to complete
+      const completed = dispatch(uploadFilesThunk(cropData));
+  
+      console.log('kkkkk', getimage);
+  
+      if (completed) {
+        console.log("hi");
+        var user_name = 'user2';
+        // Dispatch processImage after successful completion
+        // dispatch(processImage( Swatchid, getimage, getimage, swatchTitle));
+       const user='useer2'
+        dispatch(processImage( user,Swatchid,cropData, originalImage, swatchTitle));
+       
+      } else {
+        console.log("inside else");
+      }
+    
+  
+    // Navigate to another page after the operations
+    // navigate("/");
+  };
+  
 
   const handleShowModal = () => setShowModal(true);
  console.log(Swatchid);
@@ -50,6 +59,7 @@ const CropImage = () => {
   };
 
   const handleUpload = () => {
+    dispatch(resetFileSlice())
     handleShowModal();
   };
 

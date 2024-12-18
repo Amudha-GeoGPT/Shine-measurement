@@ -379,6 +379,7 @@ const FileUpload = ({ onBack }) => {
   };
 
   const handleChange = (value) => {
+    
     setInput(value);
   };
 
@@ -459,6 +460,7 @@ console.log(swatchTitle)
             value={swatchTitle}
             onChange={(e) => handleSwatchTitle(e)}
             placeholder="Hair shine analysis"
+            enter={onChange}
           />
         </Col>
       </Row>
