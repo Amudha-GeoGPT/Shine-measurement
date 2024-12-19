@@ -2,7 +2,7 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { ReactSVG } from "react-svg";
-import { useNavigate } from "react-router-dom"; // Correct import for useNavigate
+import { useNavigate } from "react-router-dom"; 
 import FileIcon from "../../assets/svg/file-icon.svg";
 import DeleteIcon from "../../assets/svg/delete.svg";
 import filewithclr from "../../assets/svg/file-icon_withcolor.svg";
@@ -17,30 +17,29 @@ const FilePreview = ({
   selectedFile,
   setSelectedFile,
   setImage,
-  input, 
+  input,
   swatchTitle
 }) => {
   const navigate = useNavigate();
 
   const goToCropPage = () => {
     if (selectedFile !== null && image[selectedFile]) {
-      navigate("/CropImage", { state: { image: image[selectedFile],input,swatchTitle} });
+      navigate("/CropImage", { state: { image: image[selectedFile], input, swatchTitle } });
     } else {
-      alert("Error: No image available to crop."); // Simple error handling
+      alert("Error: No image available to crop.");
     }
   };
-  console.log(swatchTitle);
 
   const handleDelete = (index) => {
     const updatedImages = [...image];
     const updatedFileInfo = [...fileInfo];
     updatedImages.splice(index, 1);
-    updatedFileInfo.splice(index, 1); // Remove corresponding file info
+    updatedFileInfo.splice(index, 1); 
     setImage(updatedImages);
     if (updatedImages.length === 0) {
       setSelectedFile(null);
     } else if (selectedFile === index) {
-      setSelectedFile(null); // Reset selected file if it was deleted
+      setSelectedFile(null); 
     }
   };
 
@@ -76,8 +75,7 @@ const FilePreview = ({
               )}
 
               {/* Uploaded file details */}
-              
-              {1>0 && (
+              {uploadProgress === 0 && !uploadComplete && (
                 <div className={s.progressBarContainer}>
                   <ReactSVG
                     src={selectedFile === index ? filewithclr : FileIcon}

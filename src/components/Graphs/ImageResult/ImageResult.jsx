@@ -46,7 +46,7 @@ const ImageResult = () => {
     <div className={s.imageResult}>
       <div className="container-fluid">
         <div className={s.gridContainer}>
-          {data?.data?.results.map((item,index) => (
+          {data?.results?.map((item,index) => (
             <div
               key={index}
               className={`${s.gridItem}`}

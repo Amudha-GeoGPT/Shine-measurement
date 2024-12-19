@@ -44,25 +44,25 @@ const centerOffsetColors = ["#F68D2B", "#FFD200", "#9891FF", "#344BFD"];
  
 const CalculationTable = () => {
     const { data, loading, error } = useSelector((state) => state.calculation);
-
+ 
     const location = useLocation();
     const {id} = location.state||{};
-  
+ 
     console.log(id);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
-  const totalPages = Math.ceil(data?.data?.results?.length / itemsPerPage);
-
-  
-
+  const totalPages = Math.ceil(data?.results?.length / itemsPerPage);
+ 
+ 
+ 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = data?.data?.results.slice(indexOfFirstItem, indexOfLastItem);
-
+  const currentItems = data?.results?.slice(indexOfFirstItem, indexOfLastItem);
  
-  
-  
-  
+ 
+ 
+ 
+ 
     console.log("result"+JSON.stringify(data));
     console.log("result"+JSON.stringify(data?.data?.results));
  
@@ -90,7 +90,7 @@ const CalculationTable = () => {
       );
       return items;
     }
-  
+ 
     for (let i = 1; i <= Math.min(3, totalPages); i++) {
       items.push(
         <Pagination.Item
@@ -405,3 +405,5 @@ const CalculationTable = () => {
 };
  
 export default CalculationTable;
+ 
+ 

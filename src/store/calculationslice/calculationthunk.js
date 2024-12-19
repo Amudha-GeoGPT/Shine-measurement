@@ -1,23 +1,3 @@
-// import { createAsyncThunk } from "@reduxjs/toolkit";
-// import { getByCalculate } from "../../components/services/CalculationService";
-
-// // Get by Calculate List
-// export const getbycalculatelist = createAsyncThunk(
-//   'getByCalculate/getbycalculatelist',
-//   async () => {
-//     return new Promise((resolve, reject) => {
-//       getByCalculate()
-//         .then((response) => {
-//             console.log("Success Response: ", response); // Log the response on success
-//           resolve(response);
-//         })
-//         .catch((e) => {
-//             console.log("error",e);
-//           reject(e);
-//         });
-//     });
-//   }
-// );
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getByCalculate } from "../../components/services/CalculationService";
 
@@ -27,11 +7,11 @@ export const getbycalculatelist = createAsyncThunk(
   async (swatchName, { rejectWithValue }) => {
     try {
       const response = await getByCalculate(swatchName);
-      console.log("Success Response: ", response); 
-      return response;
+      console.log("Success Response: ", response.data); 
+      return response.data; // Return only the serializable data
     } catch (error) {
       console.log("Error: ", error);
-      return rejectWithValue(error);
+      return rejectWithValue(error.message || "Something went wrong");
     }
   }
 );
