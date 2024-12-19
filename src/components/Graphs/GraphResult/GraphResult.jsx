@@ -22,23 +22,23 @@ const GraphResult = () => {
 //   const {id} = location.state||{};
 // console.log(id);
   const data = [
-    { name: "Jan", uv: 4000, pv: 9000 },
-    { name: "Feb", uv: 6000, pv: 7398 },
-    { name: "Mar", uv: 3000, pv: 9800 },
-    { name: "Apr", uv: 5780, pv: 6908 },
-    { name: "May", uv: 3890, pv: 8800 },
-    { name: "Jun", uv: 2390, pv: 7800 },
-    { name: "July", uv: 5490, pv: 7300 },
+    {"name": "Jan", "uv": 4000, "pv": 9000 },
+    { "name": "Feb", "uv": 6000, "pv": 7398 },
+    { "name": "Mar", "uv": 3000, "pv": 9800 },
+    { "name": "Apr", "uv": 5780, "pv": 6908 },
+    { "name": "May", "uv": 3890, "pv": 8800 },
+    { "name": "Jun", "uv": 2390, "pv": 7800 },
+    { "name": "July", "uv": 5490, "pv": 7300 },
   ];
  
   const chartData = [
-    { name: "Mon", sales: 4000, pv: 7300 },
-    { name: "Tue", sales: 3000, pv: 7800 },
-    { name: "Wed", sales: 2000, pv: 8800 },
-    { name: "Thu", sales: 6780, pv: 6908 },
-    { name: "Fri", sales: 1890, pv: 9800 },
-    { name: "Sat", sales: 9390, pv: 7398 },
-    { name: "Sun", sales: 1490, pv: 9000 },
+    { "name": "Mon", "sales": 4000, "pv": 7300 },
+    { "name": "Tue", "sales": 3000, "pv": 7800 },
+    { "name": "Wed", "sales": 2000, "pv": 8800 },
+    { "name": "Thu", "sales": 6780, "pv": 6908 },
+    { "name": "Fri", "sales": 1890, "pv": 9800 },
+    { "name": "Sat", "sales": 9390, "pv": 7398 },
+    { "name": "Sun", "sales": 1490, "pv": 9000 },
   ];
  
   const styles = {
