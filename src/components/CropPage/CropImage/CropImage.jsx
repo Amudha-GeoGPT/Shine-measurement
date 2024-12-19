@@ -1,4 +1,3 @@
- 
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import s from "./CropImage.module.scss";
@@ -8,6 +7,7 @@ import Modal from "../../common/Modal/Modal";
 import {uploadFilesThunk} from '../../../store/fileuploadSlice/uploadthunk'
 import { useDispatch,useSelector } from "react-redux";
 import { processImage } from "../../services/fileuploadService";
+import { resetFileSlice } from "../../../store/fileuploadSlice/uploadslice";
  
 const CropImage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -19,41 +19,50 @@ const CropImage = () => {
   // //////console.log("preview Image Name:", imageName);
   const uploadResponse = useSelector((state) => state.finaldata);
   const listingresult = useSelector((state) => state.finaldata);
-//  //////console.log("asdfg",listingresult?.result?.message)
+//  console.log("asdfg",listingresult?.uploadResponse?.results[0].url);
  console.log("uploadResponse",uploadResponse);
  
  console.log(uploadResponse?.uploadResponse?.results[0].url,'jghg');
  
-//  uploadResponse?.uploadResponse?.results.forEach(e => {
+//  uploadResponse?.uploadResponse.forEach(e => {
 //     console.log(e.url,'url of api')
 //  });
  
- console.log(uploadResponse?.uploadResponse?.message,'message');
+//  console.log(uploadResponse?.uploadResponse?.message,'message');
  
- 
- const handleCloseModal = async () => {
+const handleCloseModal = async () => {
   setShowModal(false);
  
   try {
-    const uploadResult = await dispatch(
-      uploadFilesThunk({ base64Image: cropData, Swatchid: Swatchid })
-    );
- 
-    if (uploadResult.payload?.results?.[0]?.url) {
-      const getimage = uploadResult.payload.results[0].url;
-      console.log("Extracted image URL:", getimage);
- 
+    const uploadResult = await dispatch(uploadFilesThunk({ base64Image: cropData, Swatchid: Swatchid }));
+    console.log("upload check", uploadResult.payload);
+    
+    let getimage = [];
+    uploadResult.payload.results.forEach(e => {
+      console.log(e.url, 'url of api');
+      getimage.push(e.url);
+    });
+    console.log(getimage, 'url of api');
+    if (getimage.length > 0) {
       const user_name = "user2";
-      dispatch(processImage(user_name, Swatchid, getimage, getimage, swatchTitle));
-      console.log("processImage dispatched");
- 
-      navigate("/graph/graph-results", { state: { id: Swatchid } });
+      const processimagedata = await dispatch(
+        processImage({
+          userName: user_name,
+          swatchName: Swatchid,
+          inputImageName: getimage,
+          outputImageName: getimage,
+          expName: swatchTitle
+        })
+      );
+      console.log("processImage dispatched", processimagedata);
     } else {
       console.error("Image URL not found in the upload response.");
     }
   } catch (error) {
     console.error("Error uploading file:", error);
   }
+  dispatch(resetFileSlice());
+  navigate("/graph/graph-results", { state: { id: Swatchid } });
 };
  
   const handleShowModal = () => setShowModal(true);
