@@ -104,10 +104,14 @@ body {
       font-weight: 600;
       margin: 0;
       width: 150px;
+      color:#060505;
     }
   }
 }
-
+a:-webkit-any-link {
+  cursor: pointer;
+  text-decoration: none;
+}
 // .sidebarToggle {
 //   border: none;
 //   border-radius: 10px;
