@@ -284,6 +284,7 @@ const CalculationTable = () => {
  
   return (
     <div style={{ display: "flex", flexDirection: "column", margin: '0 !important', padding: '20px', background: '#F6F8F7' }}>
+            <div style={{width:'100%',overflowX:'scroll'}}>
       <Table striped bordered hover style={{borderRadius:"12px",overflow:"hidden"}}>
       <thead>
         <tr>
@@ -350,7 +351,7 @@ const CalculationTable = () => {
         </tr>
       </tfoot>
     </Table>
- 
+ </div>
         <div className="mt-4">
           <Row style={{ height: "100%" }}>
             {currentItems?.map((item, index) => (
