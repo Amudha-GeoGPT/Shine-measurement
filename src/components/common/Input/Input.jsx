@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form, FormControl, Alert } from "react-bootstrap";
-import s from "./Input.module.scss";
+import s from "./input.module.scss";
 
 const Input = ({ label, placeholder, required, onChange, value, enter }) => {
   const [inputValue, setInputValue] = useState(value || "");

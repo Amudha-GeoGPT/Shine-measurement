@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import experimentsReducer from "./Swatchslice/swatchslice";
-import calculationReducer from './calculationslice/calculationSlice';
-import SwatchlistviewReducer from './Swatchlistview/swatchlistviewslice'
-import fileUploadReducer from "./fileuploadSlice/uploadslice";
-import finaldataReducer from './fileuploadSlice/finaldataSlice';
+import experimentsReducer from "./swatch-page/swatch-slice";
+import calculationReducer from './calculation-page/calculation-slice';
+import SwatchlistviewReducer from './swatchListView-page/swatchListView-slice'
+import fileUploadReducer from "./fileUpload-page/upload-slice";
+import finaldataReducer from './fileUpload-page/finalData-slice';
 import { useDispatch as useAppDispatch, useSelector as useAppSelector } from 'react-redux'
 import thunk from 'redux-thunk';
 
