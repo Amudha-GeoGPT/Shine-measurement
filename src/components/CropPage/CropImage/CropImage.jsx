@@ -22,7 +22,7 @@ const CropImage = () => {
 //  console.log("asdfg",listingresult?.uploadResponse?.results[0].url);
  console.log("uploadResponse",uploadResponse);
  
-//  console.log(uploadResponse?.uploadResponse?.results[0].url,'jghg');
+ console.log(uploadResponse?.uploadResponse?.results[0].url,'jghg');
  
 //  uploadResponse?.uploadResponse.forEach(e => {
 //     console.log(e.url,'url of api')
@@ -32,7 +32,7 @@ const CropImage = () => {
  
 const handleCloseModal = async () => {
   setShowModal(false);
-
+ 
   try {
     const uploadResult = await dispatch(uploadFilesThunk({ base64Image: cropData, Swatchid: Swatchid }));
     console.log("upload check", uploadResult.payload);
@@ -64,8 +64,7 @@ const handleCloseModal = async () => {
   dispatch(resetFileSlice());
   navigate("/graph/graph-results", { state: { id: Swatchid } });
 };
-
-
+ 
   const handleShowModal = () => setShowModal(true);
  //////console.log(Swatchid);
  //////console.log(swatchTitle);

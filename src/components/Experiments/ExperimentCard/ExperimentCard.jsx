@@ -5,6 +5,8 @@ import { ReactSVG } from 'react-svg';
 import BackArrowIcon from '../../../assets/svg/arrow_back.svg';
 import s from './ExperimentCard.module.scss'; // Import the SCSS module
 import { Col, Row } from 'react-bootstrap';
+// import mockExperiments from "../../components/Experiments/data/mockExperiments"
+import mckres from "../data/mockExperiments"
 
 const ExperimentCard = ({ experiment }) => {
   const { id_1, swatch_name, type, users, extraUserCount } = experiment;
@@ -35,7 +37,7 @@ const ExperimentCard = ({ experiment }) => {
             {/* Avatars Section */}
             <Col xs={6} md={6}>
               <div className={`${s.avatars} d-flex flex-nowrap overflow-auto`}>
-                {users?.map((user, index) => (
+                {mckres?.map((user, index) => (
                   <UserAvatar key={index} user={user} />
                 ))}
                 {extraUserCount > 0 && (

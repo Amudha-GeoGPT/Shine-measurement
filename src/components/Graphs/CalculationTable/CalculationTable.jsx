@@ -355,7 +355,7 @@ const CalculationTable = () => {
         <div className="mt-4">
           <Row style={{ height: "100%" }}>
             {currentItems?.map((item, index) => (
-              <Col key={index} sm={6} className="mb-4" style={{ height: "100%" }}>
+              <Col key={index} sm={12} lg={6} className="mb-4" style={{ height: "100%" }}>
                 <div
                   style={{
                     height: "100%",
@@ -385,7 +385,7 @@ const CalculationTable = () => {
                     maxHeight: "100%",
                     width: "100%",
                     maxWidth: "100%",
-                    margin: "0 auto",
+                    // margin: "0 auto",
                     borderRadius: '20px'
                   }}
                   data={generateChartData(item, index)}
