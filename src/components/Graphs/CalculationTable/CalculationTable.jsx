@@ -49,13 +49,13 @@ const CalculationTable = () => {
     console.log(id);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
-  const totalPages = Math.ceil(data?.results?.length / itemsPerPage);
+  const totalPages = Math.ceil(data?.results?.graphResults?.length / itemsPerPage);
  
  
  
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = data?.results?.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = data?.results?.graphResults?.slice(indexOfFirstItem, indexOfLastItem);
  
  
  
