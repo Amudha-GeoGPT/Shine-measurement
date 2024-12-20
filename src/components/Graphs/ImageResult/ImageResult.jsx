@@ -3,8 +3,8 @@ import s from "./ImageResult.module.scss";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { Col, Row } from 'react-bootstrap';
-
-
+ 
+ 
 const ImageResult = () => {
   const { data, loading, error } = useSelector((state) => state.calculation);
   if (loading) {
@@ -55,7 +55,7 @@ const ImageResult = () => {
   }
   const location = useLocation();
   const {id} = location.state||{};
- 
+
   return (
     <div className={s.imageResult}>
       <div className="container-fluid">
@@ -72,6 +72,7 @@ const ImageResult = () => {
                     alt={item.title}
                     className={s.image}
                   />
+                  
                 </div>
               </div>
               <div className={s.contentWrapper}>
@@ -87,8 +88,6 @@ const ImageResult = () => {
     </div>
   );
 };
- 
+
 export default ImageResult;
- 
- 
- 
+
