@@ -15,13 +15,7 @@ const ExperimentCard = ({ experiment }) => {
   const handleViewResults = (param) => {
     navigate('/graph/graph-results',{state:{id:param}});
   };
-  // const handleViewResults = (param) => {
-  //   console.log("parama"+JSON.stringify(param));
-  //    navigate(`/graph/graph-results?data=${param}`);
-  // };
-
   
-
   return (
     <div className={`card ${s.card} shadow-sm mb-4`}>
       <div className={s['card-body']}>

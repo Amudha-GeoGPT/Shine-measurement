@@ -11,13 +11,14 @@ const ExperimentHeader = ({ onSearchChange, onCreateNew }) => {
       <div className={s.headerTop}>
         <h1 className={s.title}>Experiments</h1>
         <button
-          style={{ backgroundColor: '#3F51B5' }}
-          className="btn btn-primary d-flex align-items-center justify-content-center text-nowrap"
-          onClick={onCreateNew}
-        >
-          <ReactSVG src={plus} style={{ paddingBottom: '5px', paddingRight: '10px' }} />
-          <span style={{ fontSize: '16px', fontWeight: 600, lineHeight: '24px' }}>Create New</span>
-        </button>
+  type="button" // Explicitly set button type
+  style={{ backgroundColor: '#3F51B5' }}
+  className="btn btn-primary d-flex align-items-center justify-content-center text-nowrap"
+  onClick={onCreateNew}
+>
+  <ReactSVG src={plus} style={{ paddingBottom: '5px', paddingRight: '10px' }} />
+  <span style={{ fontSize: '16px', fontWeight: 600, lineHeight: '24px' }}>Create New</span>
+</button>
       </div>
       <Row >
         <Col md={6} xs={12} lg={4}>

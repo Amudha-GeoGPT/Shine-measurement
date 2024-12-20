@@ -5,9 +5,10 @@ import { debounce } from "lodash";
 import ExperimentList from "../../Experiments/ExperimentList/ExperimentList";
 import ExperimentHeader from "../../Experiments/ExperimentHeader/ExperimentHeader";
 import { setSearchTerm } from "../../../store/Swatchslice/swatchslice";
+import { fetchSwatchList } from "../../../store/Swatchlistview/swatchlistviewthunk";
+import s from "./Experiments.module.scss";
 import { fetchSwatchName } from "../../../store/Swatchslice/swatchthunk";
 import * as thunk from "../../../store/Swatchlistview/swatchlistviewthunk";
-import s from "./Experiments.module.scss";
 
 const Experiments = () => {
   const dispatch = useDispatch();
@@ -108,15 +109,11 @@ console.log("reultAction",resultAction?.data?.results?.swatchname?.swatch_name);
       <div className={s.mapParentCont}>
         <ExperimentHeader
           onSearchChange={handleSearchChange}
-          onCreateNew={handleCreateNew}
+            onCreateNew={handleCreateNew}
         />
-        <div style={{ height: "100%", overflowY: "scroll", overflowX: "hidden" }}>
-          <ExperimentList experiments={paginatedExperiments} />
-          {loading && (
-            <div className="placeholder-glow card-img-top" style={{ height: "150px" }}>
-              <span className="placeholder"></span>
-            </div>
-          )}
+        <div style={{ height: "100%", overflowY: "scroll" ,overflowX:'hidden'}}>
+        <ExperimentList experiments={paginatedExperiments} loading={loading} />
+        {loading && <p></p>}
           <div ref={loaderRef} style={{ height: "20px" }} />
         </div>
       </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getbycalculatelist } from "../../../store/calculationslice/calculationthunk";
 import * as thunk from '../../../store/calculationslice/calculationthunk'
 import { useDispatch, useSelector } from "react-redux";
-import { Table, Pagination, Container, Row, Col } from "react-bootstrap";
+import { Table, Pagination, Container, Row, Col, Placeholder } from "react-bootstrap";
 import { Bar } from "react-chartjs-2";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useLocation } from "react-router-dom";
@@ -18,9 +18,9 @@ import {
 import s from "./CalculationTable.module.scss";
 import leftarrow from '../../../assets/svg/previous-arrow.svg';
 import nextarrow from '../../../assets/svg/next-arrow.svg';
- 
+
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
- 
+
 const styles = {
   title: {
     fontSize: "1rem",
@@ -39,9 +39,7 @@ const styles = {
     display: 'transparent',
   },
 };
- 
 const centerOffsetColors = ["#F68D2B", "#FFD200", "#9891FF", "#344BFD"];
- 
 const CalculationTable = () => {
     const { data, loading, error } = useSelector((state) => state.calculation);
  
@@ -67,7 +65,7 @@ const CalculationTable = () => {
     console.log("result"+JSON.stringify(data?.data?.results));
  
   const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
- 
+
   const getPaginationItems = () => {
     const items = [];
     if (totalPages <= 1) {
@@ -110,7 +108,7 @@ const CalculationTable = () => {
         </Pagination.Item>
       );
     }
- 
+
     if (currentPage > 3 && totalPages > 5) {
       items.push(
         <Pagination.Item
@@ -122,7 +120,6 @@ const CalculationTable = () => {
         </Pagination.Item>
       );
     }
- 
     const startPage = Math.max(4, currentPage - 1);
     const endPage = Math.min(totalPages - 2, currentPage + 2);
     for (let i = startPage; i <= endPage; i++) {
@@ -144,7 +141,6 @@ const CalculationTable = () => {
         </Pagination.Item>
       );
     }
- 
     if (currentPage < totalPages - 2 && totalPages > 5) {
       items.push(
         <Pagination.Item
@@ -156,7 +152,6 @@ const CalculationTable = () => {
         </Pagination.Item>
       );
     }
- 
     for (let i = Math.max(totalPages - 2, endPage + 1); i <= totalPages; i++) {
       items.push(
         <Pagination.Item
@@ -176,10 +171,10 @@ const CalculationTable = () => {
         </Pagination.Item>
       );
     }
- 
+
     return items;
   };
- 
+
   const generateChartData = (item, index) => ({
     labels: [""],
     datasets: [
@@ -227,7 +222,7 @@ const CalculationTable = () => {
       }
     ],
   });
- 
+
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: true,
@@ -281,129 +276,179 @@ const CalculationTable = () => {
       },
     },
   };
- 
+
   return (
     <div style={{ display: "flex", flexDirection: "column", margin: '0 !important', padding: '20px', background: '#F6F8F7' }}>
-            <div style={{width:'100%',overflowX:'scroll'}}>
-      <Table striped bordered hover style={{borderRadius:"12px",overflow:"hidden"}}>
-      <thead>
-        <tr>
-          <th  colSpan={7} style={{ fontSize: '18px', lineHeight: '28px' }}>Calculations</th>
-        </tr>
-        <tr>
-          <th>S.No</th>
-          <th>Specular Area</th>
-          <th>FWHM</th>
-          <th>Max Intensity</th>
-          <th>Center Offset</th>
-          <th>Baseline Offset</th>
-          <th>Sin-Curve-Area</th>
-        </tr>
-      </thead>
-      <tbody>
-        {currentItems?.map((item, index) => (
-            <tr key={index}>
-              <td>{`ROI#${indexOfFirstItem + index + 1}`}</td>
-              <td>{item.specular_area}</td>
-              <td>{item.fwhm}</td>
-              <td>{item.max_intensity}</td>
-              <td>{item.center_offset}</td>
-              <td>{item.baseline_offset}</td>
-              <td>{item.sin_curve_area}</td>
-            </tr>
-          ))}
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colSpan={7}>
-            <Row style={{ justifyContent: 'space-between', alignItems: 'center' }}>
-              <Col xs="auto">
-                <Pagination>
-                  <Pagination.Prev
-                    disabled={currentPage === 1}
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    linkClassName={s.name}
+      <div style={{width:'100%',overflowX:'scroll'}}>
+      <Table striped bordered hover style={{ borderRadius: "12px", overflow: "hidden" }}>
+        <thead>
+          <tr>
+            <th colSpan={7} style={{ fontSize: '18px', lineHeight: '28px' }}>Calculations</th>
+          </tr>
+          <tr>
+            <th>S.No</th>
+            <th>Specular Area</th>
+            <th>FWHM</th>
+            <th>Max Intensity</th>
+            <th>Center Offset</th>
+            <th>Baseline Offset</th>
+            <th>Sin-Curve-Area</th>
+          </tr>
+        </thead>
+        <tbody>
+          {loading
+            ? [...Array(itemsPerPage)].map((_, index) => (
+              <tr key={index} style={{ height: '40px' }}>
+                <td >
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-10 bg-secondary-glow"></span>
+                  </p>
+                </td>
+                <td>
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-10 bg-secondary-glow"></span>
+                  </p>
+                </td>
+                <td>
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-10 bg-secondary-glow"></span>
+                  </p>
+                </td>
+                <td>
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-10 bg-secondary-glow"></span>
+                  </p>
+                </td>
+                <td>
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-10 bg-secondary-glow"></span>
+                  </p>
+                </td>
+                <td>
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-10 bg-secondary-glow"></span>
+                  </p>
+                </td>
+                <td>
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-10 bg-secondary-glow"></span>
+                  </p>
+                </td>
+              </tr>
+            ))
+            : currentItems?.map((item, index) => (
+              <tr key={index}>
+                <td>{`ROI#${indexOfFirstItem + index + 1}`}</td>
+                <td>{item.specular_area}</td>
+                <td>{item.fwhm}</td>
+                <td>{item.max_intensity}</td>
+                <td>{item.center_offset}</td>
+                <td>{item.baseline_offset}</td>
+                <td>{item.sin_curve_area}</td>
+              </tr>
+            ))}
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colSpan={7}>
+              <Row style={{ justifyContent: 'space-between', alignItems: 'center' }}>
+                <Col xs="auto">
+                  <Pagination>
+                    <Pagination.Prev
+                      disabled={currentPage === 1}
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      linkClassName={s.name}
+                    >
+                      <span><img src={leftarrow} alt="Previous" /></span> Previous
+                    </Pagination.Prev>
+                  </Pagination>
+                </Col>
+
+                <Col xs="auto">
+                  <Pagination style={{ zIndex: 0, position: 'relative' }}>
+                    {getPaginationItems()}
+                  </Pagination>
+                </Col>
+
+                <Col xs="auto">
+                  <Pagination>
+                    <Pagination.Next
+                      disabled={currentPage === totalPages}
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      linkClassName={s.name}
+                    >
+                      Next <span><img src={nextarrow} alt="Next" /></span>
+                    </Pagination.Next>
+                  </Pagination>
+                </Col>
+              </Row>
+            </td>
+          </tr>
+        </tfoot>
+      </Table>
+      </div>
+
+
+      <div className="mt-4">
+        <Row>
+          {loading
+            ? Array.from({ length: 6 }).map((_, index) => (
+                <Col sm={12} lg={6} key={index} className="mb-4" style={{height:"100%" }}>
+                  <div className="placeholder-glow">
+                    <span
+                      className="placeholder col-12 bg-secondary"
+                      style={{ height: "300px", borderRadius: "12px" }}
+                    >
+                      <span
+                      className="placeholder col-12 bg-light"
+                      style={{ height: "25px", width:"70px",marginTop:'10px',marginLeft:'15px'}}
+                    ></span>
+                    </span>
+                    <span
+                      className="placeholder col-12 bg-secondary"
+                      style={{ height: "20px", width: "250px", marginTop: "10px" }}
+                    ></span><br />
+                    <span
+                      className="placeholder col-12 bg-secondary"
+                      style={{ height: "20px", width: "100px", marginTop: "10px" }}
+                    ></span>
+                  </div>
+                </Col>
+              ))
+            : currentItems?.map((item, index) => (
+                <Col sm={12} lg={6}key={index} className="mb-4" style={{height:"100%" }}>
+                  <div
+                    style={{
+                      border: "1px solid #ccc",
+                      padding: "10px",
+                      borderRadius: "8px",
+                      backgroundColor: "white",
+                      position: "relative",
+                    }}
                   >
-                    <span><img src={leftarrow} alt="Previous" /></span> Previous
-                  </Pagination.Prev>
-                </Pagination>
-              </Col>
- 
-              <Col xs="auto">
-                <Pagination style={{zIndex:0,position:'relative'}}>
-                  {getPaginationItems()}
-                </Pagination>
-              </Col>
- 
-              <Col xs="auto">
-                <Pagination>
-                  <Pagination.Next
-                    disabled={currentPage === totalPages}
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    linkClassName={s.name}
-                  >
-                    Next <span><img src={nextarrow} alt="Next" /></span>
-                  </Pagination.Next>
-                </Pagination>
-              </Col>
-            </Row>
-          </td>
-        </tr>
-      </tfoot>
-    </Table>
- </div>
-        <div className="mt-4">
-          <Row style={{ height: "100%" }}>
-            {currentItems?.map((item, index) => (
-              <Col key={index} sm={12} lg={6} className="mb-4" style={{ height: "100%" }}>
-                <div
-                  style={{
-                    height: "100%",
-                    border: "1px solid #ccc",
-                    padding: "10px",
-                    position: "relative",
-                  backgroundColor: "white",
-                  borderRadius: '8px'
-                }}
-              >
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "10px",
-                    left: "10px",
-                    fontWeight: "bold",
-                    backgroundColor: "white",
-                  }}
-                >
-                  {`ROI#${indexOfFirstItem + index + 1}`}
-                </div>
- 
-                <Bar
-                  className="mt-5"
+                    <div style={{ position: "absolute", top: "10px", left: "10px", fontWeight: "bold" }}>
+                      {`ROI#${indexOfFirstItem + index + 1}`}
+                    </div>
+                    <Bar className="mt-5"
                   style={{
                     height: "100%",
                     maxHeight: "100%",
                     width: "100%",
                     maxWidth: "100%",
                     // margin: "0 auto",
-                    borderRadius: '20px'
-                  }}
-                  data={generateChartData(item, index)}
-                  options={chartOptions}
-                />
-              </div>
-              <div>
-                <h3 style={styles.title}>Spectacular profile of ROI Design</h3>
-                <button style={styles.button}>Download Graph</button>
-              </div>
-            </Col>
-          ))}
+                    borderRadius: '20px'}} data={generateChartData(item, index)} options={chartOptions} />
+                  </div>
+                  <h3 style={styles.title}>Spectacular profile of ROI Design</h3>
+                  <button style={styles.button}>Download Graph</button>
+                </Col>
+              ))}
         </Row>
       </div>
     </div>
   );
 };
- 
+
 export default CalculationTable;
  
  
