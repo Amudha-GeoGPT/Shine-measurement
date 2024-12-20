@@ -394,7 +394,7 @@ const CalculationTable = () => {
         <Row>
           {loading
             ? Array.from({ length: 6 }).map((_, index) => (
-                <Col sm={6} key={index} className="mb-4">
+                <Col sm={12} lg={6} key={index} className="mb-4" style={{height:"100%" }}>
                   <div className="placeholder-glow">
                     <span
                       className="placeholder col-12 bg-secondary"
@@ -417,7 +417,7 @@ const CalculationTable = () => {
                 </Col>
               ))
             : currentItems?.map((item, index) => (
-                <Col sm={6} key={index} className="mb-4">
+                <Col sm={12} lg={6}key={index} className="mb-4" style={{height:"100%" }}>
                   <div
                     style={{
                       border: "1px solid #ccc",
@@ -436,7 +436,7 @@ const CalculationTable = () => {
                     maxHeight: "100%",
                     width: "100%",
                     maxWidth: "100%",
-                    margin: "0 auto",
+                    // margin: "0 auto",
                     borderRadius: '20px'}} data={generateChartData(item, index)} options={chartOptions} />
                   </div>
                   <h3 style={styles.title}>Spectacular profile of ROI Design</h3>
