@@ -55,12 +55,12 @@ const ImageResult = () => {
   }
   const location = useLocation();
   const {id} = location.state||{};
-
+ 
   return (
     <div className={s.imageResult}>
       <div className="container-fluid">
         <div className={s.gridContainer}>
-          {data?.data?.results.map((item,index) => (
+          {data?.results?.map((item,index) => (
             <div
               key={index}
               className={`${s.gridItem}`}
@@ -87,6 +87,8 @@ const ImageResult = () => {
     </div>
   );
 };
-
+ 
 export default ImageResult;
-
+ 
+ 
+ 

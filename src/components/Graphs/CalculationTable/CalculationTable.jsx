@@ -41,23 +41,29 @@ const styles = {
 };
 const centerOffsetColors = ["#F68D2B", "#FFD200", "#9891FF", "#344BFD"];
 const CalculationTable = () => {
-  const { data, loading, error } = useSelector((state) => state.calculation);
-  const location = useLocation();
-  const { id } = location.state || {};
-
-  console.log(id);
+    const { data, loading, error } = useSelector((state) => state.calculation);
+ 
+    const location = useLocation();
+    const {id} = location.state||{};
+ 
+    console.log(id);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
-  const totalPages = Math.ceil(data?.data?.results?.length / itemsPerPage);
-
-
-
+  const totalPages = Math.ceil(data?.results?.length / itemsPerPage);
+ 
+ 
+ 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = data?.data?.results.slice(indexOfFirstItem, indexOfLastItem);
-  console.log("result" + JSON.stringify(data));
-  console.log("result" + JSON.stringify(data?.data?.results));
-
+  const currentItems = data?.results?.slice(indexOfFirstItem, indexOfLastItem);
+ 
+ 
+ 
+ 
+ 
+    console.log("result"+JSON.stringify(data));
+    console.log("result"+JSON.stringify(data?.data?.results));
+ 
   const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
 
   const getPaginationItems = () => {
@@ -82,7 +88,7 @@ const CalculationTable = () => {
       );
       return items;
     }
-
+ 
     for (let i = 1; i <= Math.min(3, totalPages); i++) {
       items.push(
         <Pagination.Item
@@ -273,6 +279,7 @@ const CalculationTable = () => {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", margin: '0 !important', padding: '20px', background: '#F6F8F7' }}>
+      <div style={{width:'100%',overflowX:'scroll'}}>
       <Table striped bordered hover style={{ borderRadius: "12px", overflow: "hidden" }}>
         <thead>
           <tr>
@@ -293,38 +300,38 @@ const CalculationTable = () => {
             ? [...Array(itemsPerPage)].map((_, index) => (
               <tr key={index} style={{ height: '40px' }}>
                 <td >
-                  <p class="card-text placeholder-glow">
-                    <span class="placeholder col-10 bg-secondary-glow"></span>
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-10 bg-secondary-glow"></span>
                   </p>
                 </td>
                 <td>
-                  <p class="card-text placeholder-glow">
-                    <span class="placeholder col-10 bg-secondary-glow"></span>
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-10 bg-secondary-glow"></span>
                   </p>
                 </td>
                 <td>
-                  <p class="card-text placeholder-glow">
-                    <span class="placeholder col-10 bg-secondary-glow"></span>
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-10 bg-secondary-glow"></span>
                   </p>
                 </td>
                 <td>
-                  <p class="card-text placeholder-glow">
-                    <span class="placeholder col-10 bg-secondary-glow"></span>
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-10 bg-secondary-glow"></span>
                   </p>
                 </td>
                 <td>
-                  <p class="card-text placeholder-glow">
-                    <span class="placeholder col-10 bg-secondary-glow"></span>
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-10 bg-secondary-glow"></span>
                   </p>
                 </td>
                 <td>
-                  <p class="card-text placeholder-glow">
-                    <span class="placeholder col-10 bg-secondary-glow"></span>
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-10 bg-secondary-glow"></span>
                   </p>
                 </td>
                 <td>
-                  <p class="card-text placeholder-glow">
-                    <span class="placeholder col-10 bg-secondary-glow"></span>
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-10 bg-secondary-glow"></span>
                   </p>
                 </td>
               </tr>
@@ -380,53 +387,62 @@ const CalculationTable = () => {
           </tr>
         </tfoot>
       </Table>
+      </div>
+
 
       <div className="mt-4">
-        <Row style={{ height: "100%" }}>
-          {currentItems?.map((item, index) => (
-            <Col key={index} sm={6} className="mb-4" style={{ height: "100%" }}>
-              <div
-                style={{
-                  height: "100%",
-                  border: "1px solid #ccc",
-                  padding: "10px",
-                  position: "relative",
-                  backgroundColor: "white",
-                  borderRadius: '8px'
-                }}
-              >
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "10px",
-                    left: "10px",
-                    fontWeight: "bold",
-                    backgroundColor: "white",
-                  }}
-                >
-                  {`ROI#${indexOfFirstItem + index + 1}`}
-                </div>
-
-                <Bar
-                  className="mt-5"
+        <Row>
+          {loading
+            ? Array.from({ length: 6 }).map((_, index) => (
+                <Col sm={6} key={index} className="mb-4">
+                  <div className="placeholder-glow">
+                    <span
+                      className="placeholder col-12 bg-secondary"
+                      style={{ height: "300px", borderRadius: "12px" }}
+                    >
+                      <span
+                      className="placeholder col-12 bg-light"
+                      style={{ height: "25px", width:"70px",marginTop:'10px',marginLeft:'15px'}}
+                    ></span>
+                    </span>
+                    <span
+                      className="placeholder col-12 bg-secondary"
+                      style={{ height: "20px", width: "250px", marginTop: "10px" }}
+                    ></span><br />
+                    <span
+                      className="placeholder col-12 bg-secondary"
+                      style={{ height: "20px", width: "100px", marginTop: "10px" }}
+                    ></span>
+                  </div>
+                </Col>
+              ))
+            : currentItems?.map((item, index) => (
+                <Col sm={6} key={index} className="mb-4">
+                  <div
+                    style={{
+                      border: "1px solid #ccc",
+                      padding: "10px",
+                      borderRadius: "8px",
+                      backgroundColor: "white",
+                      position: "relative",
+                    }}
+                  >
+                    <div style={{ position: "absolute", top: "10px", left: "10px", fontWeight: "bold" }}>
+                      {`ROI#${indexOfFirstItem + index + 1}`}
+                    </div>
+                    <Bar className="mt-5"
                   style={{
                     height: "100%",
                     maxHeight: "100%",
                     width: "100%",
                     maxWidth: "100%",
                     margin: "0 auto",
-                    borderRadius: '20px'
-                  }}
-                  data={generateChartData(item, index)}
-                  options={chartOptions}
-                />
-              </div>
-              <div>
-                <h3 style={styles.title}>Spectacular profile of ROI Design</h3>
-                <button style={styles.button}>Download Graph</button>
-              </div>
-            </Col>
-          ))}
+                    borderRadius: '20px'}} data={generateChartData(item, index)} options={chartOptions} />
+                  </div>
+                  <h3 style={styles.title}>Spectacular profile of ROI Design</h3>
+                  <button style={styles.button}>Download Graph</button>
+                </Col>
+              ))}
         </Row>
       </div>
     </div>
@@ -434,3 +450,5 @@ const CalculationTable = () => {
 };
 
 export default CalculationTable;
+ 
+ 

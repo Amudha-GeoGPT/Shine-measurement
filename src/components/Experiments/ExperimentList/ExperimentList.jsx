@@ -17,11 +17,11 @@ const ExperimentList = ({ experiments, loading }) => {
                     className="placeholder col-12 bg-secondary"
                     style={{ height: '150px', borderRadius: '12px' }}
                   >
-                    <span class="placeholder col-5 bg-light" style={{marginTop:"20px",marginLeft:"20px"}}></span>
+                    <span className="placeholder col-5 bg-light" style={{marginTop:"20px",marginLeft:"20px"}}></span>
                     <br />  
-                    <span class="placeholder col-5 bg-light" style={{marginTop:"20px",marginLeft:"20px"}}></span>
+                    <span className="placeholder col-5 bg-light" style={{marginTop:"20px",marginLeft:"20px"}}></span>
                     <br />
-                    <a href="#" tabindex="-1" class="btn btn-light disabled placeholder col-4" aria-hidden="true" style={{height:"30px",marginTop:"20px",marginRight:"20px",float:'right'}}></a>
+                    <a href="#" tabIndex="-1" className="btn btn-light disabled placeholder col-4" aria-hidden="true" style={{height:"30px",marginTop:"20px",marginRight:"20px",float:'right'}}></a>
                   </span>
                 </h5>
               </Col>
