@@ -26,16 +26,12 @@ const ImageResult = () => {
             >
               <div className={s.imageWrapper}>
                 <div className={s.imageContainer}>
-                  {/* <img
+                  <img
                     src={item.inputImage_name}
                     alt={item.title}
                     className={s.image}
-                  /> */}
-                    <img
-                    src="https://surveyoutlet.blob.core.windows.net/resdev/shinemeasurement/A004/uploaded-image.png?se=2024-12-19T15%3A52%3A08Z&sp=r&sv=2024-11-04&sr=b&sig=dcKnz172sCXDThDXoW0o9NI09/oBjKZAxEJi8vv34Xk%3D"
-                    alt="img"
-                    className={s.image}
                   />
+                  
                 </div>
               </div>
               <div className={s.contentWrapper}>
