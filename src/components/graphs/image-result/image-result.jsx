@@ -79,5 +79,4 @@ const ImageResult = () => {
     </div>
   );
 };
-
 export default ImageResult;
