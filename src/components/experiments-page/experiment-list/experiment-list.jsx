@@ -4,50 +4,26 @@ import styles from './experiment-list.module.scss';
 import { Col, Row } from 'react-bootstrap';
 
 const ExperimentList = ({ experiments, loading }) => {
-  const skeletonCards = Array.from({ length: 9 }); // Number of skeletons to display
-
+  const skeletonCards = Array.from({ length: 9}); // Number of skeletons to display
+ 
   return (
     <div className={styles.container}>
       <Row className="g-4 px-3">
         {loading
           ? skeletonCards.map((_, index) => (
               <Col lg={4} md={6} key={index}>
-                <div
-                  className="placeholder-wave"
-                  style={{
-                    height: '150px',
-                    borderRadius: '12px',
-                    background: '#e9ecef',
-                  }}
-                >
-                  <div
-                    style={{
-                      height: '20px',
-                      width: '60%',
-                      background: '#f8f9fa',
-                      margin: '20px auto',
-                      borderRadius: '4px',
-                    }}
-                  />
-                  <div
-                    style={{
-                      height: '20px',
-                      width: '40%',
-                      background: '#f8f9fa',
-                      margin: '10px auto',
-                      borderRadius: '4px',
-                    }}
-                  />
-                  <div
-                    style={{
-                      height: '30px',
-                      width: '30%',
-                      background: '#f8f9fa',
-                      margin: '10px auto',
-                      borderRadius: '4px',
-                    }}
-                  />
-                </div>
+                <h5 className="card-title placeholder-wave">
+                  <span
+                    className="placeholder col-12 bg-secondary"
+                    style={{ height: '150px', borderRadius: '12px' }}
+                  >
+                    <span className="placeholder col-5 bg-light" style={{marginTop:"20px",marginLeft:"20px"}}></span>
+                    <br />  
+                    <span className="placeholder col-5 bg-light" style={{marginTop:"20px",marginLeft:"20px"}}></span>
+                    <br />
+                    <a href="#" tabIndex="-1" className="btn btn-light disabled placeholder col-4" aria-hidden="true" style={{height:"30px",marginTop:"20px",marginRight:"20px",float:'right'}}></a>
+                  </span>
+                </h5>
               </Col>
             ))
           : experiments?.map((experiment) => (
@@ -59,5 +35,7 @@ const ExperimentList = ({ experiments, loading }) => {
     </div>
   );
 };
-
+ 
 export default ExperimentList;
+ 
+ 
