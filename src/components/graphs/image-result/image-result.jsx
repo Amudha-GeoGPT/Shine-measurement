@@ -67,8 +67,8 @@ const ImageResult = () => {
                 </div>
               </div>
               <div className={s.contentWrapper}>
-                <h3 className={s.title}>{item.roi}</h3>
-                <a href={item.downloadLink} className={s.downloadLink}>
+              <h3 className={s.imagetitle}>Output Images</h3>                
+              <a href={item.downloadLink} className={s.downloadLink}>
                   Download Graph
                 </a>
               </div>

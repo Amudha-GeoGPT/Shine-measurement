@@ -4,8 +4,7 @@
  
 }
 .gridContainer {
-  display:grid;
-  grid-template-columns: 2fr 2fr;
+  display: grid;
   margin: 0 auto;
   gap: 26px;
 }
@@ -60,13 +59,15 @@
   color: #1D2939;
   margin: 0;
 }
- 
+.imagetitle{
+  margin-top: 10px;
+ } 
 .downloadLink {
   color: #3F51B5;
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
- 
+  margin-top: 0 !important;
   &:hover {
     text-decoration: underline;
   }
