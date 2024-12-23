@@ -1,4 +1,4 @@
-import s from "./Header.module.scss";
+import s from "./header.module.scss";
 import cx from "classnames";
 import notifyIcon from "../../../assets/svg/notify.svg";
 import userIcon from "../../../assets/svg/user.svg";

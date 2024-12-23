@@ -1,15 +1,14 @@
 import ErrorPage from "../error-page";
-import CropImage from "../components/CropPage/CropImage/CropImage";
-import ImageCrop from "../components/CropPage/CropPage";
-import FileUpload from "../components/FileUpload/FileUpload";
-import DashboardLayout from "../components/Layout/dashboard-layout/dashboardlayout";
-import CalculationTable from "../components/Graphs/CalculationTable/CalculationTable";
-import GraphResult from "../components/Graphs/GraphResult/GraphResult";
-import ImageResult from "../components/Graphs/ImageResult/ImageResult";
-import GraphHeader from "../components/Graphs/GraphHeader";
-import Experiements from "../components/Mainpage/Pages/Experiments";
+import CropImage from "../components/crop-page/preview-image/preview-image";
+import ImageCrop from "../components/crop-page/crop-page";
+import FileUpload from "../components/file-upload/file-upload";
+import DashboardLayout from "../components/layout/dashboard-layout/dashboard-layout";
+import CalculationTable from "../components/graphs/calculation-table/calculation-table";
+import GraphResult from "../components/graphs/graph-result/graph-result";
+import ImageResult from "../components/graphs/image-result/image-result";
+import GraphHeader from "../components/graphs/graph-header";
+import Experiements from "../components/main-pages/pages/experiments";
 import { Navigate } from "react-router-dom";
-import DSLRWebcamCapture from "../components/webcam";
 const routes = [
     {
       path: "/",

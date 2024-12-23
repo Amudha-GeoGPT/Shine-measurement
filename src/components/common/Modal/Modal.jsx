@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal as BootstrapModal, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import s from "./Modal.module.scss";
+import s from "./modal.module.scss";
 
 const Modal = ({ show, handleClose, title, body, primaryButtonLabel }) => {
   return (
