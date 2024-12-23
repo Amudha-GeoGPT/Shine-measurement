@@ -6,7 +6,7 @@ import { setFileInfo, setUploadProgress, setUploadComplete, setImage, setSelecte
 import Webcam from 'react-webcam';
 import s from './file-upload.module.scss';
 import { ReactSVG } from 'react-svg';
-import Modal from '../common/modal/modal';
+import Modal from '../common/Modal/Modal';
 import Input from '../common/input/input';
 import UploadIcon from '../../assets/svg/upload.svg';
 import AddPhotoIcon from '../../assets/svg/add_a_photo.svg';

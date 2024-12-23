@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import s from "./preview-image.module.scss";
 import { ReactSVG } from "react-svg";
 import BackwardArrow from "../../../assets/svg/backward_arrow.svg";
-import Modal from "../../common/modal/modal";
+import Modal from "../../common/Modal/Modal";
 import {uploadFilesThunk} from '../../../store/fileUpload-page/upload-thunk'
 import { useDispatch,useSelector } from "react-redux";
 import { processImage } from "../../services/fileUpload-service";
