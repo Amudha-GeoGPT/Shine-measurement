@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getBySwatchlist } from "../../components/services/swatchListView-Service";
+import { getBySwatchlist } from "../../components/services/swatchListView-service";
 
 // Fetch Swatch List
 export const fetchSwatchList = createAsyncThunk(
