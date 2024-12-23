@@ -1,0 +1,71 @@
+.layout {
+  position: sticky;
+  // top: 79px;
+  // left: 232px;     
+  // right: 10px;  
+  padding-bottom: 20px; 
+  top:0;
+  // width: calc(100vw - 230px); 
+  z-index: 1;      
+  background-color: rgba(246, 248, 247, 1); 
+}
+
+
+.backreturnTitle {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.backTitle {
+  padding-left: 24px;
+  color: #344054;
+  font-size: 24px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-block;
+  // font-family: poppins;
+  line-height: 30px;
+}
+
+.graphNav {
+  background-color: #E4E7EC;
+  margin: 0 24px;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.graphNavList {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    flex: 1;
+    text-align: center;
+    margin: 0 4px;
+
+    .graphNavLink {
+      display: block;
+      color: #344054;
+      font-weight: 500;
+      font-size: 14px;
+      padding: 8px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      // font-family: poppins;
+      transition: all 0.2s ease;
+
+      &.active {
+        background-color: rgba(63, 81, 181, 1);
+        color: white;
+      }
+    }
+  }
+}
+
+
+
