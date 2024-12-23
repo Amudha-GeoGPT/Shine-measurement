@@ -2,7 +2,7 @@ import ErrorPage from "../error-page";
 import CropImage from "../components/crop-page/preview-image/preview-image";
 import ImageCrop from "../components/crop-page/crop-page";
 import FileUpload from "../components/file-upload/file-upload";
-import DashboardLayout from "../components/Layout/dashboard-layout/dashboard-layout";
+import DashboardLayout from "../components/layout/dashboard-layout/dashboard-layout";
 import CalculationTable from "../components/graphs/calculation-table/calculation-table";
 import GraphResult from "../components/graphs/graph-result/graph-result";
 import ImageResult from "../components/graphs/image-result/image-result";
