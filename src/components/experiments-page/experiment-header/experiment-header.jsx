@@ -36,5 +36,4 @@ const ExperimentHeader = ({ onSearchChange, onCreateNew }) => {
     </div>
   );
 };
-
 export default ExperimentHeader;
