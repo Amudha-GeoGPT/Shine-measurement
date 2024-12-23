@@ -3,7 +3,7 @@ import s from './experiment-header.module.scss';
 import { ReactSVG } from 'react-svg';
 import SearchIcon from "../../../assets/svg/search-lg.svg";
 import { Col, Row } from 'react-bootstrap';
-import plus from '../../../assets/svg/plusiconExp.svg';
+import plus from '../../../assets/svg/plusIconExp.svg';
 
 const ExperimentHeader = ({ onSearchChange, onCreateNew }) => {
   return (
