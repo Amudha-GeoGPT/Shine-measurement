@@ -15,14 +15,15 @@ const ImageResult = () => {
     return (
       <div className="p-4 container">
         <Row className="g-4" style={{ justifyContent: 'left', alignItems: 'center' }}>
-          {Array.from({ length: 6 }).map((_, index) => (
-            <Col sm={12} md={6} key={index}>
+          {Array.from({ length: 1 }).map((_, index) => (
+            <Col sm={12} md={12} key={index}>
               <h5 className="card-title placeholder-glow">
                 <span
                   className="placeholder col-12 bg-secondary"
                   style={{
-                    height: '300px',
+                    height: '400px',
                     borderRadius: '12px',
+                    width: '100%',
                   }}
                 ></span>
                 <span
