@@ -1,5 +1,5 @@
 import React from 'react';
-import GraphHeader from '../graphs/graph-header';
+import GraphHeader from '../Graphs/graph-header';
 
 const GraphPage = () => {
   return (

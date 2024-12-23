@@ -5,8 +5,7 @@ import s from "./side-menu.module.scss";
 
 // Icons
 import BookIcon from "../../../assets/svg/book_4.svg";
-// Replace with your icon paths
-import Back from "../../../assets/svg/backward_arrow.svg"; 
+// import Back from "../../../assets/svg/backward_arrow.svg"; 
 
 const SideMenu = () => {
   return (
