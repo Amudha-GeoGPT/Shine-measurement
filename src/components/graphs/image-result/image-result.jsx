@@ -21,7 +21,7 @@ const ImageResult = () => {
                 <span
                   className="placeholder col-12 bg-secondary"
                   style={{
-                    height: '400px',
+                    height: '210px',
                     borderRadius: '12px',
                     width: '100%',
                   }}
