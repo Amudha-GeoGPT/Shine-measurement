@@ -61,11 +61,6 @@ const ImageCrop = () => {
                 toggleDragModeOnDblclick={true}
                 minCanvasWidth={400}
                 minCanvasHeight={400}
-                style={{
-                  height: 'calc(100vh - 200px)',
-                  minHeight: '400px',
-                  width: '100%'
-                }}
                 onInitialized={(instance) => {
                   setCropper(instance);
                 }}

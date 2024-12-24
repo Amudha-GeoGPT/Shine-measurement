@@ -58,48 +58,26 @@
       max-width: 1200px;
       margin: 0 auto;
       min-height: 400px;
- 
+      overflow: hidden; // Prevent scrolling outside the image
+    
       :global(.cropper-container) {
         width: 100% !important;
         height: 100% !important;
- 
-        :global(.cropper-wrap-box) {
-          background-color: rgba(0, 0, 0, 0.4);
-        }
- 
+        position: relative;
+    
         :global(.cropper-view-box) {
-          outline: 2px solid #3f51b5;
-          outline-color: rgba(63, 81, 181, 0.75);
+          outline: 2px solid #e9eaed;
+          outline-color: rgba(233, 234, 237, 0.75);
+          overflow: hidden; // Constrain zoom within the box
         }
- 
-        :global(.cropper-point) {
-          width: 12px;
-          height: 12px;
-          background-color: #3f51b5;
-          opacity: 0.75;
-          border-radius: 50%;
- 
-          &.point-e,
-          &.point-n,
-          &.point-w,
-          &.point-s {
-            width: 8px;
-            height: 8px;
-          }
-        }
- 
-        :global(.cropper-line) {
-          background-color: #3f51b5;
-          opacity: 0.1;
-        }
- 
-        :global(.cropper-face) {
-          background-color: transparent;
+    
+        :global(img) {
+          position: absolute;
+          max-width: none; // Allow zoomed content to expand
         }
       }
     }
   }
- 
   .footer {
     padding: 16px;
     background-color: white;
