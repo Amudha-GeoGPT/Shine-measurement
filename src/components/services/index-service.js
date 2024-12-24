@@ -1,5 +1,4 @@
 import { apiPost } from '../../utils/axios';
-// import { client } from './client';
 
 export const postIndex = async (file) => {
   const formData = new FormData();

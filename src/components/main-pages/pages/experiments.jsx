@@ -5,7 +5,6 @@ import { debounce } from "lodash";
 import ExperimentList from "../../experiments-page/experiment-list/experiment-list";
 import ExperimentHeader from "../../experiments-page/experiment-header/experiment-header";
 import { setSearchTerm } from "../../../store/swatch-page/swatch-slice";
-// import { fetchSwatchList } from "../../../store/swatchListView-page/swatchListView-thunk";
 import s from "./experiments.module.scss";
 import { fetchSwatchName } from "../../../store/swatch-page/swatch-thunk";
 import * as thunk from "../../../store/swatchListView-page/swatchListView-thunk";

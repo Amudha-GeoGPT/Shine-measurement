@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import s from "./image-result.module.scss";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
